@@ -7,6 +7,9 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import * as authActions from './actions/auth';
 
+// Firebase Modules
+import { AngularFireModule } from 'angularfire2';
+
 /**
  * App Containers
  */
@@ -23,10 +26,13 @@ import reducer from './reducers/index';
 // Effects
 import { AuthEffects } from './effects/auth';
 
-
 // Services
 import { FacebookAuthService } from './services/facebook-auth.service';
 
+// Dev Tools
+
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreLogMonitorModule, useLogMonitor } from '@ngrx/store-log-monitor';
 
 @NgModule({
   declarations: [
@@ -40,7 +46,22 @@ import { FacebookAuthService } from './services/facebook-auth.service';
     HttpModule,
     ComponentsModule,
     StoreModule.provideStore(reducer),
-    EffectsModule.run(AuthEffects)
+    EffectsModule.run(AuthEffects),
+    AngularFireModule.initializeApp(
+      {
+      apiKey: "AIzaSyB_0Z6nSJSdCLY7CbjvcLKAFBLJ45Nb3_Y",
+      authDomain: "istalk-5ec3f.firebaseapp.com",
+      databaseURL: "https://istalk-5ec3f.firebaseio.com",
+      storageBucket: "istalk-5ec3f.appspot.com"
+      }
+    ),
+    StoreDevtoolsModule.instrumentStore({
+      monitor: useLogMonitor({
+        visible: true,
+        position: 'right'
+      })
+    }),
+    StoreLogMonitorModule
   ],
   providers: [FacebookAuthService, authActions.LoginFbAction],
   bootstrap: [AppComponent]

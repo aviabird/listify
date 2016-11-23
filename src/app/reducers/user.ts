@@ -8,11 +8,8 @@ export type UserState = User;
 
 // Initializer AuthStatus with default values
 const initialState: UserState = {
-    isSignedIn: false,
-    fbToken: ""
 };
 
-// export function(state = initialState, action: Action): UserState {
-
-    
-// }
+export function reducer(state = initialState, action: Action): UserState {
+    return {}
+}

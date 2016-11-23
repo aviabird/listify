@@ -1,50 +1,42 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+// Angualr Fire for facebook Authentication
+import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
 
-declare const FB:any;
+// Import User model
+import { User } from '../models/user';
 
 @Injectable()
 export class FacebookAuthService {
-  
-  constructor() { 
-    FB.init({
-      appId      : '112535305898047',
-      cookie     : true,  // enable cookies to allow the server to access
-                          // the session
-      xfbml      : true,  // parse social plugins on this page
-      version    : 'v2.8' // use graph api version 2.5
-    });
+  // user: any;
+  constructor(public af: AngularFire) {
+    // this.af.auth.subscribe(user => {
+    //   console.log("In side constructor")
+    //   if(user) {
+    //     // user logged in
+    //     this.user = user;
+    //   }
+    //   else {
+    //     // user not logged in
+    //     this.user = {};
+    //   }
+    // });
   }
 
-  // Check Login Status first
-  checkLoginState() {
-     FB.getLoginStatus(response => {
-        var status = this.statusChangeCallback(response);
-        console.log("Status is: ", status);
-    });
-    console.log("Status outside the FB Function is:", status);
-    return status;
+  // Angular 2 Firebase Login
+  login() {
+      this.af.auth.login({
+        provider: AuthProviders.Facebook,
+        method: AuthMethods.Popup
+      }).then((success) => {
+        console.log("Facebook success login", success);
+      }).catch((error) => {
+        console.info("error", error);
+      });
   }
-
-
-  statusChangeCallback(response){
-    if(response.status === 'connected'){
-      console.log("Already Connected");
-      return true;
-    } else if (response.status === 'not_authrised'){
-      console.log("You are not authrized");
-      return false;
-    } else {
-      console.log("Unkown Response");
-      return false;
-    }
-  }
-
-
-
-
-  login(){
-    console.log("In side the service");
-    FB.Login()
+ 
+  // LogOut user
+  logout() {
+    this.af.auth.logout();
   }
 }
