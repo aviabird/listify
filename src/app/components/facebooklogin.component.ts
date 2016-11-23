@@ -26,12 +26,14 @@ export class FacebookLoginComponent implements OnInit {
     statusChangeCallback(resp) {
         if (resp.status === 'connected') {
             // connect here with your server for facebook login by passing access token given by facebook
+            console.log("Response is : ", resp)
         }else if (resp.status === 'not_authorized') {
             
         }else {
             
         }
     };
+
     ngOnInit() {
         FB.getLoginStatus(response => {
             this.statusChangeCallback(response);
