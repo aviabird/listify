@@ -1,3 +1,27 @@
-<div>
-  <ist-facebook-login (signIn)="signInUser($event)"></ist-facebook-login>
+<div class="container">
+    <div class="login-container">
+        <div class="row" id="login-title">
+            <h1>Login</h1>
+        </div>
+        <div class="btn-block">
+            <button type="button" class="btn btn-md btn-social btn-facebook btn-margin social-btn-div" (click)="signInUser('facebook')">
+                <i class="fa fa-facebook fa-fw"></i>Facebook
+            </button>
+
+            <button type="button" class="btn btn-md btn-social btn-twitter social-btn-div">
+                <i class="fa fa-twitter fa-fw"></i>Twitter
+            </button>
+            
+            <button type="button" class="btn btn-md btn-social btn-instagram social-btn-div">
+                <i class="fa fa-instagram fa-fw"></i> Instagram
+            </button>
+        </div>
+    </div>
 </div>
+
+<!--<div *ngIf= "userIsAuthenticated | async">
+<h1> User Data </h1>
+{{ user | async | json }}
+
+{{userIsAuthenticated | async | json}}
+</div>-->

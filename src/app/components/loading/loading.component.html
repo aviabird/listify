@@ -1,0 +1,11 @@
+<div [ngSwitch]="loading">
+	<div *ngSwitchCase="false">
+	    <ng-content></ng-content>
+        </div>
+	<div *ngSwitchCase="true">
+		<div>
+			<h1>Hello, World</h1>
+			<img src="../../assets/poi.gif" alt="">
+		</div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+.login-container {
+  padding: 100px 0;
+  text-align: center;
+}
+
+.social-btn-div {
+  padding: 10px;
+  margin: auto;  
+}
+
+.btn-facebook {
+  background: #3b5998;
+}
+
+.btn-twitter {
+  background: #00aced;
+}
+
+.btn-instagram {
+  background: #3F729B;
+}
+
+.btn-social {
+  color: white;
+}
+
+#login-title h1 {
+  font-family: Verdana;
+}

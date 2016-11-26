@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
-import { FacebookLoginComponent } from './facebooklogin.component';
 
 export const COMPONENTS = [
-  FacebookLoginComponent
 ];
 
 

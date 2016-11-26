@@ -1,4 +1,6 @@
-export interface User {
-    isSignedIn: boolean
-    fbToken: String
+export class User {
+  displayName:  string;
+  photoURL:     string;
+  email:        string;
+  provider:     string;
 }
