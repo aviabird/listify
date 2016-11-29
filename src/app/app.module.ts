@@ -12,21 +12,26 @@ import { ComponentsModule } from './components';
 import { LoginComponent } from './components/login/login.component';
 
 import { CommonModule } from '@angular/common';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
+import { routing } from './app.routes';
+import { LocalStorage } from './services/local-storage';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     ComponentsModule,
-    CommonModule
+    CommonModule,
+    routing
   ],
-  providers: [],
+  providers: [LocalStorage],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
