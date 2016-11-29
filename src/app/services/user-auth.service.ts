@@ -25,6 +25,35 @@ export class UserAuthService {
     return this.userAuth
   }
 
+  findByEmail(email: string){
+   return this.af.database.list('/users', {
+      query: {
+        orderByChild: 'email',
+        equalTo: email,
+        limitToFirst: 1,
+      }
+    })
+  }
+
+  // Need To Work on this Logic
+  // TODO: Fix this
+  // Its saving a new user everytime
+  storeNewUser(userAuth: fromUserAuth.State){
+    console.log("Inside STore User");
+    let user = userAuth.user;
+    this.findByEmail(user.email).subscribe(
+      users => {
+        console.log("Inside Find Email Subs User");
+        if(!users.length) {
+          this.af.database.list('/users').push(user);
+        }
+      }
+    )
+    return userAuth;
+  }
+
+
+
   logout() {
     this.af.auth.logout();
     return this.userAuth;
