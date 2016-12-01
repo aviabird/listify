@@ -2,6 +2,24 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+
+// All actions
+import actions from './actions';
+
+
+/**
+ * Ngrx Store Modules
+ */
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreLogMonitorModule, useLogMonitor } from '@ngrx/store-log-monitor';
+import { EffectsModule } from '@ngrx/effects';
+
+/**
+ * Effects Modules
+ */
+import { LoginEffects } from './effects/login.effect';
+
 /**
  * App Containers
  */
@@ -15,7 +33,7 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 import { routing } from './app.routes';
-import { LocalStorage } from './services/local-storage';
+import { FacebookAuthService } from './services/facebook-auth.service';
 
 @NgModule({
   declarations: [
@@ -29,9 +47,20 @@ import { LocalStorage } from './services/local-storage';
     HttpModule,
     ComponentsModule,
     CommonModule,
-    routing
+    routing,
+    StoreModule.provideStore({}),
+     StoreDevtoolsModule.instrumentStore({
+      monitor: useLogMonitor({
+        visible: true,
+        position: 'right'
+      })
+    }),
+    StoreLogMonitorModule,
+    EffectsModule.run(LoginEffects)
   ],
-  providers: [LocalStorage],
+  providers: [
+    actions,
+    FacebookAuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

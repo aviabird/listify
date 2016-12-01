@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LocalStorage } from '../../services/local-storage';
+import { Router } from '@angular/router';
+import { FacebookAuthService } from '../../services/facebook-auth.service';
 
 @Component({
   selector: 'ist-dashboard',
@@ -8,12 +9,15 @@ import { LocalStorage } from '../../services/local-storage';
 })
 export class DashboardComponent implements OnInit {
   user;
-  constructor(private _localSorage: LocalStorage) { 
+  status;
+  constructor(private facebookAuthService: FacebookAuthService,
+              private router: Router) { 
   }
 
   ngOnInit() {
-       this.user = this._localSorage.getUser();
-       console.log("User is ", this.user);
+    console.log("Inside ng On Int");
+    this.facebookAuthService.getAuthResponse()
+    this.facebookAuthService.getLoginStatus();
   }
 
 }
