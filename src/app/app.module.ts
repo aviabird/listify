@@ -6,6 +6,8 @@ import { HttpModule } from '@angular/http';
 // All actions
 import actions from './actions';
 
+// All Reducers
+import reducer from './reducers';
 
 /**
  * Ngrx Store Modules
@@ -48,7 +50,7 @@ import { FacebookAuthService } from './services/facebook-auth.service';
     ComponentsModule,
     CommonModule,
     routing,
-    StoreModule.provideStore({}),
+    StoreModule.provideStore(reducer),
      StoreDevtoolsModule.instrumentStore({
       monitor: useLogMonitor({
         visible: true,

@@ -1,6 +1,6 @@
 import { type } from '../util';
 import { Action } from '@ngrx/store';
-
+import { User } from '../models';
 /**
  * A Hash Constant which has all types of Login Action
  * { key: type } 
@@ -31,14 +31,23 @@ export class LoginActions {
     /**
      * Returns an Action.
      * 
+     * Note : taking user as input and returning user as a payload
+     * which latter a reducer stores it in a state.
+     * There is an another approach where we take a loginResponse
+     * as whole and then in reducer we disect it and retrive user
+     * details.
+     * 
+     * TODO: Discuss the above two approach with the team.
+     * and implement the elegant one.
+     * 
      * @param loginData: Data of type any received after login a user
      * @return {Action} an Action with type 'Login Success'
+     * 
      */
-    loginSuccess(loginData: any): Action {
+    loginSuccess(user: User): Action {
         return {
             type: ActionTypes.LOGIN_SUCCESS,
-            payload: loginData
+            payload: user
         }
     }
-
 }

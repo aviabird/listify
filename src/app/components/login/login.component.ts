@@ -3,7 +3,7 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../reducers/index';
+import { AppState, getLoginState } from '../../reducers/index';
 import { LoginActions } from '../../actions/login.actions';
 
 @Component({
@@ -17,6 +17,10 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router,
               private loginActions: LoginActions,
               private store: Store<AppState>) {
+    
+    this.store.let(getLoginState())
+      .filter(state => state.isLoggedIn)
+      .subscribe(() => this.router.navigate(['/dashboard']));                  
   }
 
   ngOnInit() {

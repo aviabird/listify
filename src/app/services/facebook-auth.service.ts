@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-// Decalere Constant FB for Facebook SDK;
+import { User } from '../models';
 
+
+
+// Decalere Constant FB for Facebook SDK;
 declare const FB:any;
 
 @Injectable()
@@ -70,10 +73,16 @@ export class FacebookAuthService {
       return Observable.create((observer)=> {
         this.fbPromise().then(
           (response) => {
-            console.log("Inside loginFB Response:", response);
             if(response.status === 'connected'){
-              console.log("Insider loginFB respons if")
-              observer.next(response);
+              
+              // Unsure about this approach
+              // TODO: Discuss this approach
+              const user = new User(
+                response.authResponse.userID,
+                response.authResponse.accessToken)
+              
+              // Emit User
+              observer.next(user);
             }else{
               return null;
             }
