@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+// Services
+import { AuthGuardService } from './services/auth-guard.service';
+
 // All actions
 import actions from './actions';
 
@@ -62,7 +65,8 @@ import { FacebookAuthService } from './services/facebook-auth.service';
   ],
   providers: [
     actions,
-    FacebookAuthService],
+    FacebookAuthService,
+    AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
