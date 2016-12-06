@@ -11,7 +11,7 @@
           <!-- SIDEBAR USER TITLE -->
           <div class="profile-usertitle">
             <div class="profile-usertitle-name">
-              Jerome Powell
+              {{ (user$ | async).userProfile.first_name }} {{(user$ | async).userProfile.last_name }}
             </div>
           </div>
           <!-- END SIDEBAR USER TITLE -->
