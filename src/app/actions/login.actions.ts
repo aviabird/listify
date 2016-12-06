@@ -1,6 +1,6 @@
 import { type } from '../util';
 import { Action } from '@ngrx/store';
-import { User } from '../models';
+import { UserAuth } from '../models';
 /**
  * A Hash Constant which has all types of Login Action
  * { key: type } 
@@ -31,7 +31,7 @@ export class LoginActions {
     /**
      * Returns an Action.
      * 
-     * Note : taking user as input and returning user as a payload
+     * Note : taking user_auth as input and returning user as a payload
      * which latter a reducer stores it in a state.
      * There is an another approach where we take a loginResponse
      * as whole and then in reducer we disect it and retrive user
@@ -44,10 +44,10 @@ export class LoginActions {
      * @return {Action} an Action with type 'Login Success'
      * 
      */
-    loginSuccess(user: User): Action {
+    loginSuccess(user_auth: UserAuth): Action {
         return {
             type: ActionTypes.LOGIN_SUCCESS,
-            payload: user
+            payload: user_auth
         }
     }
 }
