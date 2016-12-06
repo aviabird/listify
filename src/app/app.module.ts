@@ -1,16 +1,20 @@
+//========================= IStalk ========================================
+/**
+ * Core Modules and Libraries used in App. 
+ */
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { CommonModule } from '@angular/common';
 
-// Services
+/**
+ * ALL Services used in App.
+ */
 import { AuthGuardService } from './services/auth-guard.service';
-
-// All actions
-import actions from './actions';
-
-// All Reducers
-import reducer from './reducers';
+import { FacebookAuthService } from './services/facebook-auth.service';
+import { FacebookSDK } from './sdk/facebook.sdk';
+//========================= NGRX Releated Imports ===========================
 
 /**
  * Ngrx Store Modules
@@ -26,19 +30,31 @@ import { EffectsModule } from '@ngrx/effects';
 import { LoginEffects } from './effects/login.effect';
 
 /**
- * App Containers
+ * ALL Ngrx Actions that can be fired in app loaded as one.
  */
-import { AppComponent } from './containers/app.component';
+import actions from './actions';
 
-// All Components Module
+/**
+ * OverAll Reducer for all reducers in an app.
+ */
+import reducer from './reducers';
+
+//======================================================================
+
+/**
+ * All Components in App.
+ */
+import { AppComponent } from './app.component';
 import { ComponentsModule } from './components';
 import { LoginComponent } from './components/login/login.component';
-
-import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
+
+/**
+ * All Routes
+ */
 import { routing } from './app.routes';
-import { FacebookAuthService } from './services/facebook-auth.service';
+
 
 @NgModule({
   declarations: [
@@ -54,7 +70,7 @@ import { FacebookAuthService } from './services/facebook-auth.service';
     CommonModule,
     routing,
     StoreModule.provideStore(reducer),
-     StoreDevtoolsModule.instrumentStore({
+    StoreDevtoolsModule.instrumentStore({
       monitor: useLogMonitor({
         visible: true,
         position: 'right'
@@ -65,8 +81,10 @@ import { FacebookAuthService } from './services/facebook-auth.service';
   ],
   providers: [
     actions,
+    FacebookSDK,
     FacebookAuthService,
-    AuthGuardService],
+    AuthGuardService
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

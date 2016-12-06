@@ -1,86 +1,54 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { User } from '../models';
+import { FacebookSDK } from '../sdk/facebook.sdk';
 
-
-
-// Decalere Constant FB for Facebook SDK;
-declare const FB:any;
-
+/**
+ * @class FacebookAuthService:
+ * 
+ * Facebook Auth Service
+ * Used to Login, Logout, Retrive User details and etc..
+ * operation that can be carried out on facebook api and facebook graph Api.
+ */
 @Injectable()
 export class FacebookAuthService {
   
-  constructor() { 
-    FB.init({
+  /**
+   * @constructor
+   * @param FacebookSDK the SDK service which returns all
+   * faccebook methods as a promise so we can convert them here in observables.
+   */
+  constructor(private fb: FacebookSDK) {
+    var params = {
       appId      : '112535305898047',
       cookie     : false,  // enable cookies to allow the server to access
                           // the session
       xfbml      : true,  // parse social plugins on this page
       version    : 'v2.8' // use graph api version 2.8
-    });
-  }
-
-
-  // getAuthResponse(){
-  //   FB.getAuthResponse();
-  // }
-
-  // getLoginStatus(){
-  //   FB.getLoginStatus(
-  //     response => {
-  //       if(response.status == 'connected'){
-  //         console.log("Connected and Response is:", response);
-  //         this.getUser();
-  //       }
-  //       else if (response.status === 'not_authorized') {
-  //         console.log("Not Authenticated");
-  //       }
-  //       else {
-  //         console.log("Not Logged in");
-  //       }
-  //     }
-  //   );
-  // }
-
-  // statusChangeCallback(resp) {
-  //     if (resp.status === 'connected') {
-  //         // connect here with your server for facebook login by passing access token given by facebook
-  //         this.router.navigate(['/dashboard']);
-  //     }else if (resp.status === 'not_authorized') {
-          
-  //     }else {
-          
-  //     }
-  //   };
-
-    fbPromise(){
-      return new Promise<any>(
-        (resolve, reject) => {
-          FB.login((response) => {
-            if(response.authResponse){
-              console.log("Inside If AuthResposne");
-              resolve(response);
-            } else{
-              console.log("Inside reject");
-              reject();
-            }
-          })
-        }
-      )
     }
 
+    fb.init(params)
+  }
+
+    /**
+     * @method loginFB
+     * 
+     * To login to user's Facebook Account using facebook SDK
+     * 
+     * @return { User } facebook details of a user like
+     * accessToken, userID wrapped inside a User interface. 
+     */
     loginFB(){
       return Observable.create((observer)=> {
-        this.fbPromise().then(
+        this.fb.login().then(
           (response) => {
-            if(response.status === 'connected'){
-              
+            if(response.status === 'connected'){              
               // Unsure about this approach
               // TODO: Discuss this approach
               const user = new User(
                 response.authResponse.userID,
                 response.authResponse.accessToken)
-              
+            
               // Emit User
               observer.next(user);
             }else{
@@ -89,16 +57,7 @@ export class FacebookAuthService {
           },
           (error: any) => observer.error(error)
         );
-      })        
+      });
     }
 
-    // LogOutFB(){
-
-    // }
-
-    // getUser(){
-    //   FB.api('/me', response =>{
-    //     console.log("User is", response)
-    //   })
-    // }
 }

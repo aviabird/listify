@@ -6,14 +6,18 @@ import { AppState, getLoginState } from '../reducers';
 import 'rxjs/add/operator/take';
 import 'rxjs/add/operator/filter';
 
+
+/**
+ * Here we Override the CanActivate, CanLoad, CanActivateChild class methods
+ * and use `guard` to return a boolean true or false depending on user login status.
+ */
 @Injectable()
-export class AuthGuardService implements CanActivate {
+export class AuthGuardService implements CanActivate, CanLoad, CanActivateChild  {
 
   constructor(private router: Router,
               private store: Store<AppState>) { }
   
   canLoad(route: Route): Observable<boolean>{
-    console.log("Inside can Load")
     return this.guard();
   }
 
