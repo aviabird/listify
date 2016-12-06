@@ -8,7 +8,15 @@ import { UserActions } from '../../actions/user.actions';
 import { User } from '../../models/';
 import { FacebookService } from '../../services/facebook.service';
 
-
+/**
+ * TODO: Cuurentlly to get details from differnet endpoint of facebook
+ * like /me and /me/picture are differnet endpoints
+ * we need to send two seperate requests to facebook API
+ * So, there is differnet approach called batch request to facebook API
+ * inorder to make mulitple requests.
+ * Reference: https://developers.facebook.com/docs/graph-api/making-multiple-requests
+ *  
+ */
 @Component({
   selector: 'ist-dashboard',
   templateUrl: './dashboard.component.html',
