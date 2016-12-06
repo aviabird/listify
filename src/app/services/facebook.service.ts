@@ -88,4 +88,25 @@ export class FacebookService {
       );
     });
   }
+
+  /**
+   * Return a Facebook Profile picture object 
+   * containinig link to profile picture
+   * 
+   * @return: Observable<any> of which observer emits a picture object
+   * contianing link and otehr params like height and width
+   * 
+   * TODO: make the height and width conifgurable.
+   */
+  getUserProfilePic(): Observable<any> {
+    return Observable.create((observer) => {
+      this.fb.api('/me/picture?width=200&height=200').then(
+        (response) => {
+          if(response && !response.error) {
+            observer.next(response);
+          }
+        }
+      )
+    })
+  }
 }
