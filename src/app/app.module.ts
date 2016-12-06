@@ -28,7 +28,7 @@ import { EffectsModule } from '@ngrx/effects';
  * Effects Modules
  */
 import { UserAuthEffects } from './effects/user-auth.effect';
-
+import { UserEffects } from './effects/user.effects';
 /**
  * ALL Ngrx Actions that can be fired in app loaded as one.
  */
@@ -77,7 +77,8 @@ import { routing } from './app.routes';
       })
     }),
     StoreLogMonitorModule,
-    EffectsModule.run(UserAuthEffects)
+    EffectsModule.run(UserAuthEffects),
+    EffectsModule.run(UserEffects)
   ],
   providers: [
     actions,

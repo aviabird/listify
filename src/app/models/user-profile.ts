@@ -1,4 +1,4 @@
 export class UserProfile {
-    constructor(first_name: string,
-                last_name: string) {}
+    constructor(public first_name: string = null,
+                public last_name:  string  = null) {}
 }

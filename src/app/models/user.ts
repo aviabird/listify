@@ -1,5 +1,5 @@
 import { UserProfile } from './user-profile';
 export class User {
-    constructor(userId: number,
-                userProfile: UserProfile) {}
+    constructor(public userId: string = null,
+                public userProfile: UserProfile = new UserProfile() ) {}
 }

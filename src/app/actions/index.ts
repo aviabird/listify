@@ -1,8 +1,12 @@
 import { LoginActions } from './login.actions';
+import { UserActions } from './user.actions';
+
 export {
-    LoginActions
+    LoginActions,
+    UserActions
 };
 
 export default [
-    LoginActions
+    LoginActions,
+    UserActions
 ];

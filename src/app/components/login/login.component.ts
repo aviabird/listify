@@ -10,6 +10,7 @@ import { LoginActions } from '../../actions/login.actions';
   selector: 'ist-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [LoginActions]
 })
 export class LoginComponent implements OnInit {

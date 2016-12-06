@@ -4,15 +4,17 @@ import { compose } from '@ngrx/core/compose';
 import { combineReducers } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import userAuth, * as fromUserAuth from './user-auth.reducer';
-
+import user, * as  fromUser from './user.reducer'; 
 // Entire State of a App
 export interface AppState {
     userAuth: fromUserAuth.AuthState
+    user:     fromUser.UserState
 }
 
 // Export all the reducers
 export default compose(combineReducers)({
-    userAuth: userAuth
+    userAuth: userAuth,
+    user:      user
 });
 
 

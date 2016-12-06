@@ -35,8 +35,9 @@ export class FacebookService {
      * 
      * To login to user's Facebook Account using facebook SDK
      * 
-     * @return { User } facebook details of a user like
+     * @return { Observable<any> } facebook details of a user like
      * accessToken, userID wrapped inside a User interface. 
+     * Which the observer emits
      */
     loginFB(): Observable<any> {
       return Observable.create((observer)=> {
@@ -60,32 +61,31 @@ export class FacebookService {
       });
     }
 
-    /**
-     * Gets Profile Details of a currently logged in User
-     * 
-     * @return: {UserProfile} user profile of a user containg details like
-     * first_name, last_name, etc...
-     */
-    getUserProfile(): Observable<any> {
-      return Observable.create((observer) => {
-        this.fb.api('/me','get', {fields: 'first_name, last_name'}).then(
-          (response) => {
-            if(response && !response.error){
-              
-              const profile = new UserProfile(
-                response.first_name,
-                response.last_name);
-
-              const user = new User(response.id, profile);
-              
-              // Emit User Profile
-              observer.next(user);
-            } else {
-              return null;
-            }
-          },
-          (error: any) => observer.error(error)
-        )
-      })
-    }
+  /**
+   * Gets Profile Details of a currently logged in User
+   * 
+   * @return: {Observable<any>} user profile of a user containg details like
+   * first_name, last_name, etc...
+   * Which the observer emits.
+   */
+  getUserProfile(): Observable<any> {
+    return Observable.create((observer) => {
+      this.fb.api('/me','get', {fields: 'first_name,last_name'}).then(
+        (response) => {
+          if(response && !response.error){
+            const profile = new UserProfile(
+                              response.first_name,
+                              response.last_name);
+            
+            const user = new User(response.id, profile);
+            // Emit User Profile
+            observer.next(user);
+          } else {
+            return null;
+          }
+        },
+        (error: any) => observer.error(error)
+      );
+    });
+  }
 }
