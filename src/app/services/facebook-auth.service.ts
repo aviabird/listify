@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { User } from '../models';
+import { User, UserProfile } from '../models';
 import { FacebookSDK } from '../sdk/facebook.sdk';
 
 /**
@@ -38,7 +38,7 @@ export class FacebookAuthService {
      * @return { User } facebook details of a user like
      * accessToken, userID wrapped inside a User interface. 
      */
-    loginFB(){
+    loginFB(): User {
       return Observable.create((observer)=> {
         this.fb.login().then(
           (response) => {
@@ -60,4 +60,29 @@ export class FacebookAuthService {
       });
     }
 
+    /**
+     * Gets Profile Details of a currently logged in User
+     * 
+     * @return: {UserProfile} user profile of a user containg details like
+     * first_name, last_name, etc...
+     */
+    getUserProfile(): UserProfile {
+      return Observable.create((observer) => {
+        this.fb.api('/me','get', {fields: 'first_name,last_name'}).then(
+          (response) => {
+            if(response && !response.error){
+              const profile = new UserProfile(
+                response.first_name,
+                response.last_name)
+              
+              // Emit User Profile
+              observer.next(profile);
+            } else {
+              return null;
+            }
+          },
+          (error: any) => observer.error(error)
+        )
+      })
+    }
 }

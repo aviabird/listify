@@ -10,6 +10,9 @@ import { FacebookLoginResponse } from '../models/facebookSDK/facebook-login-resp
 
 declare var FB: any;
 
+/** API Methods That can be called on Facebook SDK */
+export type FacebookApiMethod = 'get' | 'post' | 'delete';
+
 @Injectable()
 export class FacebookSDK {
   constructor(){ }
@@ -31,7 +34,7 @@ export class FacebookSDK {
    * 
    * @return {Promise<FacebookLoginResponse>}
    */
-  login(){
+  login(): Promise<FacebookLoginResponse> {
     return new Promise<FacebookLoginResponse>(
       (resolve, reject) => {
         FB.login((response) => {
@@ -60,4 +63,27 @@ export class FacebookSDK {
     )
   }
 
+  /**
+   * This Lets you make calls to Graph API
+   * 
+   * @param path This is a Graph API endpoint you want to call.
+   * @param method this is a HTTP method that you use for API request.
+   * @param params This is an object consisting of any parameters that you want to pass into your Graph API call
+   * @return {Promise<any>}
+   */
+  api(path: string, method: FacebookApiMethod = 'get', params: any = {}): Promise<any> {
+    return new Promise<any>(
+      (resolve, reject) => {
+        FB.api(path, method, params, (response: any) => {
+          if(!response){
+            reject();
+          } else if (response.error){
+            reject(response.error);
+          } else {
+            resolve(response);
+          }
+        })
+      }
+    );
+  }
 }
