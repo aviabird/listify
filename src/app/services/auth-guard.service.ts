@@ -29,8 +29,13 @@ export class AuthGuardService implements CanActivate, CanLoad, CanActivateChild 
     return this.guard();
   }
 
+  /**
+   * `Take` 1 takes the only 1 value from the stream of events
+   * and stop taking the furthur values. i.e is it just stops 
+   * listening to the observable.
+   * Ref. https://jsbin.com/xizixax/4/edit?html,js,console,output
+   */
   guard(): Observable<boolean> {
-    console.log("Inside guard")
     return this.store.let(getLoginState())
       .filter(state => state.isLoggedIn != null)
       .take(1)

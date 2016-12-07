@@ -5,7 +5,6 @@ import { Action } from '@ngrx/store';
 import { FacebookAuthService } from '../services/facebook-auth.service';
 import { User } from '../models';
 
-
 @Injectable()
 export class LoginEffects {
     constructor(private actions$: Actions,
