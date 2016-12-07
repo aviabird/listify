@@ -2,19 +2,19 @@ import { Injectable } from '@angular/core';
 import { Effect, Actions } from '@ngrx/effects';
 import { ActionTypes, LoginActions } from '../actions/login.actions';
 import { Action } from '@ngrx/store';
-import { FacebookAuthService } from '../services/facebook-auth.service';
-import { User } from '../models';
+import { FacebookService } from '../services/facebook.service';
+import { UserAuth } from '../models';
 
 @Injectable()
-export class LoginEffects {
+export class UserAuthEffects {
     constructor(private actions$: Actions,
                 private loginActions: LoginActions,
-                private facebookAuthService: FacebookAuthService
+                private facebookService: FacebookService
                 ){}
 
     @Effect() login$ = this.actions$
         .ofType(ActionTypes.LOGIN)
         .map<string>((action: Action) => action.payload)
-        .switchMap((provider:string) => this.facebookAuthService.loginFB())
-        .map((user: User) => this.loginActions.loginSuccess(user));
+        .switchMap((provider:string) => this.facebookService.loginFB())
+        .map((user_auth: UserAuth) => this.loginActions.loginSuccess(user_auth));
 }

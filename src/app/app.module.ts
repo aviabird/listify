@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
  * ALL Services used in App.
  */
 import { AuthGuardService } from './services/auth-guard.service';
-import { FacebookAuthService } from './services/facebook-auth.service';
+import { FacebookService } from './services/facebook.service';
 import { FacebookSDK } from './sdk/facebook.sdk';
 //========================= NGRX Releated Imports ===========================
 
@@ -27,8 +27,8 @@ import { EffectsModule } from '@ngrx/effects';
 /**
  * Effects Modules
  */
-import { LoginEffects } from './effects/login.effect';
-
+import { UserAuthEffects } from './effects/user-auth.effect';
+import { UserEffects } from './effects/user.effects';
 /**
  * ALL Ngrx Actions that can be fired in app loaded as one.
  */
@@ -77,12 +77,13 @@ import { routing } from './app.routes';
       })
     }),
     StoreLogMonitorModule,
-    EffectsModule.run(LoginEffects)
+    EffectsModule.run(UserAuthEffects),
+    EffectsModule.run(UserEffects)
   ],
   providers: [
     actions,
     FacebookSDK,
-    FacebookAuthService,
+    FacebookService,
     AuthGuardService
     ],
   bootstrap: [AppComponent]
