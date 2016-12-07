@@ -23,7 +23,7 @@ export default function(state = initialState, action: Action): AuthState {
     }
 
     case ActionTypes.LOGOUT_SUCCESS: {
-        return Object.assign({}, initialState);
+        return Object.assign({},  initialState);
     }
 
     default: {

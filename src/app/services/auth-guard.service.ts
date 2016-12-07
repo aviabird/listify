@@ -36,10 +36,17 @@ export class AuthGuardService implements CanActivate, CanLoad, CanActivateChild 
    * Ref. https://jsbin.com/xizixax/4/edit?html,js,console,output
    */
   guard(): Observable<boolean> {
+    console.log("Inside Guard: ")
     return this.store.let(getLoginState())
-      .filter(state => state !== null)
+      .map(state => {
+        console.log("State inside map: ", state);
+        return state;
+      })
       .take(1)
-      .map(state => state.access_token ? true: this.handleAuthFail())
+      .map(state => {
+        console.log(state)
+        return state.access_token ? true: this.handleAuthFail()
+      })
   }
   
   handleAuthFail(){

@@ -20,5 +20,8 @@ export default compose(combineReducers)({
 
 export function getLoginState(){
     return (state$: Observable<AppState>) => state$
-        .select(state => state.userAuth)
+        .select(state => {
+            console.log(state.userAuth);
+            return state.userAuth;
+        })
 }
