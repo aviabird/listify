@@ -8,5 +8,5 @@ export const FACEBOOK_CLIENT_ID = '112535305898047'
  */
 export class MyAuthConfig extends CustomConfig {
     defaultHeaders = { 'content-Type': 'application/json' };
-    providers = { facebook: { clientId: FACEBOOK_CLIENT_ID }};
+    providers = { facebook: { clientId: FACEBOOK_CLIENT_ID, url: 'http://localhost:3000/api/v1/auth/facebook' }};
 }

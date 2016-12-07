@@ -5,10 +5,12 @@ import 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../reducers/index';
 import { UserActions } from '../../actions/user.actions';
+import { LoginActions } from '../../actions/login.actions';
 import { User } from '../../models/';
 import { FacebookService } from '../../services/facebook.service';
 
 /**
+ * // INVALID COMMENT CURRENTLY
  * TODO: Cuurentlly to get details from differnet endpoint of facebook
  * like /me and /me/picture are differnet endpoints
  * we need to send two seperate requests to facebook API
@@ -23,27 +25,17 @@ import { FacebookService } from '../../services/facebook.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  user$: Observable<any>;
-  profilePic$: Observable<any>;
+  // user$: Observable<any>;
+  // profilePic$: Observable<any>;
   constructor(private router: Router,
               private userActions: UserActions,
-              private store: Store<AppState>,
-              private fb: FacebookService) {
+              private loginActions: LoginActions,
+              private store: Store<AppState>) { }
 
-    this.user$ = this.store.select('user');
-    
-    store.dispatch(userActions.loadProfile());
-    /**
-     * Dirty Implementation of getting a profile pic
-     * TODO: Convert it into NGRX store pattern
-     */
-    this.fb.getUserProfilePic().subscribe(
-      response => {
-        this.profilePic$ = response.data.url;
-      }
-    );
+  signOutUser(){
+    this.store.dispatch(this.loginActions.logout())
   }
-  
+
   ngOnInit() {
   }
 }

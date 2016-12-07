@@ -6,8 +6,10 @@ import { UserAuth } from '../models';
  * { key: type } 
  */
 export const ActionTypes = {
-    LOGIN:         type("Login"),
-    LOGIN_SUCCESS: type("Login Success")
+    LOGIN:          type("Login"),
+    LOGIN_SUCCESS:  type("Login Success"),
+    LOGOUT:         type('Logout'),
+    LOGOUT_SUCCESS: type('Logout Success')
 }
 
 /**
@@ -39,15 +41,41 @@ export class LoginActions {
      * 
      * TODO: Discuss the above two approach with the team.
      * and implement the elegant one.
+     *
+     * Note: Ignore the above message, currently takking login response
+     * as payload.
      * 
      * @param loginData: Data of type any received after login a user
      * @return {Action} an Action with type 'Login Success'
      * 
      */
-    loginSuccess(user_auth: UserAuth): Action {
+    loginSuccess(response: any): Action {
         return {
             type: ActionTypes.LOGIN_SUCCESS,
-            payload: user_auth
+            payload: response
         }
     }
+ 
+    /**
+     * Returns an Action
+     * 
+     * @return {Action} an Action with type 'Logout'
+     */
+    logout(): Action {
+        return {
+            type: ActionTypes.LOGOUT
+        }
+    }
+    
+    /**
+     * Returns an Action
+     * 
+     * @return {Action} an Action with type 'Logout Success'
+     */
+    logoutSuccess(): Action {
+        return {
+            type: ActionTypes.LOGOUT_SUCCESS
+        }
+    }
+
 }

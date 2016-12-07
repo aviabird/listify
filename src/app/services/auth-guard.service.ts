@@ -37,9 +37,9 @@ export class AuthGuardService implements CanActivate, CanLoad, CanActivateChild 
    */
   guard(): Observable<boolean> {
     return this.store.let(getLoginState())
-      .filter(state => state.isLoggedIn != null)
+      .filter(state => state !== null)
       .take(1)
-      .map(state => state.isLoggedIn ? true: this.handleAuthFail())
+      .map(state => state.access_token ? true: this.handleAuthFail())
   }
   
   handleAuthFail(){

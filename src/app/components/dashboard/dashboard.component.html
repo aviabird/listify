@@ -1,22 +1,4 @@
-<div class="dashboard">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-3">
-        <div class="profile-sidebar">
-          <!--Sidebar User Pic-->
-          <div class="profile-userpic">
-            <img src="{{profilePic$}}" alt="">
-          </div>
-          <!-- END SIDEBAR USERPIC -->
-          <!-- SIDEBAR USER TITLE -->
-          <div class="profile-usertitle">
-            <div class="profile-usertitle-name">
-              {{ (user$ | async).userProfile.first_name }} {{(user$ | async).userProfile.last_name }}
-            </div>
-          </div>
-          <!-- END SIDEBAR USER TITLE -->
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<!--Dashboard-->
+<h2>Dashboard works</h2>
+
+<button (click) ="signOutUser()">Logout</button>

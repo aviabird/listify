@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { UserAuth, UserProfile, User } from '../models';
-
+import {AuthService} from 'ng2-ui-auth'; // Satellizer
 /**
- * Removing Facebook SDK and integrating Satelizer
+ * Removing Facebook SDK and integrating Satellizer
+ * Keeping code for future reference
  */
 // import { FacebookSDK } from '../sdk/facebook.sdk';
 
@@ -22,7 +23,7 @@ export class FacebookService {
    * @param FacebookSDK the SDK service which returns all
    * faccebook methods as a promise so we can convert them here in observables.
    */
-  constructor() {
+  constructor(private auth: AuthService) {
     var params = {
       appId      : '112535305898047',
       cookie     : false,  // enable cookies to allow the server to access
@@ -31,7 +32,7 @@ export class FacebookService {
       version    : 'v2.8' // use graph api version 2.8
     }
 
-    fb.init(params)
+    // fb.init(params)
   }
 
     /**
@@ -44,26 +45,14 @@ export class FacebookService {
      * Which the observer emits
      */
     loginFB(): Observable<any> {
-      return Observable.create((observer)=> {
-        this.fb.login().then(
-          (response) => {
-            if(response.status === 'connected'){              
-              // Unsure about this approach
-              // TODO: Discuss this approach
-              const user_auth = new UserAuth(
-                response.authResponse.userID,
-                response.authResponse.accessToken)
-            
-              // Emit User
-              observer.next(user_auth);
-            }else{
-              return null;
-            }
-          },
-          (error: any) => observer.error(error)
-        );
-      });
+      return this.auth.authenticate('facebook');
     }
+
+    logoutFB(): Observable<any> {
+      return Observable.of(localStorage.removeItem('access_token'));
+    }
+
+
 
   /**
    * Gets Profile Details of a currently logged in User
@@ -74,22 +63,22 @@ export class FacebookService {
    */
   getUserProfile(): Observable<any> {
     return Observable.create((observer) => {
-      this.fb.api('/me','get', {fields: 'first_name,last_name'}).then(
-        (response) => {
-          if(response && !response.error){
-            const profile = new UserProfile(
-                              response.first_name,
-                              response.last_name);
+      // this.fb.api('/me','get', {fields: 'first_name,last_name'}).then(
+      //   (response) => {
+      //     if(response && !response.error){
+      //       const profile = new UserProfile(
+      //                         response.first_name,
+      //                         response.last_name);
             
-            const user = new User(response.id, profile);
-            // Emit User Profile
-            observer.next(user);
-          } else {
-            return null;
-          }
-        },
-        (error: any) => observer.error(error)
-      );
+      //       const user = new User(response.id, profile);
+      //       // Emit User Profile
+      //       observer.next(user);
+      //     } else {
+      //       return null;
+      //     }
+      //   },
+      //   (error: any) => observer.error(error)
+      // );
     });
   }
 
@@ -104,13 +93,13 @@ export class FacebookService {
    */
   getUserProfilePic(): Observable<any> {
     return Observable.create((observer) => {
-      this.fb.api('/me/picture?width=200&height=200').then(
-        (response) => {
-          if(response && !response.error) {
-            observer.next(response);
-          }
-        }
-      )
+      // this.fb.api('/me/picture?width=200&height=200').then(
+      //   (response) => {
+      //     if(response && !response.error) {
+      //       observer.next(response);
+      //     }
+      //   }
+      // )
     })
   }
 }

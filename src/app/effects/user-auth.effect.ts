@@ -16,5 +16,11 @@ export class UserAuthEffects {
         .ofType(ActionTypes.LOGIN)
         .map<string>((action: Action) => action.payload)
         .switchMap((provider:string) => this.facebookService.loginFB())
-        .map((user_auth: UserAuth) => this.loginActions.loginSuccess(user_auth));
+        .map((response: any) => this.loginActions.loginSuccess(response));
+    
+    @Effect() logout$ = this.actions$
+        .ofType(ActionTypes.LOGOUT)
+        .switchMap(() => this.facebookService.logoutFB())
+        .map(() => this.loginActions.logoutSuccess())
+
 }

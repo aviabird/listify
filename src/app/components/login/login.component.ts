@@ -1,7 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs';
-import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState, getLoginState } from '../../reducers/index';
 import { LoginActions } from '../../actions/login.actions';
@@ -14,13 +13,8 @@ import { LoginActions } from '../../actions/login.actions';
   providers: [LoginActions]
 })
 export class LoginComponent implements OnInit {
-  constructor(private router: Router,
-              private loginActions: LoginActions,
+  constructor(private loginActions: LoginActions,
               private store: Store<AppState>) {
-    
-    this.store.let(getLoginState())
-      .filter(state => state.isLoggedIn)
-      .subscribe(() => this.router.navigate(['/dashboard']));                  
   }
 
   ngOnInit() {
@@ -30,8 +24,5 @@ export class LoginComponent implements OnInit {
     if(signinType == 'facebook'){
       this.store.dispatch(this.loginActions.login(signinType))
    }
-  }
-
-  signOutUser(){
   }
 }
