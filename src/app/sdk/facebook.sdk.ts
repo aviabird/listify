@@ -26,7 +26,6 @@ export class FacebookSDK {
     FB.init(params);
   }
 
-
   /**
    * Login the User
    * Returns a Promise Object on which on applyng `then`
