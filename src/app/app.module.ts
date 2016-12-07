@@ -1,59 +1,90 @@
+//========================= IStalk ========================================
+/**
+ * Core Modules and Libraries used in App. 
+ */
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-/**
- * App Containers
- */
-import { AppComponent } from './containers/app.component';
+import { CommonModule } from '@angular/common';
 
-// All Components Module
+/**
+ * ALL Services used in App.
+ */
+import { AuthGuardService } from './services/auth-guard.service';
+import { FacebookAuthService } from './services/facebook-auth.service';
+import { FacebookSDK } from './sdk/facebook.sdk';
+//========================= NGRX Releated Imports ===========================
+
+/**
+ * Ngrx Store Modules
+ */
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreLogMonitorModule, useLogMonitor } from '@ngrx/store-log-monitor';
+import { EffectsModule } from '@ngrx/effects';
+
+/**
+ * Effects Modules
+ */
+import { LoginEffects } from './effects/login.effect';
+
+/**
+ * ALL Ngrx Actions that can be fired in app loaded as one.
+ */
+import actions from './actions';
+
+/**
+ * OverAll Reducer for all reducers in an app.
+ */
+import reducer from './reducers';
+
+//======================================================================
+
+/**
+ * All Components in App.
+ */
+import { AppComponent } from './app.component';
 import { ComponentsModule } from './components';
 import { LoginComponent } from './components/login/login.component';
-import { FacebookLoginComponent } from './components/login/facebook-login.component';
-
-// Must export the config
-export const firebaseConfig = {
-  apiKey: "AIzaSyB_0Z6nSJSdCLY7CbjvcLKAFBLJ45Nb3_Y",
-  authDomain: "istalk-5ec3f.firebaseapp.com",
-  databaseURL: "https://istalk-5ec3f.firebaseio.com",
-  storageBucket: "istalk-5ec3f.appspot.com",
-  messagingSenderId: "211546852493"
-};
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 
-import {UserAuthService} from './services/user-auth.service';
-import {UserAuthEffects} from './effects/user-auth';
-import reducer from './reducers/index';
-import { CommonModule } from '@angular/common';
-import { LoadingComponent } from './components/loading/loading.component';
+/**
+ * All Routes
+ */
+import { routing } from './app.routes';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    FacebookLoginComponent,
-    LoadingComponent
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     ComponentsModule,
-    AngularFireModule.initializeApp(firebaseConfig, {
-    provider: AuthProviders.Google,
-    method: AuthMethods.Popup
-    }),
+    CommonModule,
+    routing,
     StoreModule.provideStore(reducer),
-    StoreDevtoolsModule.instrumentOnlyWithExtension(),
-    EffectsModule.run(UserAuthEffects),
-    CommonModule
+    StoreDevtoolsModule.instrumentStore({
+      monitor: useLogMonitor({
+        visible: true,
+        position: 'right'
+      })
+    }),
+    StoreLogMonitorModule,
+    EffectsModule.run(LoginEffects)
   ],
-  providers: [UserAuthService],
+  providers: [
+    actions,
+    FacebookSDK,
+    FacebookAuthService,
+    AuthGuardService
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

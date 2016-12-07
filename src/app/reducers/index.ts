@@ -1,22 +1,22 @@
-import * as fromUserAuth from './user-auth';
-import {Action, combineReducers} from '@ngrx/store';
-import { compose } from '@ngrx/core/compose'
-import { User } from '../models/user';
-import { Observable } from 'rxjs/Observable';
 import '@ngrx/core/add/operator/select';
 import 'rxjs/add/operator/let';
+import { compose } from '@ngrx/core/compose';
+import { combineReducers } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
+import loginReducer, * as fromLogin from './login.reducer';
 
+// Entire State of a App
 export interface AppState {
-    userAuth: fromUserAuth.State
+    login: fromLogin.LoginState
 }
 
+// Export all the reducers
 export default compose(combineReducers)({
-    userAuth: fromUserAuth.reducer
+    login: loginReducer
 });
 
-export function getUserAuthState(state$: Observable<AppState>) {
-  return state$.select(state => state.userAuth);
-}
 
- export const getUser = compose(fromUserAuth.getUser, getUserAuthState);
- export const getUserAuthStatus = compose(fromUserAuth.getAuthStatus, getUserAuthState);
+export function getLoginState(){
+    return (state$: Observable<AppState>) => state$
+        .select(state => state.login)
+}

@@ -1,44 +1,37 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import {UserAuthService} from '../../services/user-auth.service';
-import { AngularFire, AuthProviders } from 'angularfire2';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs';
-import {Store} from '@ngrx/store';
-import {AppState} from '../../reducers/';
-import * as userAuth from '../../actions/user-auth';
-import * as fromUserAuth from '../../reducers/user-auth';
-import * as fromRoot from '../../reducers';
-import { User } from '../../models/user';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AppState, getLoginState } from '../../reducers/index';
+import { LoginActions } from '../../actions/login.actions';
 
 @Component({
   selector: 'ist-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers: [UserAuthService]
+  providers: [LoginActions]
 })
 export class LoginComponent implements OnInit {
-  user: Observable<User>;
-  userIsAuthenticated: Observable<boolean>;
-  constructor(private userAuthService: UserAuthService, 
-              private af: AngularFire,
-              private store: Store<AppState>
-  ) {
-    this.user = store.select('userAuth').select<User>('user');
-    this.userIsAuthenticated = store.let(fromRoot.getUserAuthStatus);
-   }
-
-  ngOnInit() {
-    this.store.dispatch(new userAuth.CheckAuthAction());
+  user;
+  constructor(private router: Router,
+              private loginActions: LoginActions,
+              private store: Store<AppState>) {
+    
+    this.store.let(getLoginState())
+      .filter(state => state.isLoggedIn)
+      .subscribe(() => this.router.navigate(['/dashboard']));                  
   }
 
-  signInUser(signinType: String){
-    console.log("Login Clicked: ", signinType);
-    if(signinType === 'facebook') {
-      this.store.dispatch(new userAuth.LoginAction(signinType));
-    }
+  ngOnInit() {
+  }
+
+  signInUser(signinType: string){
+    if(signinType == 'facebook'){
+      this.store.dispatch(this.loginActions.login(signinType))
+   }
   }
 
   signOutUser(){
-    this.store.dispatch(new userAuth.LogoutAction());
   }
 }

@@ -1,6 +1,6 @@
 export class User {
-  displayName:  string;
-  photoURL:     string;
-  email:        string;
-  provider:     string;
+    constructor(
+        public user_id: string = null,
+        public access_token: string = null
+    ) { }
 }

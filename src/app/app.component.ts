@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {LoadingPage} from '../components/loading/loading.component';
 
 @Component({
   selector: 'ist-root',
@@ -9,7 +8,5 @@ import {LoadingPage} from '../components/loading/loading.component';
 export class AppComponent {
   constructor(){}
   ngOnInit(){
-    console.log("Inside APp IniT");
-
   }
 }
