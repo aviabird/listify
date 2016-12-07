@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { UserAuth, UserProfile, User } from '../models';
-import { FacebookSDK } from '../sdk/facebook.sdk';
+
+/**
+ * Removing Facebook SDK and integrating Satelizer
+ */
+// import { FacebookSDK } from '../sdk/facebook.sdk';
 
 /**
  * @class FacebookService:
@@ -18,7 +22,7 @@ export class FacebookService {
    * @param FacebookSDK the SDK service which returns all
    * faccebook methods as a promise so we can convert them here in observables.
    */
-  constructor(private fb: FacebookSDK) {
+  constructor() {
     var params = {
       appId      : '112535305898047',
       cookie     : false,  // enable cookies to allow the server to access

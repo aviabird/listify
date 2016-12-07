@@ -8,12 +8,17 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
 
+// Satellier and App Configs
+import { Ng2UiAuthModule } from 'ng2-ui-auth';
+import { MyAuthConfig } from './config';
 /**
  * ALL Services used in App.
  */
 import { AuthGuardService } from './services/auth-guard.service';
 import { FacebookService } from './services/facebook.service';
-import { FacebookSDK } from './sdk/facebook.sdk';
+
+
+// import { FacebookSDK } from './sdk/facebook.sdk';
 //========================= NGRX Releated Imports ===========================
 
 /**
@@ -68,6 +73,7 @@ import { routing } from './app.routes';
     HttpModule,
     ComponentsModule,
     CommonModule,
+    Ng2UiAuthModule.getWithConfig(MyAuthConfig),
     routing,
     StoreModule.provideStore(reducer),
     StoreDevtoolsModule.instrumentStore({
@@ -82,7 +88,6 @@ import { routing } from './app.routes';
   ],
   providers: [
     actions,
-    FacebookSDK,
     FacebookService,
     AuthGuardService
     ],
