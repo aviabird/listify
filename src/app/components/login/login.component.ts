@@ -21,8 +21,6 @@ export class LoginComponent implements OnInit {
   }
 
   signInUser(signinType: string){
-    if(signinType == 'facebook'){
-      this.store.dispatch(this.loginActions.login(signinType))
-   }
+    this.store.dispatch(this.loginActions.login(signinType));
   }
 }

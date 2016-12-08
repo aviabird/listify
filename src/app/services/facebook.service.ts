@@ -20,86 +20,38 @@ export class FacebookService {
   
   /**
    * @constructor
-   * @param FacebookSDK the SDK service which returns all
-   * faccebook methods as a promise so we can convert them here in observables.
+   * Initializer AuthService of satellier for authenticating
+   * different providers. 
    */
-  constructor(private auth: AuthService) {
-    var params = {
-      appId      : '112535305898047',
-      cookie     : false,  // enable cookies to allow the server to access
-                          // the session
-      xfbml      : true,  // parse social plugins on this page
-      version    : 'v2.8' // use graph api version 2.8
-    }
-
-    // fb.init(params)
-  }
+  constructor(private auth: AuthService) { }
 
     /**
-     * @method loginFB
+     * @method login
      * 
-     * To login to user's Facebook Account using facebook SDK
+     * To login to user's Account using Satellizer
      * 
-     * @return { Observable<any> } facebook details of a user like
-     * accessToken, userID wrapped inside a User interface. 
-     * Which the observer emits
+     * @return { Observable<any> } Onservabe of satellier auth of
+     * different providers depening on signInType.
+     * 
+     * e.g: facebook  
+     * 
      */
-    loginFB(): Observable<any> {
-      return this.auth.authenticate('facebook');
+    login(signInType): Observable<any> {
+      if(signInType === 'facebook'){
+        return this.auth.authenticate('facebook');
+      } else if(signInType === 'instagram'){
+        return this.auth.authenticate('instagram');
+      }
     }
 
-    logoutFB(): Observable<any> {
+    /**
+     * @method logout
+     * 
+     * To Logout user from the server by removig the access_token
+     * stored in localStorage of a browser.
+     * 
+     */
+    logout(): Observable<any> {
       return Observable.of(localStorage.removeItem('access_token'));
     }
-
-
-
-  /**
-   * Gets Profile Details of a currently logged in User
-   * 
-   * @return: {Observable<any>} user profile of a user containg details like
-   * first_name, last_name, etc...
-   * Which the observer emits.
-   */
-  getUserProfile(): Observable<any> {
-    return Observable.create((observer) => {
-      // this.fb.api('/me','get', {fields: 'first_name,last_name'}).then(
-      //   (response) => {
-      //     if(response && !response.error){
-      //       const profile = new UserProfile(
-      //                         response.first_name,
-      //                         response.last_name);
-            
-      //       const user = new User(response.id, profile);
-      //       // Emit User Profile
-      //       observer.next(user);
-      //     } else {
-      //       return null;
-      //     }
-      //   },
-      //   (error: any) => observer.error(error)
-      // );
-    });
-  }
-
-  /**
-   * Return a Facebook Profile picture object 
-   * containinig link to profile picture
-   * 
-   * @return: Observable<any> of which observer emits a picture object
-   * contianing link and otehr params like height and width
-   * 
-   * TODO: make the height and width conifgurable.
-   */
-  getUserProfilePic(): Observable<any> {
-    return Observable.create((observer) => {
-      // this.fb.api('/me/picture?width=200&height=200').then(
-      //   (response) => {
-      //     if(response && !response.error) {
-      //       observer.next(response);
-      //     }
-      //   }
-      // )
-    })
-  }
 }

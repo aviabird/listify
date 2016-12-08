@@ -13,8 +13,8 @@ export class UserEffects {
     private userActions: UserActions,
     private facebookService: FacebookService){ }
 
-  @Effect() loadProfile$ = this.actions$
-  .ofType(ActionTypes.LOAD_PROFILE)
-  .switchMap(() => this.facebookService.getUserProfile())
-  .map((user: User) => this.userActions.loadProfileSuccess(user))
+  // @Effect() loadProfile$ = this.actions$
+  // .ofType(ActionTypes.LOAD_PROFILE)
+  // .switchMap(() => this.facebookService.getUserProfile())
+  // .map((user: User) => this.userActions.loadProfileSuccess(user))
 }
