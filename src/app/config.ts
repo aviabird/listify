@@ -1,7 +1,7 @@
 import { CustomConfig } from 'ng2-ui-auth';
 
 export const FACEBOOK_CLIENT_ID = '112535305898047'
-export const INSTAGRAM_CLIENT_ID = '74828640bb79481984853df36f74ccab'
+export const INSTAGRAM_CLIENT_ID = '0176e6141fff48c2b5781ff7a35c998e'
 /**
  * @class MyAuthConfig Custom config which stores your app ids.
  * Extended with `CustomConfig` satellizer class
