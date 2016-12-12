@@ -49,10 +49,10 @@ export class LoginActions {
      * @return {Action} an Action with type 'Login Success'
      * 
      */
-    loginSuccess(response: any): Action {
+    loginSuccess(userAuth: UserAuth): Action {
         return {
             type: ActionTypes.LOGIN_SUCCESS,
-            payload: response
+            payload: userAuth
         }
     }
  
