@@ -37,11 +37,7 @@ export class FacebookService {
      * 
      */
     login(signInType): Observable<any> {
-      if(signInType === 'facebook'){
-        return this.auth.authenticate('facebook');
-      } else if(signInType === 'instagram'){
-        return this.auth.authenticate('instagram');
-      }
+      return this.auth.authenticate('twitter');
     }
 
     /**
@@ -53,5 +49,13 @@ export class FacebookService {
      */
     logout(): Observable<any> {
       return Observable.of(localStorage.removeItem('access_token'));
+    }
+
+    authorize(socialType) {
+      this.auth.authenticate(socialType).subscribe(
+        response => {
+          debugger
+        }
+      )
     }
 }

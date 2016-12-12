@@ -17,11 +17,12 @@ export default compose(combineReducers)({
     user:      user
 });
 
-
+/**
+ * Get Login State returns UserAuth from the store
+ * and depending on the persense of access_token
+ * in userAuth the login status of user is defined.
+ */
 export function getLoginState(){
     return (state$: Observable<AppState>) => state$
-        .select(state => {
-            console.log(state.userAuth);
-            return state.userAuth;
-        })
+        .select(state => state.userAuth)
 }

@@ -54,11 +54,25 @@ import { ComponentsModule } from './components';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
+import { 
+  AngularFireModule, 
+  AuthMethods, 
+  AuthProviders 
+} from "angularfire2";
 
 /**
  * All Routes
  */
 import { routing } from './app.routes';
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB_0Z6nSJSdCLY7CbjvcLKAFBLJ45Nb3_Y",
+  authDomain: "istalk-5ec3f.firebaseapp.com",
+  databaseURL: "https://istalk-5ec3f.firebaseio.com",
+  storageBucket: "istalk-5ec3f.appspot.com",
+  messagingSenderId: "211546852493"
+};
 
 
 @NgModule({
@@ -68,6 +82,10 @@ import { routing } from './app.routes';
     DashboardComponent
   ],
   imports: [
+    AngularFireModule.initializeApp(firebaseConfig,{
+      provider: AuthProviders.Google,
+      method: AuthMethods.Popup
+    }),
     BrowserModule,
     FormsModule,
     HttpModule,
