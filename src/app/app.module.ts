@@ -8,9 +8,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
 
-// Satellier and App Configs
-import { Ng2UiAuthModule } from 'ng2-ui-auth';
-import { MyAuthConfig } from './config';
 /**
  * ALL Services used in App.
  */
@@ -70,7 +67,6 @@ import { routing } from './app.routes';
     HttpModule,
     ComponentsModule,
     CommonModule,
-    Ng2UiAuthModule.getWithConfig(MyAuthConfig),
     routing,
     StoreModule.provideStore(reducer),
     StoreDevtoolsModule.instrumentStore({
