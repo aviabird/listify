@@ -4,7 +4,7 @@
  */
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
 
@@ -23,6 +23,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreLogMonitorModule, useLogMonitor } from '@ngrx/store-log-monitor';
 import { EffectsModule } from '@ngrx/effects';
+import { RouterStoreModule } from '@ngrx/router-store';
 
 /**
  * Effects Modules
@@ -54,21 +55,25 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
  * All Routes
  */
 import { routing } from './app.routes';
+import { RequestEmailComponent } from './components/request-email/request-email.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    RequestEmailComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     ComponentsModule,
     CommonModule,
     routing,
     StoreModule.provideStore(reducer),
+    RouterStoreModule.connectRouter(),
     StoreDevtoolsModule.instrumentStore({
       monitor: useLogMonitor({
         visible: true,

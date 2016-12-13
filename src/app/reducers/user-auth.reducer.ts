@@ -17,6 +17,11 @@ export default function(state = initialState, action: Action): AuthState {
     case ActionTypes.LOGOUT_SUCCESS: {
         return Object.assign({},  initialState);
     }
+    
+    case ActionTypes.STORE_USER_SUCCESS: {
+      var userAuth: UserAuth = action.payload
+      return Object.assign({}, state, userAuth)
+    }
 
     default: {
         return state;

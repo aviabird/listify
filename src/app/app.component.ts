@@ -16,7 +16,7 @@ export class AppComponent {
     
     this.store.let(getLoginState())
       .filter(state => state.access_token !== null)
-      .subscribe(() => this.router.navigate(['/dashboard']));
+      .subscribe(() => this.router.navigate(['/request-email']));
   }
   ngOnInit(){
   }

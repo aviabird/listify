@@ -6,10 +6,12 @@ import { UserAuth } from '../models';
  * { key: type } 
  */
 export const ActionTypes = {
-    LOGIN:          type("Login"),
-    LOGIN_SUCCESS:  type("Login Success"),
-    LOGOUT:         type('Logout'),
-    LOGOUT_SUCCESS: type('Logout Success')
+    LOGIN:              type("Login"),
+    LOGIN_SUCCESS:      type("Login Success"),
+    LOGOUT:             type('Logout'),
+    LOGOUT_SUCCESS:     type('Logout Success'),
+    STORE_USER:         type('Store User'),
+    STORE_USER_SUCCESS: type('Store User Success')
 }
 
 /**
@@ -72,10 +74,24 @@ export class LoginActions {
      * 
      * @return {Action} an Action with type 'Logout Success'
      */
-    logoutSuccess(): Action {
+    logoutSuccess(userAuth): Action {
         return {
             type: ActionTypes.LOGOUT_SUCCESS
         }
+    }
+    
+    storeUser(email, userAuth): Action {
+      return {
+        type: ActionTypes.STORE_USER,
+        payload: { email: email, userAuth: userAuth }
+      }
+    }
+
+    storeUserSuccess(userAuth): Action {
+      return {
+        type: ActionTypes.STORE_USER_SUCCESS,
+        payload: userAuth
+      }
     }
 
 }
