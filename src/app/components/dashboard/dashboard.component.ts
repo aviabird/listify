@@ -7,6 +7,7 @@ import { AppState } from '../../reducers/index';
 import { UserActions } from '../../actions/user.actions';
 import { LoginActions } from '../../actions/login.actions';
 import { User } from '../../models/';
+import { UserAuthService } from '../../services/user-auth.service';
 
 @Component({
   selector: 'ist-dashboard',
@@ -14,15 +15,21 @@ import { User } from '../../models/';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  token: any;
   constructor(private router: Router,
               private userActions: UserActions,
               private loginActions: LoginActions,
-              private store: Store<AppState>) { }
+              private store: Store<AppState>,
+              private data: UserAuthService) {
+
+    this.store.select(state => this.token = state.userAuth.server_token).subscribe()
+    }
 
   signOutUser(){
     this.store.dispatch(this.loginActions.logout())
   }
 
   ngOnInit() {
+    this.data.getUserInfo(this.token);
   }
 }

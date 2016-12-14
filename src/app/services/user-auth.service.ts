@@ -29,6 +29,19 @@ export class UserAuthService {
     firebase.initializeApp(config);
   }
   
+  getUserInfo(serverToken){
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    this.http.post("http://127.0.0.1:3000/api/tweets/get_user_info", 
+        JSON.stringify({ token: serverToken }),
+        { headers: headers })
+      .subscribe((response) => {
+        console.log(response)
+      })
+  }
+
+
+
   login(): Observable<any> {
     var provider = new firebase.auth.TwitterAuthProvider();
     
@@ -51,7 +64,6 @@ export class UserAuthService {
   storeUsertoBackend(payload){
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    // debugger
     return this.http.post("http://127.0.0.1:3000/api/auth/create_new_user",
                           JSON.stringify(payload),
                           {headers: headers})
