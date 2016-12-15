@@ -64,7 +64,7 @@ export class UserAuthService {
   storeUsertoBackend(payload){
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.post("http://127.0.0.1:3000/api/auth/create_new_user",
+    return this.http.post("http://127.0.0.1:3000/api/auth/sign_in",
                           JSON.stringify(payload),
                           {headers: headers})
             .map(response =>{
@@ -74,5 +74,21 @@ export class UserAuthService {
               return newUserAuth;
             } )
   }
+
+
+  followList(listName, usernames, token) {
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', token);
+    var payload = { name: listName, usernames: usernames }
+    return this.http.post("http://127.0.0.1:3000/api/lists/create",
+      JSON.stringify(payload),
+      {headers: headers})
+      .subscribe(response => {
+        console.log(response)
+      })
+
+  }
+
 
 }

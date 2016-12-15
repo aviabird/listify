@@ -1,3 +1,13 @@
 <!--Dashboard-->
 <h2>Dashboard works</h2>
 <h2><a [routerLink]="['']" (click) ="signOutUser()">Logout</a></h2>
+<p>
+  Trending Lists
+</p>
+Follow RXJS top coders in one go.
+<a href="#" (click)="follow()">Follow All</a>
+<ul>
+  <li *ngFor='let username of usernames'>
+    {{ username }}
+  </li>
+</ul>

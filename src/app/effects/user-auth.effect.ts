@@ -29,6 +29,7 @@ export class UserAuthEffects {
       .switchMap((payload) => this.userAuthService.storeUsertoBackend(payload))
       .map((userAuth) => {
         console.log("Server response: ", userAuth);
+        localStorage.setItem('server_token', userAuth.server_token);
         return this.loginActions.storeUserSuccess(userAuth)
       })
 

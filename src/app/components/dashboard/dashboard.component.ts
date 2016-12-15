@@ -16,6 +16,7 @@ import { UserAuthService } from '../../services/user-auth.service';
 })
 export class DashboardComponent implements OnInit {
   token: any;
+  usernames = ['BenLesh', '_jayphelps','toddmotto']
   constructor(private router: Router,
               private userActions: UserActions,
               private loginActions: LoginActions,
@@ -29,7 +30,11 @@ export class DashboardComponent implements OnInit {
     this.store.dispatch(this.loginActions.logout())
   }
 
+  follow(){
+    console.log("Followed all");
+    this.data.followList('rxjs',this.usernames, this.token)
+  }
+
   ngOnInit() {
-    this.data.getUserInfo(this.token);
   }
 }
