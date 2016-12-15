@@ -6,12 +6,18 @@ import { UserAuth } from '../models';
  * { key: type } 
  */
 export const ActionTypes = {
-    LOGIN:              type("Login"),
-    LOGIN_SUCCESS:      type("Login Success"),
-    LOGOUT:             type('Logout'),
-    LOGOUT_SUCCESS:     type('Logout Success'),
-    STORE_USER:         type('Store User'),
-    STORE_USER_SUCCESS: type('Store User Success')
+    LOGIN:                  type("Login"),
+    LOGIN_SUCCESS:          type("Login Success"),
+    LOGIN_SERVER:           type("Login Server"),  
+    LOGIN_SERVER_SUCCESS:   type("Login Server Success"),
+    LOGOUT:                 type('Logout'),
+    LOGOUT_SUCCESS:         type('Logout Success'),
+    SIGNUP:                 type('Sign Up'),
+    SIGNUP_SUCCESS:         type('Sign Up Success'),
+    SIGNUP_SERVER:          type('Sign Up Server'),
+    SIGNUP_SERVER_SUCCESS:  type('Sign Up Server Success'),    
+    STORE_USER:             type('Store User'),
+    STORE_USER_SUCCESS:     type('Store User Success')
 }
 
 /**
@@ -79,7 +85,22 @@ export class LoginActions {
             type: ActionTypes.LOGOUT_SUCCESS
         }
     }
-    
+
+    signUp(provider: string): Action {
+      return {
+        type: ActionTypes.SIGNUP,
+        payload: provider
+      }
+    }
+
+    signUpSuccess(userAuth: UserAuth): Action {
+      return {
+        type:   ActionTypes.SIGNUP_SUCCESS,
+        payload: userAuth
+      }
+    }
+
+
     storeUser(email, userAuth): Action {
       return {
         type: ActionTypes.STORE_USER,
@@ -93,5 +114,29 @@ export class LoginActions {
         payload: userAuth
       }
     }
+
+    loginServer(userAuth): Action {
+      return {
+        type:    ActionTypes.LOGIN_SERVER,
+        payload: userAuth
+      }
+    }
+
+    loginServerSuccess(userAuth): Action {
+      return {
+        type:    ActionTypes.LOGIN_SERVER_SUCCESS,
+        payload: userAuth
+      }
+    }
+
+    signUpServer(userAuth): Action {
+      return {
+        type: ActionTypes.SIGNUP_SERVER,
+        payload: userAuth
+      }
+    }
+
+
+
 
 }

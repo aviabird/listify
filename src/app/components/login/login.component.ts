@@ -23,4 +23,8 @@ export class LoginComponent implements OnInit {
   login(){
     this.store.dispatch(this.loginActions.login('twitter'))
 }
+  signUp(){
+    this.store.dispatch(this.loginActions.signUp('twitter'))
+  }
+
 }

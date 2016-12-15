@@ -28,30 +28,48 @@ export class UserAuthService {
     };
     firebase.initializeApp(config);
   }
-  
-  getUserInfo(serverToken){
-    var headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    this.http.post("http://127.0.0.1:3000/api/tweets/get_user_info", 
-        JSON.stringify({ token: serverToken }),
-        { headers: headers })
-      .subscribe((response) => {
-        console.log(response)
+
+  signUp() {
+    var provider = new firebase.auth.TwitterAuthProvider();
+    return Observable.create(observer => {
+      firebase.auth().signInWithPopup(provider).then(result => {
+        console.log("user is:", result.user)
+        const userAuth = new UserAuth(
+          result.user.providerData[0]['uid'],
+          result.credential.accessToken,
+          result.credential.secret)
+
+        observer.next(userAuth);
       })
-  }
+    });
+ }
 
-
+ loginServer(userAuth: UserAuth) {
+   var headers = new Headers();
+   headers.append('Content-Type', 'application/json');
+    return this.http.post("http://127.0.0.1:3000/api/auth/sign_in",
+                          JSON.stringify(userAuth),
+                          {headers: headers})
+            .map(response =>{
+              var token = response.json().token
+              var newUserAuth = new UserAuth(userAuth.user_id, 
+                                  userAuth.access_token,
+                                  userAuth.secret_token,
+                                  token)
+              return newUserAuth;
+            } )
+ }
 
   login(): Observable<any> {
     var provider = new firebase.auth.TwitterAuthProvider();
     
     return Observable.create(observer => {
       firebase.auth().signInWithPopup(provider).then(result => {
-        console.log("user is:", result.user)
+        console.log("user is:", result)
         const userAuth = new UserAuth(
+          result.user.providerData[0]['uid'],
           result.credential.accessToken,
           result.credential.secret)
-        
         observer.next(userAuth);
       })
     });
@@ -64,17 +82,16 @@ export class UserAuthService {
   storeUsertoBackend(payload){
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.post("http://127.0.0.1:3000/api/auth/sign_in",
+    return this.http.post("http://127.0.0.1:3000/api/auth/sign_up",
                           JSON.stringify(payload),
                           {headers: headers})
             .map(response =>{
               var token = response.json().token
               var userAuth = payload.userAuth
-              var newUserAuth = new UserAuth(userAuth.access_token, userAuth.secret_token, token)
+              var newUserAuth = new UserAuth(userAuth.user_id, userAuth.access_token, userAuth.secret_token, token)
               return newUserAuth;
             } )
   }
-
 
   followList(listName, usernames, token) {
     var headers = new Headers();
@@ -89,6 +106,4 @@ export class UserAuthService {
       })
 
   }
-
-
 }

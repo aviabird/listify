@@ -14,6 +14,16 @@ export default function(state = initialState, action: Action): AuthState {
         return Object.assign({}, state, userAuth);
     }
 
+    case ActionTypes.LOGIN_SERVER_SUCCESS: {
+      var userAuth: UserAuth = action.payload;
+      return Object.assign({}, state, userAuth);
+    }
+    
+    case ActionTypes.SIGNUP_SUCCESS: {
+      var userAuth: UserAuth = action.payload;
+      return Object.assign({}, state, userAuth);
+    }
+
     case ActionTypes.LOGOUT_SUCCESS: {
         return Object.assign({},  initialState);
     }
