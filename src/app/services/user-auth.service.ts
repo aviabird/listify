@@ -93,12 +93,14 @@ export class UserAuthService {
             } )
   }
 
-  followList(listName, usernames, token) {
+  followList(list_id, token) {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('Authorization', token);
-    var payload = { name: listName, usernames: usernames }
-    return this.http.post("http://127.0.0.1:3000/api/lists/create",
+    console.log(list_id)
+    var payload = list_id
+    
+    return this.http.post("http://127.0.0.1:3000/api/users/create_list",
       JSON.stringify(payload),
       {headers: headers})
       .subscribe(response => {
@@ -106,4 +108,16 @@ export class UserAuthService {
       })
 
   }
+
+retriveSuggestion(){
+  var headers = new Headers();
+  headers.append('Content', 'application/json');
+  return this.http.post("http://127.0.0.1:3000/api/lists/suggest",
+          { headers: headers }).map(res => res.json());
+}
+
+
+
+
+
 }

@@ -16,7 +16,7 @@ import { UserAuthService } from '../../services/user-auth.service';
 })
 export class DashboardComponent implements OnInit {
   token: any;
-  usernames = ['BenLesh', '_jayphelps','toddmotto']
+  lists;
   constructor(private router: Router,
               private userActions: UserActions,
               private loginActions: LoginActions,
@@ -32,9 +32,15 @@ export class DashboardComponent implements OnInit {
 
   follow(){
     console.log("Followed all");
-    this.data.followList('rxjs',this.usernames, this.token)
+    console.log("list ist",this.lists);
+    var list_id = this.lists[0]['_id']
+
+    this.data.followList(list_id, this.token)
   }
 
   ngOnInit() {
+    this.data.retriveSuggestion().subscribe(response => {
+      this.lists = response
+    })
   }
 }
