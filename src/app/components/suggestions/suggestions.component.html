@@ -1,3 +1,10 @@
 <p>
-  suggestions works!
+  Trending Lists
 </p>
+Follow Ruby on Rails top coders in one go.
+<ul>
+  <li *ngFor="let list of suggestedList">
+    Name: {{ list.name }}
+    <button (click)="follow(list._id)">Follow</button>
+  </li>
+</ul>

@@ -95,13 +95,4 @@ export class UserAuthService {
     localStorage.setItem('access_token', userAuth.access_token);
     localStorage.setItem('secret_token', userAuth.secret_token);
   }
-
-  retriveSuggestion(){
-    return this.restAngular.all('lists/suggest').post();
-  }
-
-  followList(list_id, token) {
-    return this.restAngular.all('users/create_list').post(list_id)
-  }
-
 }
