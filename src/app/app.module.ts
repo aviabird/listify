@@ -57,13 +57,15 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
  */
 import { routing } from './app.routes';
 import { RequestEmailComponent } from './components/request-email/request-email.component';
+import { SuggestionsComponent } from './components/suggestions/suggestions.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     DashboardComponent,
-    RequestEmailComponent
+    RequestEmailComponent,
+    SuggestionsComponent
   ],
   imports: [
     BrowserModule,

@@ -31,7 +31,6 @@ export class DashboardComponent implements OnInit {
   }
 
   follow(){
-    console.log("Followed all");
     console.log("list ist",this.lists);
     var list_id = this.lists[0]['_id']
 
