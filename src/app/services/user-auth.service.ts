@@ -3,9 +3,10 @@ import { Observable } from 'rxjs/Observable';
 import { UserAuth, UserProfile, User } from '../models';
 import * as firebase from "firebase";
 import { Http, Headers } from '@angular/http';
-import { RestangularModule } from 'ng2-restangular';
+import { Secrets } from '../../secrets';
+import { environment } from '../../environments/environment';
 
-var BASE_URL: string ='http://127.0.0.1:3000/api'
+var BASE_URL: string = environment.baseUrl;
 /**
  * @class UserAuthService:
  * 
@@ -21,11 +22,11 @@ export class UserAuthService {
    */
   constructor(private http: Http) {
     var config = {
-      apiKey: "AIzaSyB_0Z6nSJSdCLY7CbjvcLKAFBLJ45Nb3_Y",
-      authDomain: "istalk-5ec3f.firebaseapp.com",
-      databaseURL: "https://istalk-5ec3f.firebaseio.com",
-      storageBucket: "istalk-5ec3f.appspot.com",
-      messagingSenderId: "211546852493",
+      apiKey: Secrets.firebaseApiKey,
+      authDomain: Secrets.firebaseAuthDomain,
+      databaseURL: Secrets.firebaseDatabaseUrl,
+      storageBucket: Secrets.firebaseStorageBucket,
+      messagingSenderId: Secrets.firebaseMessagingSenderId,
     };
     firebase.initializeApp(config);
   }
