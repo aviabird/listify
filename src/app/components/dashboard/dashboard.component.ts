@@ -35,12 +35,14 @@ export class DashboardComponent implements OnInit {
     console.log("list ist",this.lists);
     var list_id = this.lists[0]['_id']
 
-    this.data.followList(list_id, this.token)
+    this.data.followList(list_id, this.token).subscribe(response => {
+      console.log("Response is: ", response);
+    })
   }
 
   ngOnInit() {
     this.data.retriveSuggestion().subscribe(response => {
-      this.lists = response
+      this.lists = response;
     })
   }
 }

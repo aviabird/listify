@@ -3,8 +3,11 @@ import { Observable } from 'rxjs/Observable';
 import { UserAuth, UserProfile, User } from '../models';
 import * as firebase from "firebase";
 import { Http, Headers } from '@angular/http';
+import { Secrets } from '../../secrets';
+import { environment } from '../../environments/environment';
+import { Restangular } from 'ng2-restangular';
 
-var BASE_URL: string ='http://127.0.0.1:3000/api'
+var BASE_URL: string = environment.baseUrl;
 /**
  * @class UserAuthService:
  * 
@@ -18,22 +21,21 @@ export class UserAuthService {
   /**
    * @constructor
    */
-  constructor(private http: Http) {
+  constructor(private http: Http, public restAngular: Restangular) {
     var config = {
-      apiKey: "AIzaSyB_0Z6nSJSdCLY7CbjvcLKAFBLJ45Nb3_Y",
-      authDomain: "istalk-5ec3f.firebaseapp.com",
-      databaseURL: "https://istalk-5ec3f.firebaseio.com",
-      storageBucket: "istalk-5ec3f.appspot.com",
-      messagingSenderId: "211546852493",
+      apiKey: Secrets.firebaseApiKey,
+      authDomain: Secrets.firebaseAuthDomain,
+      databaseURL: Secrets.firebaseDatabaseUrl,
+      storageBucket: Secrets.firebaseStorageBucket,
+      messagingSenderId: Secrets.firebaseMessagingSenderId,
     };
     firebase.initializeApp(config);
   }
 
-  signUp() {
+  signUp(): Observable<any> {
     var provider = new firebase.auth.TwitterAuthProvider();
     return Observable.create(observer => {
       firebase.auth().signInWithPopup(provider).then(result => {
-        console.log("user is:", result.user)
         const userAuth = new UserAuth(
           result.user.providerData[0]['uid'],
           result.credential.accessToken,
@@ -44,12 +46,9 @@ export class UserAuthService {
     });
  }
 
- loginServer(userAuth: UserAuth) {
-   var headers = new Headers();
-   headers.append('Content-Type', 'application/json');
-    return this.http.post("http://127.0.0.1:3000/api/auth/sign_in",
-                          JSON.stringify(userAuth),
-                          {headers: headers})
+ loginServer(userAuth: UserAuth): Observable<any> {
+   return this.restAngular.all('/auth/sign_in')
+            .post(userAuth)
             .map(response =>{
               var token = response.json().token
               var newUserAuth = new UserAuth(userAuth.user_id, 
@@ -57,15 +56,13 @@ export class UserAuthService {
                                   userAuth.secret_token,
                                   token)
               return newUserAuth;
-            } )
+            })
  }
 
   login(): Observable<any> {
     var provider = new firebase.auth.TwitterAuthProvider();
-    
     return Observable.create(observer => {
       firebase.auth().signInWithPopup(provider).then(result => {
-        console.log("user is:", result)
         const userAuth = new UserAuth(
           result.user.providerData[0]['uid'],
           result.credential.accessToken,
@@ -76,48 +73,35 @@ export class UserAuthService {
   }
 
   logout(): Observable<any> {
-      return Observable.of(localStorage.removeItem('access_token'));
+    return Observable.of(localStorage.removeItem('access_token'));
   }
 
-  storeUsertoBackend(payload){
-    var headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    return this.http.post("http://127.0.0.1:3000/api/auth/sign_up",
-                          JSON.stringify(payload),
-                          {headers: headers})
-            .map(response =>{
+  storeUsertoBackend(payload): Observable<any> {
+    return this.restAngular.all('/auth/sign_up').post(payload)
+      .map(response =>{
               var token = response.json().token
               var userAuth = payload.userAuth
               var newUserAuth = new UserAuth(userAuth.user_id, userAuth.access_token, userAuth.secret_token, token)
               return newUserAuth;
-            } )
+          })
+  }
+
+  storeServerToken(token): void {
+    localStorage.setItem('server_token', token);
+  }
+
+  storeUserAuthInLocalstorage(userAuth): void {
+    localStorage.setItem('user_id', userAuth.user_id);
+    localStorage.setItem('access_token', userAuth.access_token);
+    localStorage.setItem('secret_token', userAuth.secret_token);
+  }
+
+  retriveSuggestion(){
+    return this.restAngular.all('lists/suggest').post();
   }
 
   followList(list_id, token) {
-    var headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    headers.append('Authorization', token);
-    console.log(list_id)
-    var payload = list_id
-    
-    return this.http.post("http://127.0.0.1:3000/api/users/create_list",
-      JSON.stringify(payload),
-      {headers: headers})
-      .subscribe(response => {
-        console.log(response)
-      })
-
+    return this.restAngular.all('users/create_list').post(list_id)
   }
-
-retriveSuggestion(){
-  var headers = new Headers();
-  headers.append('Content', 'application/json');
-  return this.http.post("http://127.0.0.1:3000/api/lists/suggest",
-          { headers: headers }).map(res => res.json());
-}
-
-
-
-
 
 }

@@ -7,7 +7,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
-
+import { RestangularModule } from 'ng2-restangular';
+import { environment } from '../environments/environment';
 /**
  * ALL Services used in App.
  */
@@ -72,6 +73,12 @@ import { RequestEmailComponent } from './components/request-email/request-email.
     ComponentsModule,
     CommonModule,
     routing,
+    // Importing RestangularModule and making default configs for restanglar
+    RestangularModule.forRoot((RestangularProvider) => {
+      RestangularProvider.setBaseUrl(environment.baseUrl);
+      RestangularProvider.setDefaultHeaders({'Content-Type':'application/json', 'Authorization': localStorage.getItem('server_token')});
+      }
+    ),
     StoreModule.provideStore(reducer),
     RouterStoreModule.connectRouter(),
     StoreDevtoolsModule.instrumentStore({
