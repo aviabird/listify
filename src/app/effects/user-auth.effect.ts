@@ -18,9 +18,7 @@ export class UserAuthEffects {
         .map<string>((action: Action) => action.payload)
         .switchMap((payload) => this.userAuthService.login())
         .map((userAuth: UserAuth) => {
-          localStorage.setItem('user_id', userAuth.user_id);
-          localStorage.setItem('access_token', userAuth.access_token);
-          localStorage.setItem('secret_token', userAuth.secret_token);
+          this.userAuthService.storeUserAuthInLocalstorage(userAuth);
           return this.loginActions.loginSuccess(userAuth);
         } );
 
@@ -29,9 +27,8 @@ export class UserAuthEffects {
       .map((action: Action) => action.payload)
       .switchMap((userAuth: UserAuth) => this.userAuthService.loginServer(userAuth))
         .map((userAuth: UserAuth) => { 
-        console.log("Server response: ", userAuth);
-        localStorage.setItem('server_token', userAuth.server_token);
-        return this.loginActions.loginServerSuccess(userAuth)
+        this.userAuthService.storeServerToken(userAuth.server_token);
+        return this.loginActions.loginServerSuccess(userAuth);
       })
     
     @Effect() signup$ = this.actions$
@@ -39,9 +36,7 @@ export class UserAuthEffects {
       .map<string>((action: Action) => action.payload)
       .switchMap((payload) => this.userAuthService.signUp())
         .map((userAuth: UserAuth) => {
-          localStorage.setItem('user_id', userAuth.user_id);
-          localStorage.setItem('access_token', userAuth.access_token);
-          localStorage.setItem('secret_token', userAuth.secret_token);
+          this.userAuthService.storeUserAuthInLocalstorage(userAuth);
           return this.loginActions.signUpSuccess(userAuth);
         } );
     
@@ -56,8 +51,7 @@ export class UserAuthEffects {
       .map((action: Action) => action.payload)
       .switchMap((payload) => this.userAuthService.storeUsertoBackend(payload))
       .map((userAuth) => {
-        console.log("Server response: ", userAuth);
-        localStorage.setItem('server_token', userAuth.server_token);
+        this.userAuthService.storeServerToken(userAuth.server_token);
         return this.loginActions.storeUserSuccess(userAuth)
       })
 
