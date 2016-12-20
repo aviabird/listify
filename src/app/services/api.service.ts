@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Http, Headers } from '@angular/http';
 import { environment } from '../../environments/environment';
 import { Restangular } from 'ng2-restangular';
-import { SuggestedList } from '../models';
+import { SuggestedList, UserList } from '../models';
 
 var BASE_URL: string = environment.baseUrl;
 
@@ -38,5 +38,15 @@ export class ApiService {
     });
     return suggLists;
   }
+
+  createUserListobj(dbUserListobj){
+    var userList: UserList = new UserList(
+                                dbUserListobj._id,
+                                dbUserListobj.twitter_list_id,
+                                dbUserListobj.slug,
+                                dbUserListobj.name)
+    return userList;
+  }
+
 
 }

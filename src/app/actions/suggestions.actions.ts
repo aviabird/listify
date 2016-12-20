@@ -31,10 +31,10 @@ export class SuggestionsActions {
     }
   }
 
-  followSuccess(): Action {
-    console.log("Inside Follow Success");
+  followSuccess(userList): Action {
     return {
-      type: ActionTypes.FOLLOW_LIST_SUCCESS
+      type: ActionTypes.FOLLOW_LIST_SUCCESS,
+      payload: userList
     }
   }
 }

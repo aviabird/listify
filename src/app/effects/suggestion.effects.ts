@@ -23,6 +23,6 @@ export class SuggestionEffects {
     .ofType(ActionTypes.FOLLOW_LIST)
     .map((action: Action) => action.payload)
     .switchMap((listId) => this.apiService.followList(listId))
-    .map(() => this.suggestionsActions.followSuccess())
-
+    .map((response) => this.apiService.createUserListobj(response.new_user_list))
+    .map((userList) => this.suggestionsActions.followSuccess(userList))
 }
