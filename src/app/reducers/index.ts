@@ -43,3 +43,8 @@ export function getSuggestedListState(){
   return (state$: Observable<AppState>) => state$
     .select(state => state.suggestedList)
 }
+
+export function getUserListState(){
+  return (state$: Observable<AppState>) => state$
+    .select(state => state.userList)
+}

@@ -42,6 +42,7 @@ export class ApiService {
   createUserListobj(dbUserListobj){
     var userList: UserList = new UserList(
                                 dbUserListobj._id,
+                                dbUserListobj.list_id,
                                 dbUserListobj.twitter_list_id,
                                 dbUserListobj.slug,
                                 dbUserListobj.name)

@@ -1,2 +1,8 @@
 Name: {{ list.name }}
-<button (click)="followList()">Follow</button>
+{{isFollowing$ | async | json}}
+<div *ngIf="!(isFollowing$ | async) ">
+  <button (click)="followList()">Follow</button>
+</div>
+<div *ngIf="(isFollowing$ | async)">
+  <button>Following</button>
+</div>

@@ -9,7 +9,6 @@ const initialState: UserListState = [];
 export default function(state = initialState, action: Action): UserListState {
     switch(action.type){
       case ActionTypes.FOLLOW_LIST_SUCCESS: {
-        console.log("Reducer", action.payload)
         var userList = action.payload;
         var newState = state.push(userList)
         return Object.assign([], state, newState); 
