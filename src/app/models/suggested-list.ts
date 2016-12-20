@@ -1,5 +1,5 @@
 export class SuggestedList {
-  constructor(public name: string,
-              public description: string,
-              public image_url: string){ }
+  constructor(public name: string=null,
+              public description: string=null,
+              public image_url: string=null){ }
 }
