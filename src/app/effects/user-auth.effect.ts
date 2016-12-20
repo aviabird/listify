@@ -57,7 +57,7 @@ export class UserAuthEffects {
 
     @Effect() storeUserSuccess$ = this.actions$
       .ofType(ActionTypes.STORE_USER_SUCCESS)
-      .map(() => go(['/dashboard']));
+      .map(() => go(['/dashboard/suggestions']));
 
     @Effect() logout$ = this.actions$
         .ofType(ActionTypes.LOGOUT)

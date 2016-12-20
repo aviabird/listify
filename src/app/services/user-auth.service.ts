@@ -73,12 +73,15 @@ export class UserAuthService {
   }
 
   logout(): Observable<any> {
-    return Observable.of(localStorage.removeItem('access_token'));
+    return Observable.of(
+      localStorage.removeItem('access_token'),
+      localStorage.removeItem('server_token'));
   }
 
   storeUsertoBackend(payload): Observable<any> {
     return this.restAngular.all('/auth/sign_up').post(payload)
-      .map(response =>{
+      .map(response => {
+              console.log(response);
               var token = response.json().token
               var userAuth = payload.userAuth
               var newUserAuth = new UserAuth(userAuth.user_id, userAuth.access_token, userAuth.secret_token, token)
