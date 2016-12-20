@@ -14,7 +14,7 @@ import { environment } from '../environments/environment';
  */
 import { AuthGuardService } from './services/auth-guard.service';
 import { UserAuthService } from './services/user-auth.service';
-
+import { ApiService } from './services/api.service';
 //========================= NGRX Releated Imports ===========================
 
 /**
@@ -31,6 +31,8 @@ import { RouterStoreModule } from '@ngrx/router-store';
  */
 import { UserAuthEffects } from './effects/user-auth.effect';
 import { UserEffects } from './effects/user.effects';
+import { SuggestionEffects } from './effects/suggestion.effects';
+
 /**
  * ALL Ngrx Actions that can be fired in app loaded as one.
  */
@@ -95,12 +97,14 @@ import { SuggestedListComponent } from './components/suggested-list/suggested-li
     }),
     StoreLogMonitorModule,
     EffectsModule.run(UserAuthEffects),
-    EffectsModule.run(UserEffects)
+    EffectsModule.run(UserEffects),
+    EffectsModule.run(SuggestionEffects)
   ],
   providers: [
     actions,
     UserAuthService,
-    AuthGuardService
+    AuthGuardService,
+    ApiService
     ],
   bootstrap: [AppComponent]
 })

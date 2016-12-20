@@ -4,7 +4,7 @@ import { User } from '../models/';
 
 /**
  * A Hash Constant which has all types of Login Action
- * { key: type } 
+ * { key: type }
  */
 export const ActionTypes = {
   LOAD_PROFILE:         type("Load Profile"),

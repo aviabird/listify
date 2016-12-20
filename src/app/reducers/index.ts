@@ -37,3 +37,9 @@ export function getLoginState(){
     return (state$: Observable<AppState>) => state$
         .select(state => state.userAuth)
 }
+
+
+export function getSuggestedListState(){
+  return (state$: Observable<AppState>) => state$
+    .select(state => state.suggestedList)
+}
