@@ -16,3 +16,4 @@ export default function(state = initialState, action: Action): UserState {
         }
     }
 }
+

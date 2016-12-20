@@ -1,7 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs';
-import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState, getLoginState } from '../../reducers/index';
 import { LoginActions } from '../../actions/login.actions';
@@ -14,24 +13,20 @@ import { LoginActions } from '../../actions/login.actions';
   providers: [LoginActions]
 })
 export class LoginComponent implements OnInit {
-  constructor(private router: Router,
-              private loginActions: LoginActions,
+  photo;
+  constructor(private loginActions: LoginActions,
               private store: Store<AppState>) {
-    
-    this.store.let(getLoginState())
-      .filter(state => state.isLoggedIn)
-      .subscribe(() => this.router.navigate(['/dashboard']));                  
   }
 
   ngOnInit() {
+    // this.photo = "http://mdbootstrap.com/img/Photos/Horizontal/City/full%20page/img%20(1).jpg";
   }
 
-  signInUser(signinType: string){
-    if(signinType == 'facebook'){
-      this.store.dispatch(this.loginActions.login(signinType))
-   }
+  login(){
+    this.store.dispatch(this.loginActions.login('twitter'))
+}
+  signUp(){
+    this.store.dispatch(this.loginActions.signUp('twitter'))
   }
 
-  signOutUser(){
-  }
 }

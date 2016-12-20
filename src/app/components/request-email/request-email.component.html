@@ -1,0 +1,8 @@
+<h1>Please Enter your Email Address</h1>
+<form (ngSubmit)="login()" [formGroup]="emailForm">
+  <div>
+    <label for="email">Email: </label>
+    <input type="text" id="email" placeholder="email" [formControl]="emailForm.controls['email']" [(ngModel)]="email"/>
+  </div>
+  <button type="submit" [disabled]="!emailForm.valid">Login</button>
+</form>
