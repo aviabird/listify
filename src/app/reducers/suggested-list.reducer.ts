@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 import { SuggestedList } from '../models/';
-import { ActionTypes } from '../actions/user.actions';
+// import { ActionTypes } from '../actions/user.actions';
 
 export type SuggestedListState = SuggestedList[];
 
