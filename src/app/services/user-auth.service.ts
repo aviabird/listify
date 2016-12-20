@@ -80,7 +80,7 @@ export class UserAuthService {
 
   storeUsertoBackend(payload): Observable<any> {
     return this.restAngular.all('/auth/sign_up').post(payload)
-      .map(response => {
+          .map(response => {
               var token = response.token
               var userAuth = payload.userAuth
               var newUserAuth = new UserAuth(userAuth.user_id, userAuth.access_token, userAuth.secret_token, token)

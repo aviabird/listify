@@ -59,6 +59,7 @@ import { routing } from './app.routes';
 import { RequestEmailComponent } from './components/request-email/request-email.component';
 import { SuggestionsComponent } from './components/suggestions/suggestions.component';
 import { FeedsComponent } from './components/feeds/feeds.component';
+import { SuggestedListComponent } from './components/suggested-list/suggested-list.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { FeedsComponent } from './components/feeds/feeds.component';
     DashboardComponent,
     RequestEmailComponent,
     SuggestionsComponent,
-    FeedsComponent
+    FeedsComponent,
+    SuggestedListComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +82,7 @@ import { FeedsComponent } from './components/feeds/feeds.component';
     // Importing RestangularModule and making default configs for restanglar
     RestangularModule.forRoot((RestangularProvider) => {
       RestangularProvider.setBaseUrl(environment.baseUrl);
-      RestangularProvider.setDefaultHeaders({'Content-Type':'application/json', 'Authorization': localStorage.getItem('server_token')});
+      RestangularProvider.setDefaultHeaders({'Content-Type':'application/json'});
       }
     ),
     StoreModule.provideStore(reducer),

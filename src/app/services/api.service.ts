@@ -12,10 +12,17 @@ export class ApiService {
   constructor(private http: Http, public restAngular: Restangular) { }
 
   retriveSuggestion(): Observable<any> {
-    return this.restAngular.all('lists/suggest').post();
+    return this.restAngular.all('lists/suggest')
+      .post()
   }
 
   followList(list_id): Observable<any> {
-    return this.restAngular.all('users/create_list').post(list_id)
+    var token = this.getServerToken()
+    return this.restAngular.all('users/create_list')
+      .post(list_id, {}, { 'Authorization': token })
+  }
+
+  getServerToken(){
+    return localStorage.getItem('server_token');
   }
 }
