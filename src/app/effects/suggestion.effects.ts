@@ -18,4 +18,11 @@ export class SuggestionEffects {
     .switchMap(() => this.apiService.retriveSuggestion())
     .map(response => this.apiService.createSuggestedListsObj(response))
     .map((suggestedLists: SuggestedList[]) => this.suggestionsActions.retriveListsSuccess(suggestedLists));
+  
+  @Effect() followList$ = this.actions$
+    .ofType(ActionTypes.FOLLOW_LIST)
+    .map((action: Action) => action.payload)
+    .switchMap((listId) => this.apiService.followList(listId))
+    .map(() => this.suggestionsActions.followSuccess())
+
 }

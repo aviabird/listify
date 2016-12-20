@@ -24,13 +24,15 @@ export class SuggestionsActions {
     }
   }
 
-  follow(): Action {
+  follow(listId): Action {
     return {
-      type: ActionTypes.FOLLOW_LIST
+      type: ActionTypes.FOLLOW_LIST,
+      payload: listId
     }
   }
 
   followSuccess(): Action {
+    console.log("Inside Follow Success");
     return {
       type: ActionTypes.FOLLOW_LIST_SUCCESS
     }

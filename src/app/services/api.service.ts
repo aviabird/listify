@@ -29,7 +29,9 @@ export class ApiService {
   createSuggestedListsObj(response){
     var suggLists = []
     response.forEach(element => {
-      var suggestedList = new SuggestedList(element.name, 
+      var suggestedList = new SuggestedList(
+                              element._id,
+                              element.name, 
                               element.description,
                               element.image_url)
       suggLists.push(suggestedList);

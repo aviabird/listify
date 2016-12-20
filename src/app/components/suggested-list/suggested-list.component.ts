@@ -14,7 +14,7 @@ export class SuggestedListComponent implements OnInit {
   }
 
   followList(){
-    this.followClicked.emit(this.list._id)
+    this.followClicked.emit(this.list.id)
   }
 
 }

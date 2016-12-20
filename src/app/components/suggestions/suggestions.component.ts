@@ -30,9 +30,11 @@ export class SuggestionsComponent implements OnInit {
   }
 
   follow(listId){
-    this.api.followList(listId).subscribe(response => {
-      console.log("Response is: ", response);
-    })
+    console.log("List Id is,", listId);
+    this.store.dispatch(this.suggestionsActions.follow(listId))
+    // this.api.followList(listId).subscribe(response => {
+    //   console.log("Response is: ", response);
+    // })
   }
 
   goToFeedsDashboard(){
