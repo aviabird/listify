@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ist-suggestions',
@@ -9,7 +10,7 @@ import { ApiService } from '../../services/api.service';
 })
 export class SuggestionsComponent implements OnInit {
   suggestedList;
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService, private router: Router) { }
 
   ngOnInit() {
     this.api.retriveSuggestion().subscribe(response => {
@@ -25,5 +26,8 @@ export class SuggestionsComponent implements OnInit {
     })
   }
 
+  goToFeedsDashboard(){
+    this.router.navigate(['/dashboard'])
+  }
 
 }
