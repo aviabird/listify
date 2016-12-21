@@ -2,7 +2,9 @@ import { Action } from '@ngrx/store';
 import { UserList } from '../models/';
 import { ActionTypes } from '../actions/suggestions.actions';
 
-export type UserListState = UserList[];
+export type UserListState = {
+ UserLists: UserList[]
+}
 
 const initialState: UserListState = [];
 

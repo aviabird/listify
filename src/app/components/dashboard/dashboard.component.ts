@@ -1,7 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../reducers/index';
 import { UserActions } from '../../actions/user.actions';

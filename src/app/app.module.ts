@@ -62,6 +62,7 @@ import { RequestEmailComponent } from './components/request-email/request-email.
 import { SuggestionsComponent } from './components/suggestions/suggestions.component';
 import { FeedsComponent } from './components/feeds/feeds.component';
 import { SuggestedListComponent } from './components/suggested-list/suggested-list.component';
+import { SidepanelComponent } from './components/sidepanel/sidepanel.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { SuggestedListComponent } from './components/suggested-list/suggested-li
     RequestEmailComponent,
     SuggestionsComponent,
     FeedsComponent,
-    SuggestedListComponent
+    SuggestedListComponent,
+    SidepanelComponent
   ],
   imports: [
     BrowserModule,
