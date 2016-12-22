@@ -48,5 +48,12 @@ export class ApiService {
     return userList;
   }
 
+  getListTimeLine(indexId){
+    var token = this.getServerToken()
+    var attr = { index_id: indexId };
+    return this.restAngular
+      .all('users/list_timeline')
+      .post(attr, {}, { 'Authorization': token })
+  }
 
 }
