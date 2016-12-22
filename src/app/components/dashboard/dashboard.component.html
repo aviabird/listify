@@ -27,7 +27,7 @@
       <i class="calendar icon"></i>
       List you Follow
       <ul>
-        <li *ngFor="let list of userList$ | async">
+        <li *ngFor="let list of userList$ | async" [routerLink]= "['./feeds/' + list?.id]">
           {{ list.name }}
         </li>
       </ul>
