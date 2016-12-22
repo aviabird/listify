@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../reducers/index';
+import { AppState, getUserList } from '../../reducers/index';
 import { UserActions } from '../../actions/user.actions';
 import { LoginActions } from '../../actions/login.actions';
 import { User } from '../../models/';
@@ -14,10 +14,12 @@ import { User } from '../../models/';
 })
 export class DashboardComponent implements OnInit {
   lists;
+  userList$: Observable<any>;
   constructor(private router: Router,
               private userActions: UserActions,
               private loginActions: LoginActions,
               private store: Store<AppState>) {
+      this.userList$ = this.store.select(getUserList) 
     }
 
   signOutUser(){
