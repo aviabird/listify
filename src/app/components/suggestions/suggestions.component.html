@@ -1,12 +1,7 @@
-<p>
-  Trending Lists
-</p>
-Follow Ruby on Rails top coders in one go.
-<ul>
-  <li *ngFor="let list of suggestedList$ | async">
-    <ist-suggested-list (followClicked)="follow($event)" [list]="list">
-    </ist-suggested-list>
-  </li>
-</ul>
+<div class="ui link cards">
+  <div *ngFor="let list of suggestedList$ | async" class="card">
+    <ist-suggested-list (followClicked)="follow($event)" [list]="list"></ist-suggested-list>
+  </div>
+</div>
 
 <button (click)="goToFeedsDashboard()">Go To Dashboard</button>
