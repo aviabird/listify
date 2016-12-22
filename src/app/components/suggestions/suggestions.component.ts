@@ -3,7 +3,7 @@ import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
-import { AppState, getSuggestedListState } from '../../reducers/index';
+import { AppState, getSuggestedList } from '../../reducers/index';
 import { SuggestionsActions } from '../../actions/suggestions.actions';
 import { SuggestedList } from '../../models/suggested-list';
 
@@ -20,8 +20,8 @@ export class SuggestionsComponent implements OnInit {
               private router: Router,
               private suggestionsActions: SuggestionsActions,
               private store: Store<AppState>) { 
-    this.suggestedList$ = this.store.let(getSuggestedListState());
-  }
+    this.suggestedList$ = this.store.select(getSuggestedList);
+}
 
   ngOnInit() {
     this.store.dispatch(this.suggestionsActions.retriveLists())

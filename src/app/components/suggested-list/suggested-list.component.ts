@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
-import { AppState, getUserListState } from '../../reducers/index';
+import { AppState, getUserListEntities } from '../../reducers/index';
 import { UserList } from '../../models';
 
 @Component({
@@ -17,15 +17,17 @@ export class SuggestedListComponent implements OnInit {
 
   constructor(private store: Store<AppState>) {
     
-    this.store.let(getUserListState())
-      .subscribe(state => {
-        state.forEach(element => {
-          if(element.list_id.$oid === this.list.id.$oid){
-            this.isFollowing$ = Observable.of(true);
-          }
-        })
-      })
-   }
+    this.store.select(getUserListEntities).subscribe(
+      userList => {
+        for (var key in userList) {
+            var value = userList[key];
+            if(value.list_id.$oid === this.list.id){
+              this.isFollowing$ = Observable.of(true);
+            }
+        }
+      }
+    )
+}
 
   ngOnInit() {
   }

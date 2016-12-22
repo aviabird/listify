@@ -9,13 +9,14 @@ import userAuth, * as fromUserAuth from './user-auth.reducer';
 import user, * as  fromUser from './user.reducer';
 import userList, * as fromUserList from './user-list.reducer';
 import suggestedList, * as fromSuggestedList from './suggested-list.reducer';
+import { createSelector } from 'reselect';
 
 // Entire State of a App
 export interface AppState {
     userAuth:      fromUserAuth.AuthState;
     user:          fromUser.UserState;
-    userList:      fromUserList.UserListState;
-    suggestedList: fromSuggestedList.SuggestedListState;
+    userList:      fromUserList.State;
+    suggestedList: fromSuggestedList.State;
     router:        RouterState;
 }
 
@@ -38,13 +39,20 @@ export function getLoginState(){
         .select(state => state.userAuth)
 }
 
+export const getSuggListsState = (appState: AppState) => appState.suggestedList;
+export const getUserListsState = (appState: AppState) => appState.userList;
 
-export function getSuggestedListState(){
-  return (state$: Observable<AppState>) => state$
-    .select(state => state.suggestedList)
-}
+export const getSuggestedEntities = createSelector(getSuggListsState, fromSuggestedList.getEntities);
+export const getListIds = createSelector(getSuggListsState, fromSuggestedList.getIds);
 
-export function getUserListState(){
-  return (state$: Observable<AppState>) => state$
-    .select(state => state.userList)
-}
+export const getSuggestedList = createSelector(getSuggestedEntities, getListIds, (lists, ids) => {
+  return ids.map(id => lists[id]);
+} ) 
+
+
+export const getUserListEntities = createSelector(getUserListsState, fromUserList.getEntities);
+export const getUserListIds = createSelector(getUserListsState, fromUserList.getIds);
+
+export const getUserList = createSelector(getUserListEntities, getUserListIds, (userLists, ids) => {
+  return ids.map(id => userLists[id]);
+} ) 

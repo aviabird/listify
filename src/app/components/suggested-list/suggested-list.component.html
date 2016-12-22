@@ -1,4 +1,5 @@
 Name: {{ list.name }}
+Id: {{ list.id }}
 {{isFollowing$ | async | json}}
 <div *ngIf="!(isFollowing$ | async) ">
   <button (click)="followList()">Follow</button>

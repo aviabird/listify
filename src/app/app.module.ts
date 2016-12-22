@@ -9,6 +9,10 @@ import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
 import { RestangularModule } from 'ng2-restangular';
 import { environment } from '../environments/environment';
+
+/**Semantic UI */
+import { NgSemanticModule } from 'ng-semantic';
+
 /**
  * ALL Services used in App.
  */
@@ -76,6 +80,7 @@ import { SidepanelComponent } from './components/sidepanel/sidepanel.component';
     SidepanelComponent
   ],
   imports: [
+    NgSemanticModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,

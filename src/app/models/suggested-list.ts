@@ -1,7 +1,7 @@
-export class SuggestedList {
-  constructor(
-              public id: any = null,
-              public name: string=null,
-              public description: string=null,
-              public image_url: string=null){ }
+import { Base } from './base';
+
+export class SuggestedList extends Base {
+  name:        string;
+  description: string;
+  image_url:   string;
 }

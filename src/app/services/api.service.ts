@@ -18,8 +18,9 @@ export class ApiService {
 
   followList(list_id): Observable<any> {
     var token = this.getServerToken()
+    var ListId = { id: list_id }
     return this.restAngular.all('users/create_list')
-      .post(list_id, {}, { 'Authorization': token })
+      .post(ListId, {}, { 'Authorization': token })
   }
 
   getServerToken(){
@@ -29,23 +30,21 @@ export class ApiService {
   createSuggestedListsObj(response){
     var suggLists = []
     response.forEach(element => {
-      var suggestedList = new SuggestedList(
-                              element._id,
-                              element.name, 
-                              element.description,
-                              element.image_url)
+      var attr = {id: element.id, name: element.name, description: element.description, image_url: element.image_url}
+      var suggestedList = new SuggestedList(attr)
       suggLists.push(suggestedList);
     });
     return suggLists;
   }
 
   createUserListobj(dbUserListobj){
-    var userList: UserList = new UserList(
-                                dbUserListobj._id,
-                                dbUserListobj.list_id,
-                                dbUserListobj.twitter_list_id,
-                                dbUserListobj.slug,
-                                dbUserListobj.name)
+    var attr = {id: dbUserListobj.id,
+                list_id: dbUserListobj.list_id,
+                twitter_list_id: dbUserListobj.twitter_list_id,
+                slug: dbUserListobj.slug,
+                name: dbUserListobj.name
+               }
+    var userList: UserList = new UserList(attr);
     return userList;
   }
 
