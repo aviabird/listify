@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Http, Headers } from '@angular/http';
 import { environment } from '../../environments/environment';
 import { Restangular } from 'ng2-restangular';
-import { SuggestedList, UserList, Tweet } from '../models';
+import { SuggestedList, UserList, Tweet, User } from '../models';
 
 var BASE_URL: string = environment.baseUrl;
 
@@ -86,5 +86,23 @@ export class ApiService {
     return this.restAngular
       .all('users/user_list')
       .post(null, {}, {'Authorization': token});
+  }
+
+  getUserDetail(){
+    var token = this.getServerToken()
+    return this.restAngular.all('users/user_detail')
+      .post(null, {}, {'Authorization': token});
+  }
+
+  createUserObj(response) {
+    var user_detail = response.user_detail
+    var attr = {
+      id: user_detail.id,
+      name: user_detail.name,
+      screen_name: user_detail.screen_name,
+      profile_image_url: user_detail.profile_image_url
+    }
+    var user: User = new User(attr);
+    return user;
   }
 }

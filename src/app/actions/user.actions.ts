@@ -35,7 +35,7 @@ export class UserActions {
    * @return {Action} an Action with type 'Load Profile Success' 
    * and payload as User
    */
-  loadProfileSuccess(user: User): Action {
+  loadProfileSuccess(user): Action {
     return {
       type: ActionTypes.LOAD_PROFILE_SUCCESS,
       payload: user

@@ -66,3 +66,6 @@ export const getTweets = createSelector(getTweetsEntities, getTweetIds, (tweets,
 export const getUserList = createSelector(getUserListEntities, getUserListIds, (userLists, ids) => {
   return ids.map(id => userLists[id]);
 } )
+
+
+export const getUserState = (appState: AppState) => appState.user;
