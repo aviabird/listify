@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Http, Headers } from '@angular/http';
 import { environment } from '../../environments/environment';
 import { Restangular } from 'ng2-restangular';
-import { SuggestedList, UserList } from '../models';
+import { SuggestedList, UserList, Tweet } from '../models';
 
 var BASE_URL: string = environment.baseUrl;
 
@@ -48,7 +48,7 @@ export class ApiService {
     return userList;
   }
 
-  getListTimeLine(indexId){
+  getListsTimeLine(indexId){
     var token = this.getServerToken()
     var attr = { index_id: indexId };
     return this.restAngular
@@ -56,4 +56,14 @@ export class ApiService {
       .post(attr, {}, { 'Authorization': token })
   }
 
+  createTweetsObj(dbTweetsObj){
+    console.log(dbTweetsObj);
+    var tweets = []; 
+    dbTweetsObj.forEach(element => {
+      var attr = {id: element.id, text: element.text}
+      var tweet = new Tweet(attr)
+      tweets.push(tweet);
+    });
+    return tweets;
+  }
 }

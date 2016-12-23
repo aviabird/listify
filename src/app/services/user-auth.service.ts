@@ -50,7 +50,7 @@ export class UserAuthService {
    return this.restAngular.all('/auth/sign_in')
             .post(userAuth)
             .map(response =>{
-              var token = response.json().token
+              var token = response.token;
               var newUserAuth = new UserAuth(userAuth.user_id, 
                                   userAuth.access_token,
                                   userAuth.secret_token,

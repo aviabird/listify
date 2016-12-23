@@ -4,12 +4,13 @@ import { compose } from '@ngrx/core/compose';
 import { combineReducers } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { RouterState, routerReducer } from '@ngrx/router-store';
+import { createSelector } from 'reselect';
 
 import userAuth, * as fromUserAuth from './user-auth.reducer';
 import user, * as  fromUser from './user.reducer';
 import userList, * as fromUserList from './user-list.reducer';
 import suggestedList, * as fromSuggestedList from './suggested-list.reducer';
-import { createSelector } from 'reselect';
+import tweets, * as fromTweets from './tweets.reducer';
 
 // Entire State of a App
 export interface AppState {
@@ -17,6 +18,7 @@ export interface AppState {
     user:          fromUser.UserState;
     userList:      fromUserList.State;
     suggestedList: fromSuggestedList.State;
+    tweets:        fromTweets.State;
     router:        RouterState;
 }
 
@@ -26,6 +28,7 @@ export default compose(combineReducers)({
     user:          user,
     userList:      userList,
     suggestedList: suggestedList,
+    tweets:        tweets,
     router:        routerReducer
 });
 
@@ -49,10 +52,17 @@ export const getSuggestedList = createSelector(getSuggestedEntities, getListIds,
   return ids.map(id => lists[id]);
 } ) 
 
-
 export const getUserListEntities = createSelector(getUserListsState, fromUserList.getEntities);
 export const getUserListIds = createSelector(getUserListsState, fromUserList.getIds);
 
+export const getTweetsState = (appState: AppState) => appState.tweets; 
+export const getTweetIds = createSelector(getTweetsState, fromTweets.getIds); 
+export const getTweetsEntities = createSelector(getTweetsState, fromTweets.getEntities )
+
+export const getTweets = createSelector(getTweetsEntities, getTweetIds, (tweets, ids) => {
+  return ids.map(id => tweets[id]);
+} )
+
 export const getUserList = createSelector(getUserListEntities, getUserListIds, (userLists, ids) => {
   return ids.map(id => userLists[id]);
-} ) 
+} )
