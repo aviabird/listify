@@ -27,16 +27,6 @@ export class ApiService {
     return localStorage.getItem('server_token');
   }
 
-  createSuggestedListsObj(response){
-    var suggLists = []
-    response.forEach(element => {
-      var attr = {id: element.id, name: element.name, description: element.description, image_url: element.image_url}
-      var suggestedList = new SuggestedList(attr)
-      suggLists.push(suggestedList);
-    });
-    return suggLists;
-  }
-
   createUserListobj(dbUserListobj){
     var attr = {id: dbUserListobj.id,
                 list_id: dbUserListobj.list_id,
@@ -48,6 +38,31 @@ export class ApiService {
     return userList;
   }
 
+  createSuggestedListsObj(response){
+    var suggLists = []
+    response.forEach(element => {
+      var attr = {id: element.id, name: element.name, description: element.description, image_url: element.image_url}
+      var suggestedList = new SuggestedList(attr)
+      suggLists.push(suggestedList);
+    });
+    return suggLists;
+  }
+
+  createUserListsobj(dbUserListsobj){
+    var userLists = []; 
+    dbUserListsobj.forEach(element => {
+      var attr = {id: element.id,
+                list_id: element.list_id,
+                twitter_list_id: element.twitter_list_id,
+                slug: element.slug,
+                name: element.name
+      }
+      var userList = new UserList(attr);
+      userLists.push(userList);
+    });
+    return userLists;
+  }
+
   getListsTimeLine(indexId){
     var token = this.getServerToken()
     var attr = { index_id: indexId };
@@ -57,7 +72,6 @@ export class ApiService {
   }
 
   createTweetsObj(dbTweetsObj){
-    console.log(dbTweetsObj);
     var tweets = []; 
     dbTweetsObj.forEach(element => {
       var attr = {id: element.id, text: element.text}
@@ -65,5 +79,12 @@ export class ApiService {
       tweets.push(tweet);
     });
     return tweets;
+  }
+
+  getUserLists(){
+    var token = this.getServerToken()
+    return this.restAngular
+      .all('users/user_list')
+      .post(null, {}, {'Authorization': token});
   }
 }

@@ -6,7 +6,7 @@ import { AppState, getUserList } from '../../reducers/index';
 import { UserActions } from '../../actions/user.actions';
 import { LoginActions } from '../../actions/login.actions';
 import { User } from '../../models/';
-
+import { UserListActions } from '../../actions/user-list.actions';
 @Component({
   selector: 'ist-dashboard',
   templateUrl: './dashboard.component.html',
@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
   constructor(private router: Router,
               private userActions: UserActions,
               private loginActions: LoginActions,
+              private userListActions: UserListActions,
               private store: Store<AppState>) {
       this.userList$ = this.store.select(getUserList) 
     }
@@ -27,5 +28,6 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.store.dispatch(this.userListActions.getUserLists());
   }
 }

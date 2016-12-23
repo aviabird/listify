@@ -37,7 +37,7 @@ import { UserAuthEffects } from './effects/user-auth.effect';
 import { UserEffects } from './effects/user.effects';
 import { SuggestionEffects } from './effects/suggestion.effects';
 import { TweetEffects } from './effects/tweet.effects';
-
+import { UserListsEffects } from './effects/user-lists.effects';
 /**
  * ALL Ngrx Actions that can be fired in app loaded as one.
  */
@@ -108,7 +108,8 @@ import { FeedComponent } from './components/feed/feed.component';
     EffectsModule.run(UserAuthEffects),
     EffectsModule.run(UserEffects),
     EffectsModule.run(SuggestionEffects),
-    EffectsModule.run(TweetEffects)
+    EffectsModule.run(TweetEffects),
+    EffectsModule.run(UserListsEffects)
   ],
   providers: [
     actions,
