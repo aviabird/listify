@@ -1,10 +1,10 @@
 import { Action } from '@ngrx/store';
-import { SuggestedList } from '../models/';
-import { ActionTypes } from '../actions/suggestions.actions';
+import { List } from '../models/';
+import { ActionTypes } from '../actions/list.actions';
 
 export type State = {
   ids: string[];
-  entities: { [id: string]: SuggestedList };
+  entities: { [id: string]: List };
 }
 
 const initialState: State = {
@@ -15,15 +15,15 @@ const initialState: State = {
 export default function(state = initialState, action: Action): State {
     switch(action.type){
         case ActionTypes.RETRIVE_LISTS_SUCCESS: {
-          const Lists: SuggestedList[] = action.payload;
+          const Lists: List[] = action.payload;
           
-          const newLists: SuggestedList[] = Lists
+          const newLists: List[] = Lists
             .filter(list => !state.entities[list.id]);
           
           const newListIds = Lists.map(list => list.id);
           
           const newEntities = newLists
-            .reduce((entities: { [id: string]: SuggestedList }, list: SuggestedList) => {
+            .reduce((entities: { [id: string]: List }, list: List) => {
                 return Object.assign(entities, {
                   [list.id]: list
                 });

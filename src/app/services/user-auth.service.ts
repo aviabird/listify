@@ -75,7 +75,9 @@ export class UserAuthService {
   logout(): Observable<any> {
     return Observable.of(
       localStorage.removeItem('access_token'),
-      localStorage.removeItem('server_token'));
+      localStorage.removeItem('server_token'),
+      localStorage.removeItem('user_id'),
+      localStorage.removeItem('secret_token'));
   }
 
   storeUsertoBackend(payload): Observable<any> {

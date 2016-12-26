@@ -1,6 +1,6 @@
 import { Base } from './base';
 
-export class SuggestedList extends Base {
+export class List extends Base {
   name:        string;
   description: string;
   image_url:   string;

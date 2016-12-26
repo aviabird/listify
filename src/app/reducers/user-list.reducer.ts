@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 import { UserList } from '../models/';
-import { ActionTypes  as SuggestionActionTypes }from '../actions/suggestions.actions';
+import { ActionTypes  as ListActionTypes }from '../actions/list.actions';
 import { ActionTypes as UserListActions } from '../actions/user-list.actions';
 
 export type State = {
@@ -15,7 +15,7 @@ const initialState: State = {
 
 export default function(state = initialState, action: Action): State {
     switch(action.type){
-      case SuggestionActionTypes.FOLLOW_LIST_SUCCESS: {
+      case ListActionTypes.FOLLOW_LIST_SUCCESS: {
         let userList = action.payload;
 
           return Object.assign({}, state, {

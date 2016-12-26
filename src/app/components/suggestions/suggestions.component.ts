@@ -3,9 +3,9 @@ import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
-import { AppState, getSuggestedList } from '../../reducers/index';
-import { SuggestionsActions } from '../../actions/suggestions.actions';
-import { SuggestedList } from '../../models/suggested-list';
+import { AppState, getLists } from '../../reducers/index';
+import { ListActions } from '../../actions/list.actions';
+import { List } from '../../models/list';
 
 @Component({
   selector: 'ist-suggestions',
@@ -18,17 +18,17 @@ export class SuggestionsComponent implements OnInit {
 
   constructor(private api: ApiService,
               private router: Router,
-              private suggestionsActions: SuggestionsActions,
+              private listActions: ListActions,
               private store: Store<AppState>) { 
-    this.suggestedList$ = this.store.select(getSuggestedList);
+    this.suggestedList$ = this.store.select(getLists);
 }
 
   ngOnInit() {
-    this.store.dispatch(this.suggestionsActions.retriveLists())
+    this.store.dispatch(this.listActions.retriveLists())
   }
 
   follow(listId){
-    this.store.dispatch(this.suggestionsActions.follow(listId));
+    this.store.dispatch(this.listActions.follow(listId));
   }
 
   goToFeedsDashboard(){

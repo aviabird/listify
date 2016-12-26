@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Http, Headers } from '@angular/http';
 import { environment } from '../../environments/environment';
 import { Restangular } from 'ng2-restangular';
-import { SuggestedList, UserList, Tweet, User } from '../models';
+import { List, UserList, Tweet, User } from '../models';
 
 var BASE_URL: string = environment.baseUrl;
 
@@ -38,11 +38,11 @@ export class ApiService {
     return userList;
   }
 
-  createSuggestedListsObj(response: any): SuggestedList[] {
+  createSuggestedListsObj(response: any): List[] {
     var suggLists = []
     response.forEach(element => {
       var attr = {id: element.id, name: element.name, description: element.description, image_url: element.image_url}
-      var suggestedList = new SuggestedList(attr)
+      var suggestedList = new List(attr)
       suggLists.push(suggestedList);
     });
     return suggLists;
@@ -111,7 +111,4 @@ export class ApiService {
     return this.restAngular.all('users/all_feeds')
       .post(null, {}, {'Authorization': token});
   }
-
-
-
 }

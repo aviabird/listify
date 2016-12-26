@@ -6,7 +6,7 @@ import { ApiService } from '../services/api.service';
 import { Tweet } from '../models';
 
 @Injectable()
-export class TweetEffects {
+export class FeedsEffects {
   constructor(private actions$: Actions,
               private feedsActions: FeedsActions,
               private apiService: ApiService) { }

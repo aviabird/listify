@@ -9,16 +9,16 @@ import { createSelector } from 'reselect';
 import userAuth, * as fromUserAuth from './user-auth.reducer';
 import user, * as  fromUser from './user.reducer';
 import userList, * as fromUserList from './user-list.reducer';
-import suggestedList, * as fromSuggestedList from './suggested-list.reducer';
-import feeds, * as fromFeeeds from './feeds.reducer';
+import lists, * as fromLists from './list.reducer';
+import feeds, * as fromFeeds from './feeds.reducer';
 
 // Entire State of a App
 export interface AppState {
     userAuth:      fromUserAuth.AuthState;
     user:          fromUser.UserState;
     userList:      fromUserList.State;
-    suggestedList: fromSuggestedList.State;
-    feeds:        fromFeeeds.State;
+    lists:         fromLists.State;
+    feeds:         fromFeeds.State;
     router:        RouterState;
 }
 
@@ -27,8 +27,8 @@ export default compose(combineReducers)({
     userAuth:      userAuth,
     user:          user,
     userList:      userList,
-    suggestedList: suggestedList,
-    feeds:        feeds,
+    lists:          lists,
+    feeds:         feeds,
     router:        routerReducer
 });
 
@@ -44,10 +44,10 @@ export function getLoginState(){
 
 export const getUserState = (appState: AppState) => appState.user;
 
-export const getSuggListsState = (appState: AppState) => appState.suggestedList;
-export const getSuggestedEntities = createSelector(getSuggListsState, fromSuggestedList.getEntities);
-export const getListIds = createSelector(getSuggListsState, fromSuggestedList.getIds);
-export const getSuggestedList = createSelector(getSuggestedEntities, getListIds, (lists, ids) => {
+export const getListsState = (appState: AppState) => appState.lists;
+export const getListsEntities = createSelector(getListsState, fromLists.getEntities);
+export const getListsIds = createSelector(getListsState, fromLists.getIds);
+export const getLists = createSelector(getListsEntities, getListsIds, (lists, ids) => {
   return ids.map(id => lists[id]);
 }); 
 
@@ -59,8 +59,8 @@ export const getUserList = createSelector(getUserListEntities, getUserListIds, (
 });
 
 export const getFeedsState = (appState: AppState) => appState.feeds;
-export const getFeedsIds = createSelector(getFeedsState, fromFeeeds.getIds); 
-export const getFeedsEntities = createSelector(getFeedsState, fromFeeeds.getEntities);
+export const getFeedsIds = createSelector(getFeedsState, fromFeeds.getIds); 
+export const getFeedsEntities = createSelector(getFeedsState, fromFeeds.getEntities);
 export const getAllFeeds = createSelector(getFeedsEntities, getFeedsIds, (feeds, ids) => {
   return ids.map(id => feeds[id]);
 });

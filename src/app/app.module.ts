@@ -35,8 +35,8 @@ import { RouterStoreModule } from '@ngrx/router-store';
  */
 import { UserAuthEffects } from './effects/user-auth.effect';
 import { UserEffects } from './effects/user.effects';
-import { SuggestionEffects } from './effects/suggestion.effects';
-import { TweetEffects } from './effects/tweet.effects';
+import { ListEffects } from './effects/list.effects';
+import { FeedsEffects } from './effects/feeds.effects';
 import { UserListsEffects } from './effects/user-lists.effects';
 /**
  * ALL Ngrx Actions that can be fired in app loaded as one.
@@ -107,8 +107,8 @@ import { FeedComponent } from './components/feed/feed.component';
     StoreLogMonitorModule,
     EffectsModule.run(UserAuthEffects),
     EffectsModule.run(UserEffects),
-    EffectsModule.run(SuggestionEffects),
-    EffectsModule.run(TweetEffects),
+    EffectsModule.run(ListEffects),
+    EffectsModule.run(FeedsEffects),
     EffectsModule.run(UserListsEffects)
   ],
   providers: [

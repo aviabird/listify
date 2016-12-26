@@ -35,10 +35,5 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(this.userListActions.getUserLists());
     this.store.dispatch(this.userActions.loadProfile());
-    // this.api.getUserDetail().subscribe(response => {
-    //   this.user = response.user_detail;
-    //   console.log("user", this.user);
-    // })
-
   }
 }

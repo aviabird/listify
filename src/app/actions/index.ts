@@ -1,12 +1,12 @@
 import { LoginActions } from './login.actions';
 import { UserActions } from './user.actions';
-import { SuggestionsActions } from './suggestions.actions';
+import { ListActions } from './list.actions';
 import { FeedsActions } from './feeds.actions';
 import { UserListActions } from './user-list.actions';
 export {
     LoginActions,
     UserActions,
-    SuggestionsActions,
+    ListActions,
     FeedsActions,
     UserListActions
 };
@@ -14,7 +14,7 @@ export {
 export default [
     LoginActions,
     UserActions,
-    SuggestionsActions,
+    ListActions,
     FeedsActions,
     UserListActions
 ];

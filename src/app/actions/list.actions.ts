@@ -1,6 +1,6 @@
 import { type } from '../util';
 import { Action } from '@ngrx/store';
-import { SuggestedList } from '../models';
+import { List } from '../models';
 
 export const ActionTypes = {
   RETRIVE_LISTS:         type('Retrive Lists'),
@@ -9,7 +9,7 @@ export const ActionTypes = {
   FOLLOW_LIST_SUCCESS:   type('follow list success')
 }
 
-export class SuggestionsActions {
+export class ListActions {
   
   retriveLists(): Action {
     return {
