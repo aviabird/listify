@@ -15,7 +15,7 @@ export class UserListActions {
     }
   }
 
-  getUserListsSuccess(userLists): Action {
+  getUserListsSuccess(userLists: UserList[]): Action {
     return {
       type: ActionTypes.GET_USER_LISTS_SUCCESS,
       payload: userLists

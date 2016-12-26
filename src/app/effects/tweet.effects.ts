@@ -14,8 +14,8 @@ export class TweetEffects {
   @Effect() getTweets$ = this.actions$
     .ofType(ActionTypes.GET_TWEETS)
     .map((action: Action) => action.payload)
-    .switchMap((userListIds) => this.apiService.getListsTimeLine(userListIds))
-    .map(response => this.apiService.createTweetsObj(response))
-    .map((tweets) => this.tweetsActions.get_tweets_success(tweets));
+    .switchMap((userListIds: any) => this.apiService.getListsTimeLine(userListIds))
+    .map((response: any) => this.apiService.createTweetsObj(response))
+    .map((tweets: Tweet[]) => this.tweetsActions.get_tweets_success(tweets));
 
 }

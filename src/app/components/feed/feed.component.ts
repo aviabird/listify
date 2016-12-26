@@ -21,17 +21,14 @@ export class FeedComponent implements OnInit {
               private store: Store<AppState>,
               private api: ApiService,
               private tweetActions: TweetsActions) { 
-    this.tweets = this.store.select(getTweets)
+    this.tweets = this.store.select(getTweets);
     }
 
   ngOnInit() {
     this.subscription = this.route.params.subscribe(
-      (params:any) => {
+      (params: any) => {
         this.userListId = params['id'];
-        this.store.dispatch(this.tweetActions.getTweets(this.userListId))
-        // this.api.getListsTimeLine(this.userListId).subscribe(response => {
-        //   this.tweets = response;
-        // });
+        this.store.dispatch(this.tweetActions.getTweets(this.userListId));
       })
   }
 }

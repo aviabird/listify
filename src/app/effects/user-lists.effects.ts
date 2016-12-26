@@ -17,7 +17,7 @@ export class UserListsEffects {
   @Effect() getUserLists$ = this.actions$
     .ofType(ActionTypes.GET_USER_LISTS)
     .switchMap(() => this.apiService.getUserLists())
-    .map(response => this.apiService.createUserListsobj(response))
-    .map((userLists) => this.userListActions.getUserListsSuccess(userLists));
+    .map((response:any) => this.apiService.createUserListsobj(response))
+    .map((userLists: UserList[]) => this.userListActions.getUserListsSuccess(userLists));
 
 }

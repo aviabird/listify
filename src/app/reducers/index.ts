@@ -42,30 +42,25 @@ export function getLoginState(){
         .select(state => state.userAuth)
 }
 
-export const getSuggListsState = (appState: AppState) => appState.suggestedList;
-export const getUserListsState = (appState: AppState) => appState.userList;
+export const getUserState = (appState: AppState) => appState.user;
 
+export const getSuggListsState = (appState: AppState) => appState.suggestedList;
 export const getSuggestedEntities = createSelector(getSuggListsState, fromSuggestedList.getEntities);
 export const getListIds = createSelector(getSuggListsState, fromSuggestedList.getIds);
-
 export const getSuggestedList = createSelector(getSuggestedEntities, getListIds, (lists, ids) => {
   return ids.map(id => lists[id]);
-} ) 
+}); 
 
+export const getUserListsState = (appState: AppState) => appState.userList;
 export const getUserListEntities = createSelector(getUserListsState, fromUserList.getEntities);
 export const getUserListIds = createSelector(getUserListsState, fromUserList.getIds);
+export const getUserList = createSelector(getUserListEntities, getUserListIds, (userLists, ids) => {
+  return ids.map(id => userLists[id]);
+});
 
 export const getTweetsState = (appState: AppState) => appState.tweets; 
 export const getTweetIds = createSelector(getTweetsState, fromTweets.getIds); 
-export const getTweetsEntities = createSelector(getTweetsState, fromTweets.getEntities )
-
+export const getTweetsEntities = createSelector(getTweetsState, fromTweets.getEntities);
 export const getTweets = createSelector(getTweetsEntities, getTweetIds, (tweets, ids) => {
   return ids.map(id => tweets[id]);
-} )
-
-export const getUserList = createSelector(getUserListEntities, getUserListIds, (userLists, ids) => {
-  return ids.map(id => userLists[id]);
-} )
-
-
-export const getUserState = (appState: AppState) => appState.user;
+});

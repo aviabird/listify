@@ -16,7 +16,7 @@ export class UserEffects {
     @Effect() loadUserProfile$ = this.actions$
       .ofType(ActionTypes.LOAD_PROFILE)
       .switchMap(() => this.api.getUserDetail())
-      .map((response) => this.api.createUserObj(response))
+      .map((response:any) => this.api.createUserObj(response))
       .map((user: User) => this.userActions.loadProfileSuccess(user))
 
 

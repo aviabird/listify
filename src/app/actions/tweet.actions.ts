@@ -9,14 +9,14 @@ export const ActionTypes = {
 
 export class TweetsActions {
   
-  getTweets(userListIds): Action {
+  getTweets(userListIds: any): Action {
     return {
       type: ActionTypes.GET_TWEETS,
       payload: userListIds
     }
   }
 
-  get_tweets_success(tweets) {
+  get_tweets_success(tweets: Tweet[]) {
     return {
       type: ActionTypes.GET_TWEETS_SUCCESS,
       payload: tweets

@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.photo = "http://mdbootstrap.com/img/Photos/Horizontal/City/full%20page/img%20(1).jpg";
   }
 
   login(){
