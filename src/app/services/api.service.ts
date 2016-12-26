@@ -23,11 +23,11 @@ export class ApiService {
       .post(ListId, {}, { 'Authorization': token })
   }
 
-  getServerToken(){
+  getServerToken(): any {
     return localStorage.getItem('server_token');
   }
 
-  createUserListobj(dbUserListobj){
+  createUserListobj(dbUserListobj: any): UserList{
     var attr = {id: dbUserListobj.id,
                 list_id: dbUserListobj.list_id,
                 twitter_list_id: dbUserListobj.twitter_list_id,
@@ -38,7 +38,7 @@ export class ApiService {
     return userList;
   }
 
-  createSuggestedListsObj(response){
+  createSuggestedListsObj(response: any): SuggestedList[] {
     var suggLists = []
     response.forEach(element => {
       var attr = {id: element.id, name: element.name, description: element.description, image_url: element.image_url}
@@ -48,7 +48,7 @@ export class ApiService {
     return suggLists;
   }
 
-  createUserListsobj(dbUserListsobj){
+  createUserListsobj(dbUserListsobj: any): UserList[] {
     var userLists = []; 
     dbUserListsobj.forEach(element => {
       var attr = {id: element.id,
@@ -63,7 +63,7 @@ export class ApiService {
     return userLists;
   }
 
-  getListsTimeLine(indexId){
+  getListsTimeLine(indexId: any): Observable<any> {
     var token = this.getServerToken()
     var attr = { index_id: indexId };
     return this.restAngular
@@ -71,7 +71,7 @@ export class ApiService {
       .post(attr, {}, { 'Authorization': token })
   }
 
-  createTweetsObj(dbTweetsObj){
+  createTweetsObj(dbTweetsObj: any): Tweet[] {
     var tweets = []; 
     dbTweetsObj.forEach(element => {
       var attr = {id: element.id, text: element.text}
@@ -81,20 +81,20 @@ export class ApiService {
     return tweets;
   }
 
-  getUserLists(){
+  getUserLists(): Observable<any> {
     var token = this.getServerToken()
     return this.restAngular
       .all('users/user_list')
       .post(null, {}, {'Authorization': token});
   }
 
-  getUserDetail(){
+  getUserDetail(): Observable<any>{ 
     var token = this.getServerToken()
     return this.restAngular.all('users/user_detail')
       .post(null, {}, {'Authorization': token});
   }
 
-  createUserObj(response) {
+  createUserObj(response: any): User {
     var user_detail = response.user_detail
     var attr = {
       id: user_detail.id,
