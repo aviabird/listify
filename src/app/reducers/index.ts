@@ -10,7 +10,7 @@ import userAuth, * as fromUserAuth from './user-auth.reducer';
 import user, * as  fromUser from './user.reducer';
 import userList, * as fromUserList from './user-list.reducer';
 import suggestedList, * as fromSuggestedList from './suggested-list.reducer';
-import tweets, * as fromTweets from './tweets.reducer';
+import feeds, * as fromFeeeds from './feeds.reducer';
 
 // Entire State of a App
 export interface AppState {
@@ -18,7 +18,7 @@ export interface AppState {
     user:          fromUser.UserState;
     userList:      fromUserList.State;
     suggestedList: fromSuggestedList.State;
-    tweets:        fromTweets.State;
+    feeds:        fromFeeeds.State;
     router:        RouterState;
 }
 
@@ -28,7 +28,7 @@ export default compose(combineReducers)({
     user:          user,
     userList:      userList,
     suggestedList: suggestedList,
-    tweets:        tweets,
+    feeds:        feeds,
     router:        routerReducer
 });
 
@@ -58,9 +58,9 @@ export const getUserList = createSelector(getUserListEntities, getUserListIds, (
   return ids.map(id => userLists[id]);
 });
 
-export const getTweetsState = (appState: AppState) => appState.tweets; 
-export const getTweetIds = createSelector(getTweetsState, fromTweets.getIds); 
-export const getTweetsEntities = createSelector(getTweetsState, fromTweets.getEntities);
-export const getTweets = createSelector(getTweetsEntities, getTweetIds, (tweets, ids) => {
-  return ids.map(id => tweets[id]);
+export const getFeedsState = (appState: AppState) => appState.feeds;
+export const getFeedsIds = createSelector(getFeedsState, fromFeeeds.getIds); 
+export const getFeedsEntities = createSelector(getFeedsState, fromFeeeds.getEntities);
+export const getAllFeeds = createSelector(getFeedsEntities, getFeedsIds, (feeds, ids) => {
+  return ids.map(id => feeds[id]);
 });

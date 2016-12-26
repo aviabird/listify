@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
-import { AppState, getTweets } from '../../reducers/index';
+import { AppState, getAllFeeds } from '../../reducers/index';
 import { Subscription } from 'rxjs';
 import { ApiService } from '../../services/api.service';
-import { TweetsActions } from '../../actions/tweet.actions';
+import { FeedsActions } from '../../actions/feeds.actions';
 
 @Component({
   selector: 'ist-feed',
@@ -15,20 +15,21 @@ import { TweetsActions } from '../../actions/tweet.actions';
 export class FeedComponent implements OnInit {
   private subscription: Subscription;
   private userListId: string;
-  tweets: Observable<any>;
+  feeds: Observable<any>;
+
   constructor(private router: Router,
               private route: ActivatedRoute,
               private store: Store<AppState>,
               private api: ApiService,
-              private tweetActions: TweetsActions) { 
-    this.tweets = this.store.select(getTweets);
+              private feedsActions: FeedsActions) { 
+    this.feeds = this.store.select(getAllFeeds);
     }
 
   ngOnInit() {
     this.subscription = this.route.params.subscribe(
       (params: any) => {
         this.userListId = params['id'];
-        this.store.dispatch(this.tweetActions.getTweets(this.userListId));
+        this.store.dispatch(this.feedsActions.getFeedsForId(this.userListId));
       })
   }
 }

@@ -1,20 +1,23 @@
 import { Action } from '@ngrx/store';
 import { Tweet } from '../models/';
-import { ActionTypes, TweetsActions } from '../actions/tweet.actions';
+import { ActionTypes } from '../actions/feeds.actions';
 
 export type State = {
   ids: string[];
   entities: { [id: string]: Tweet };
+  selectedUserListId: string;
 }
 
 const initialState: State = {
   ids: [],
-  entities: {}
+  entities: {},
+  selectedUserListId: null
 }
 
 export default function(state = initialState, action: Action): State {
   switch(action.type){
-    case ActionTypes.GET_TWEETS_SUCCESS: {
+    
+    case ActionTypes.GET_FEEDS_FOR_ID_SUCCESS: {
       const tweets: Tweet[] = action.payload
        const newTweets: Tweet[] = tweets.filter(tweet => !state.entities[tweet.id]);
 
@@ -54,6 +57,6 @@ export default function(state = initialState, action: Action): State {
   }
 }
 
-
 export const getIds = (state: State) => state.ids;
 export const getEntities = (state: State) => state.entities;
+export const getSelectedUserListId = (state: State) => state.selectedUserListId;
