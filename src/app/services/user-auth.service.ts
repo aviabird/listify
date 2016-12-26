@@ -97,9 +97,4 @@ export class UserAuthService {
     localStorage.setItem('access_token', userAuth.access_token);
     localStorage.setItem('secret_token', userAuth.secret_token);
   }
-
-  getAllBikes(){
-    return this.restAngular.all('/bikes/all').post()
-  }
-
 }

@@ -12,7 +12,6 @@ import { UserAuthService } from './services/user-auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  bikes;
   constructor(private router: Router,
               private loginActions: LoginActions,
               private store: Store<AppState>,
@@ -23,9 +22,5 @@ export class AppComponent {
       .subscribe(() => this.router.navigate(['/dashboard']));
   }
   ngOnInit(){
-    this.api.getAllBikes().subscribe(response => {
-      this.bikes = response
-    })
-
   }
 }
