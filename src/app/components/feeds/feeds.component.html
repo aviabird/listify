@@ -1,4 +1,8 @@
-<p>
-  feeds works!
-</p>
-<router-outlet></router-outlet>
+<ul>
+  <li *ngFor="let feed of feeds| async">
+    <div class="card">
+      <p>id: {{ feed.id }}</p>
+      <p>tweet: {{ feed.text }}</p>
+    </div>
+  </li>
+</ul>

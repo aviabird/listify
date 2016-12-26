@@ -16,7 +16,6 @@ export default function(state = initialState, action: Action): State {
   switch(action.type){
     case ActionTypes.GET_TWEETS_SUCCESS: {
       const tweets: Tweet[] = action.payload
-      console.log("Tweets in reducer is: ", tweets);
        const newTweets: Tweet[] = tweets.filter(tweet => !state.entities[tweet.id]);
 
        const newTweetIds = tweets.map(tweet => tweet.id); 
@@ -31,6 +30,24 @@ export default function(state = initialState, action: Action): State {
           entities: Object.assign({}, state.entities, newEntities)
         })
     }
+
+    case ActionTypes.GET_ALL_FEEDS_SUCCESS: {
+      const tweets: Tweet[] = action.payload
+        const newTweets: Tweet[] = tweets.filter(tweet => !state.entities[tweet.id]);
+
+        const newTweetIds = tweets.map(tweet => tweet.id); 
+
+        const newEntities = newTweets
+        .reduce((entities: { [id: string]: Tweet }, tweet: Tweet) => {
+          return Object.assign(entities, { [tweet.id]: tweet }) 
+        }, {});
+
+        return Object.assign({}, state, {
+          ids: [...state.ids, ...newTweetIds],
+          entities: Object.assign({}, state.entities, newEntities)
+        })
+    }
+    
     default: {
       return state;
     }

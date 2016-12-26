@@ -105,4 +105,13 @@ export class ApiService {
     var user: User = new User(attr);
     return user;
   }
+
+  all_feeds(): any {
+    var token = this.getServerToken()
+    return this.restAngular.all('users/all_feeds')
+      .post(null, {}, {'Authorization': token});
+  }
+
+
+
 }

@@ -18,4 +18,10 @@ export class TweetEffects {
     .map((response: any) => this.apiService.createTweetsObj(response))
     .map((tweets: Tweet[]) => this.tweetsActions.get_tweets_success(tweets));
 
+
+    @Effect() getAllFeeds$ = this.actions$
+      .ofType(ActionTypes.GET_ALL_FEEDS)
+      .switchMap(() => this.apiService.all_feeds())
+      .map((response: any) => this.apiService.createTweetsObj(response))
+      .map((tweets: Tweet[]) => this.tweetsActions.get_tweets_success(tweets));
 }
