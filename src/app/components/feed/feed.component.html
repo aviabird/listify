@@ -1,8 +1,7 @@
-<ul>
-  <li *ngFor="let feed of feeds| async">
-    <div class="card">
-      <p>id: {{ feed.id }}</p>
-      <p>tweet: {{ feed.text }}</p>
+<div class="ui grid">
+  <div class="">
+    <div class="ui cards">
+      <ist-feed-detail [feed]="feed" class="card" *ngFor="let feed of feeds| async"></ist-feed-detail>
     </div>
-  </li>
-</ul>
+  </div>
+</div>

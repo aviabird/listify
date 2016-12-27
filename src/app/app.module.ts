@@ -68,6 +68,7 @@ import { SuggestionsComponent } from './components/suggestions/suggestions.compo
 import { FeedsComponent } from './components/feeds/feeds.component';
 import { SuggestedListComponent } from './components/suggested-list/suggested-list.component';
 import { FeedComponent } from './components/feed/feed.component';
+import { FeedDetailComponent } from './components/feed-detail/feed-detail.component';
 
 
 @NgModule({
@@ -79,7 +80,8 @@ import { FeedComponent } from './components/feed/feed.component';
     SuggestionsComponent,
     FeedsComponent,
     SuggestedListComponent,
-    FeedComponent
+    FeedComponent,
+    FeedDetailComponent
   ],
   imports: [
     NgSemanticModule,
