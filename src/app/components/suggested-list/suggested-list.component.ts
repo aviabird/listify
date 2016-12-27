@@ -16,7 +16,10 @@ export class SuggestedListComponent implements OnInit {
   @Input() isFollowing$: Observable<boolean> = Observable.of(false);
 
   constructor(private store: Store<AppState>) {
-    
+  
+}
+
+  ngOnInit() {
     this.store.select(getUserListEntities).subscribe(
       userList => {
         for (var key in userList) {
@@ -27,9 +30,6 @@ export class SuggestedListComponent implements OnInit {
         }
       }
     )
-}
-
-  ngOnInit() {
   }
 
   followList(){

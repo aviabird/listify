@@ -16,6 +16,7 @@ export class ListEffects {
   @Effect() retriveLists$ = this.actions$
     .ofType(ActionTypes.RETRIVE_LISTS)
     .switchMap(() => this.apiService.retriveSuggestion())
+    .filter(response => response !== null )
     .map(response => this.apiService.createSuggestedListsObj(response))
     .map((lists: List[]) => this.listActions.retriveListsSuccess(lists));
   

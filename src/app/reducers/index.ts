@@ -49,7 +49,7 @@ export const getListsEntities = createSelector(getListsState, fromLists.getEntit
 export const getListsIds = createSelector(getListsState, fromLists.getIds);
 export const getLists = createSelector(getListsEntities, getListsIds, (lists, ids) => {
   return ids.map(id => lists[id]);
-}); 
+});
 
 export const getUserListsState = (appState: AppState) => appState.userList;
 export const getUserListEntities = createSelector(getUserListsState, fromUserList.getEntities);
@@ -57,6 +57,10 @@ export const getUserListIds = createSelector(getUserListsState, fromUserList.get
 export const getUserList = createSelector(getUserListEntities, getUserListIds, (userLists, ids) => {
   return ids.map(id => userLists[id]);
 });
+
+// export const getListIdsInUserLists = createSelector(getUserListEntities, getUserListIds, (userLists, ids) => {
+//   return ids.map(id => userLists[id].list_id);
+// });
 
 export const getFeedsState = (appState: AppState) => appState.feeds;
 export const getFeedsIds = createSelector(getFeedsState, fromFeeds.getIds); 
