@@ -49,14 +49,20 @@ export class UserAuthService {
  loginServer(userAuth: UserAuth): Observable<any> {
    return this.restAngular.all('/auth/sign_in')
             .post(userAuth)
-            .map(response =>{
-              var token = response.token;
-              var newUserAuth = new UserAuth(userAuth.user_id, 
-                                  userAuth.access_token,
-                                  userAuth.secret_token,
-                                  token)
-              return newUserAuth;
-            })
+            .map(response => {
+              // If Success
+              if(response.status){
+                var token = response.token;
+                var newUserAuth = new UserAuth(userAuth.user_id, 
+                                    userAuth.access_token,
+                                    userAuth.secret_token,
+                                    token)
+                return newUserAuth;
+              } else {
+                return userAuth
+              }
+            }
+          )
  }
 
   login(): Observable<any> {

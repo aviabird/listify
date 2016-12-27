@@ -26,9 +26,15 @@ export class UserAuthEffects {
       .ofType(ActionTypes.LOGIN_SUCCESS)
       .map((action: Action) => action.payload)
       .switchMap((userAuth: UserAuth) => this.userAuthService.loginServer(userAuth))
-        .map((userAuth: UserAuth) => { 
-        this.userAuthService.storeServerToken(userAuth.server_token);
-        return this.loginActions.loginServerSuccess(userAuth);
+        .map((userAuth: UserAuth) => {
+          if(userAuth.server_token){
+            this.userAuthService.storeServerToken(userAuth.server_token);
+            return this.loginActions.loginServerSuccess(userAuth);
+          } else{
+            // User is Not present but he has authrised his twitter
+            // account with our app hence taking him to request email page
+            return this.loginActions.signUpSuccess(userAuth);
+          }
       })
     
     @Effect() signup$ = this.actions$
