@@ -1,8 +1,8 @@
 <ul>
-  <li *ngFor="let tweet of tweets| async">
+  <li *ngFor="let feed of feeds| async">
     <div class="card">
-      <p>id: {{ tweet.id }}</p>
-      <p>tweet: {{ tweet.text }}</p>
+      <p>id: {{ feed.id }}</p>
+      <p>tweet: {{ feed.text }}</p>
     </div>
   </li>
 </ul>

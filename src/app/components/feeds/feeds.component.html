@@ -1,8 +1,22 @@
-<ul>
-  <li *ngFor="let feed of feeds| async">
-    <div class="card">
-      <p>id: {{ feed.id }}</p>
-      <p>tweet: {{ feed.text }}</p>
+<div class="ui grid">
+  <div class="">
+    <div class="ui cards">
+      <a class="card" href="#"  *ngFor="let feed of feeds| async">
+        <div class="content">
+          <div class="header">{{ feed.id }}</div>
+          <div class="meta">
+            <span class="category">Tweet</span>
+          </div>
+          <div class="description">
+            <p>{{ feed.text }}</p>
+          </div>
+        </div>
+        <div class="extra content">
+          <div class="right floated author">
+            <img class="ui avatar image" src="http://semantic-ui.com/images/avatar/small/matt.jpg"> Matt
+          </div>
+        </div>
+      </a>
     </div>
-  </li>
-</ul>
+  </div>
+</div>
