@@ -19,6 +19,8 @@ import { NgSemanticModule } from 'ng-semantic';
 import { AuthGuardService } from './services/auth-guard.service';
 import { UserAuthService } from './services/user-auth.service';
 import { ApiService } from './services/api.service';
+import { ResponseParseService } from './services/response-parse.service';
+
 //========================= NGRX Releated Imports ===========================
 
 /**
@@ -117,7 +119,8 @@ import { FeedDetailComponent } from './components/feed-detail/feed-detail.compon
     actions,
     UserAuthService,
     AuthGuardService,
-    ApiService
+    ApiService,
+    ResponseParseService
     ],
   bootstrap: [AppComponent]
 })

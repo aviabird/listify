@@ -46,7 +46,21 @@ export class ResponseParseService {
   createTweetsObj(dbTweetsObj: any): Tweet[] {
     var tweets = []; 
     dbTweetsObj.forEach(element => {
-      var attr = {id: element.id, text: element.text}
+      var dbuser = element.user;
+      
+      var user_attr = {
+        id: dbuser.id,
+        name: dbuser.name,
+        screen_name: dbuser.screen_name,
+        profile_image_url: dbuser.profile_image_url
+      }
+      
+      var attr = {
+        id: element.id,
+        text: element.text,
+        user: new User(user_attr)
+      }
+
       var tweet = new Tweet(attr)
       tweets.push(tweet);
     });
