@@ -4,7 +4,7 @@
     <span class="category">@{{feed.user.screen_name}}</span>
   </div>
   <div class="description">
-    <p><span [innerHTML]="feed.text | linky"></span></p>
+    <p><span [innerHTML]="feed.text | linkify: feed.entities.urls"></span></p>
   </div>
 </div>
 <div class="extra content">

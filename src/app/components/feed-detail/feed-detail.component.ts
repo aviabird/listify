@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Tweet } from '../../models'
 
 @Component({
   selector: 'ist-feed-detail',
@@ -6,10 +7,10 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./feed-detail.component.css']
 })
 export class FeedDetailComponent implements OnInit {
-
+  @Input() feed: Tweet;
   constructor() { }
-  @Input() feed;
   ngOnInit() {
+  
   }
 
 }
