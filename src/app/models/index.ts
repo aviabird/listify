@@ -4,4 +4,6 @@ export { User } from './user';
 export { List } from './list';
 export { UserList } from './user-list';
 export { Tweet } from './tweet';
+export { Entities } from './entities'
+export { Urls } from './urls';
 export { Base } from './base';

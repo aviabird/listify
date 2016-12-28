@@ -6,5 +6,5 @@ export class User extends Base {
   name:              string;
   screen_name:       string;
   profile_image_url: string;
-  // entities:          Entities;
+  entities:          Entities;
 }

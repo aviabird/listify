@@ -9,6 +9,7 @@ import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
 import { RestangularModule } from 'ng2-restangular';
 import { environment } from '../environments/environment';
+import { LinkyModule } from 'angular2-linky';
 
 /**Semantic UI */
 import { NgSemanticModule } from 'ng-semantic';
@@ -86,6 +87,7 @@ import { FeedDetailComponent } from './components/feed-detail/feed-detail.compon
     FeedDetailComponent
   ],
   imports: [
+    LinkyModule,
     NgSemanticModule,
     BrowserModule,
     FormsModule,
