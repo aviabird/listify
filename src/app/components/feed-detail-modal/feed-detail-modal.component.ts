@@ -38,12 +38,17 @@ export class FeedDetailModalComponent implements OnInit, OnDestroy {
 
   loadModal(){
     let that = this;
-    $('.ui.modal').modal({
-      onHide: function(){
-        that.store.dispatch(back());
-        $('.ui.modal').remove();
-      }
-    }).modal('show');
+    try{
+      $('.ui.modal').modal({
+        onHide: function(){
+          that.store.dispatch(back());
+          $('.ui.modal').remove();
+        }
+      }).modal('show');
+    } catch(e) {
+
+      console.log("Error is",e);
+    }
   }
 
   ngOnDestroy(){
