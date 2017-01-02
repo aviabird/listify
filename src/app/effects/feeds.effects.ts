@@ -17,7 +17,7 @@ export class FeedsEffects {
   @Effect() getFeedsForId$ = this.actions$
     .ofType(ActionTypes.GET_FEEDS_FOR_ID)
     .map((action: Action) => action.payload)
-    .switchMap((userListIds: any) => this.apiService.getListsTimeLine(userListIds))
+    .switchMap((userListId: any) => this.apiService.getListsTimeLine(userListId))
     .map((response: any) => this.responseParser.createTweetsObj(response))
     .map((tweets: Tweet[]) => this.feedsActions.getFeedsForIdSuccess(tweets));
 

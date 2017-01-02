@@ -71,6 +71,7 @@ export class ResponseParseService {
                   retweet_count: element.retweet_count,
                   favorite_count: element.favorite_count,
                   user: new User(user_attr),
+                  user_list_id: element.user_list_id,
                   entities: new Entities(entity_attr)
                 }
 

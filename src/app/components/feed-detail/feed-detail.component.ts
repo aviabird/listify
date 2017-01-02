@@ -8,7 +8,10 @@ import { Tweet } from '../../models'
 })
 export class FeedDetailComponent implements OnInit {
   @Input() feed: Tweet;
-  constructor() { }
+  constructor() { 
+    console.log("Inside Feed Detail Component", this.feed);
+    
+  }
   ngOnInit() {
   
   }

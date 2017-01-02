@@ -58,9 +58,6 @@ export const getUserList = createSelector(getUserListEntities, getUserListIds, (
   return ids.map(id => userLists[id]);
 });
 
-// export const getListIdsInUserLists = createSelector(getUserListEntities, getUserListIds, (userLists, ids) => {
-//   return ids.map(id => userLists[id].list_id);
-// });
 
 export const getFeedsState = (appState: AppState) => appState.feeds;
 export const getFeedsIds = createSelector(getFeedsState, fromFeeds.getIds); 
@@ -68,6 +65,12 @@ export const getFeedsEntities = createSelector(getFeedsState, fromFeeds.getEntit
 export const getAllFeeds = createSelector(getFeedsEntities, getFeedsIds, (feeds, ids) => {
   return ids.map(id => feeds[id]);
 });
+export const getSelectedUserListID = createSelector(getFeedsState, fromFeeds.getSelectedUserListId);
+
+export const getSelectedUserListIdFeeds = createSelector(getAllFeeds, getSelectedUserListID, (feeds, userListId) => {
+  return feeds.filter(feed => feed.user_list_id === userListId);  
+})
+
 
 export const getSelectedFeedId = createSelector(getFeedsState, fromFeeds.getSelectedFeedId);
 

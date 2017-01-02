@@ -6,6 +6,7 @@ export class Tweet extends Base {
   text:           string;
   retweet_count:  number;
   favorite_count: number;
-  user:           User
+  user:           User;
+  user_list_id:   string;
   entities:       Entities;
 }

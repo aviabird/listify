@@ -18,14 +18,23 @@ const initialState: State = {
 
 export default function(state = initialState, action: Action): State {
   switch(action.type){
-    
+    case ActionTypes.GET_FEEDS_FOR_ID: {
+      return Object.assign({}, state, {
+        selectedUserListId: action.payload
+      });      
+    }
+
     case ActionTypes.GET_FEEDS_FOR_ID_SUCCESS: {
       const tweets: Tweet[] = action.payload
-       const newTweets: Tweet[] = tweets.filter(tweet => !state.entities[tweet.id]);
 
-       const newTweetIds = tweets.map(tweet => tweet.id); 
+      // filter all new tweets and ids
+      const newTweets: Tweet[] = tweets.filter(tweet => !state.entities[tweet.id]);
 
-       const newEntities = newTweets
+      const newTweetIds = tweets
+                            .filter(tweet => !state.entities[tweet.id])
+                            .map(tweet => tweet.id); 
+
+      const newEntities = newTweets
         .reduce((entities: { [id: string]: Tweet }, tweet: Tweet) => {
           return Object.assign(entities, { [tweet.id]: tweet }) 
         }, {});
@@ -40,7 +49,9 @@ export default function(state = initialState, action: Action): State {
       const tweets: Tweet[] = action.payload
         const newTweets: Tweet[] = tweets.filter(tweet => !state.entities[tweet.id]);
 
-        const newTweetIds = tweets.map(tweet => tweet.id); 
+       const newTweetIds = tweets
+                            .filter(tweet => !state.entities[tweet.id])
+                            .map(tweet => tweet.id);
 
         const newEntities = newTweets
         .reduce((entities: { [id: string]: Tweet }, tweet: Tweet) => {
