@@ -40,9 +40,8 @@ export class FeedDetailModalComponent implements OnInit, OnDestroy {
     let that = this;
     $('.ui.modal').modal({
       onHide: function(){
-        $('.ui.modal').remove();
         that.store.dispatch(back());
-        // $('ui.dimmer.modals').remove();
+        $('.ui.modal').remove();
       }
     }).modal('show');
   }
