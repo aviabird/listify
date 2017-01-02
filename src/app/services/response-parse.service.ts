@@ -104,7 +104,9 @@ export class ResponseParseService {
       id: user_detail.id,
       name: user_detail.name,
       screen_name: user_detail.screen_name,
-      profile_image_url: user_detail.profile_image_url
+      profile_image_url: user_detail.profile_image_url,
+      description: user_detail.description,
+      location: user_detail.location
     }
     var user: User = new User(attr);
     return user;

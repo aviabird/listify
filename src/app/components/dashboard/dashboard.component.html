@@ -1,6 +1,6 @@
 <div class="ui bottom attached segment pushable grid">
   <div class="ui visible inverted left vertical sidebar menu four wide column">
-    <a class="item">
+    <a [routerLink]="['']" (click) ="backToHome()" class="item">
       <i class="home icon"></i>
       Home
     </a>
@@ -9,14 +9,26 @@
         <img class="ui tiny circular image" [src]="(user$| async).profile_image_url?.replace('_normal', '')">
       </div>
       <div>
-        <h1>{{(user$| async).name}}</h1>
-        <a>Rails Developer</a>
+        <h1>{{(user$| async)?.name}}</h1>
+        <p>{{(user$ | async)?.description}}</p>
+        <p>
+          <i class="marker icon"></i>
+          {{(user$| async)?.location}}
+        </p>
+        <p>
+          <i class="calendar icon"></i>
+          Joined {{(user$ | async)?.location}}
+        </p>
+        <p>
+          <i class="birthday icon"></i>
+          Born on May 2014
+        </p>
       </div>
     </div>
     <!--User List -->
     <div *ngIf="userList$ | async" class="item">
       <i class="calendar icon"></i>
-      List you Follow
+      <a (click)="backToHome()">List you Follow</a>
       <ul>
         <li *ngFor="let list of userList$ | async" [routerLink]= "['./feeds/' + list?.id]">
           {{ list.name }}
@@ -24,6 +36,12 @@
       </ul>
     </div>
     <!--UserList ENd-->
+    
+    <a [routerLink]="['']" (click) ="goToSuggestionPage()" class="item">
+      <i class="cubes icon"></i>
+      Suggestions
+    </a>
+
     <a [routerLink]="['']" (click) ="signOutUser()" class="item">
       <i class="sign out icon"></i>
       Logout

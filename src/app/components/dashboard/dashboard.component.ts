@@ -7,7 +7,7 @@ import { UserActions } from '../../actions/user.actions';
 import { LoginActions } from '../../actions/login.actions';
 import { User } from '../../models/';
 import { UserListActions } from '../../actions/user-list.actions';
-import { ApiService } from '../../services/api.service';
+import { go } from '@ngrx/router-store';
 
 @Component({
   selector: 'ist-dashboard',
@@ -18,8 +18,7 @@ export class DashboardComponent implements OnInit {
   lists;
   userList$: Observable<any>;
   user$: Observable<any>;
-  constructor(private api: ApiService,
-              private router: Router,
+  constructor(private router: Router,
               private userActions: UserActions,
               private loginActions: LoginActions,
               private userListActions: UserListActions,
@@ -35,5 +34,13 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(this.userListActions.getUserLists());
     this.store.dispatch(this.userActions.loadProfile());
+  }
+
+  backToHome(){
+    this.store.dispatch(go(['/dashboard/feeds']))
+  }
+
+  goToSuggestionPage(){
+    this.store.dispatch(go('/dashboard/suggestions'))
   }
 }
