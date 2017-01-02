@@ -20,7 +20,9 @@ export default function(state = initialState, action: Action): State {
           const newLists: List[] = Lists
             .filter(list => !state.entities[list.id]);
           
-          const newListIds = Lists.map(list => list.id);
+          const newListIds = Lists
+                              .filter(list => !state.entities[list.id])
+                              .map(list => list.id);
           
           const newEntities = newLists
             .reduce((entities: { [id: string]: List }, list: List) => {
