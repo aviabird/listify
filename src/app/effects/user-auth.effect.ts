@@ -15,7 +15,7 @@ export class UserAuthEffects {
 
     @Effect() login$ = this.actions$
         .ofType(ActionTypes.LOGIN)
-        .map<string>((action: Action) => action.payload)
+        .map((action: Action) => action.payload)
         .switchMap((payload: any) => this.userAuthService.login())
         .map((userAuth: UserAuth) => {
           this.userAuthService.storeUserAuthInLocalstorage(userAuth);
@@ -39,7 +39,7 @@ export class UserAuthEffects {
     
     @Effect() signup$ = this.actions$
       .ofType(ActionTypes.SIGNUP)
-      .map<string>((action: Action) => action.payload)
+      .map((action: Action) => action.payload)
       .switchMap((payload) => this.userAuthService.signUp())
         .map((userAuth: UserAuth) => {
           this.userAuthService.storeUserAuthInLocalstorage(userAuth);

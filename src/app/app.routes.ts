@@ -6,6 +6,8 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { SuggestionsComponent } from './components/suggestions/suggestions.component';
 import { FeedsComponent } from './components/feeds/feeds.component';
 import { FeedComponent } from './components/feed/feed.component';
+import { FeedDetailModalComponent } from './components/feed-detail-modal/feed-detail-modal.component';
+
 
 const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -15,7 +17,10 @@ const routes: Routes = [
       children: [
         { path: '', redirectTo: 'feeds', pathMatch: 'full' },
         { path: 'feeds',
-          component: FeedsComponent
+          component: FeedsComponent,
+          children: [
+            { path: 'tweet/:tweet_id', component: FeedDetailModalComponent }
+          ]
         },
         {
           path: 'feeds/:id',

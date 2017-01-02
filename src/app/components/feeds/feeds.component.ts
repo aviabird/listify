@@ -4,6 +4,9 @@ import { Store } from '@ngrx/store';
 import { AppState, getAllFeeds } from '../../reducers';
 import { FeedsActions } from '../../actions/feeds.actions';
 import { Observable } from 'rxjs/Observable';
+import { Router } from '@angular/router';
+
+declare var $: any;
 
 @Component({
   selector: 'ist-feeds',
@@ -13,7 +16,8 @@ import { Observable } from 'rxjs/Observable';
 export class FeedsComponent implements OnInit {
   feeds: Observable<any>;
   constructor(private store: Store<AppState>,
-              private feedActions: FeedsActions) { 
+              private feedActions: FeedsActions,
+              private router: Router) { 
     this.feeds = this.store.select(getAllFeeds);
   }
 

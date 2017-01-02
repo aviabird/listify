@@ -73,6 +73,8 @@ import { FeedsComponent } from './components/feeds/feeds.component';
 import { SuggestedListComponent } from './components/suggested-list/suggested-list.component';
 import { FeedComponent } from './components/feed/feed.component';
 import { FeedDetailComponent } from './components/feed-detail/feed-detail.component';
+import { FeedDetailModalComponent } from './components/feed-detail-modal/feed-detail-modal.component';
+import { ModalComponent } from './components/shared/modal/modal.component';
 
 
 @NgModule({
@@ -86,7 +88,9 @@ import { FeedDetailComponent } from './components/feed-detail/feed-detail.compon
     FeedsComponent,
     SuggestedListComponent,
     FeedComponent,
-    FeedDetailComponent
+    FeedDetailComponent,
+    FeedDetailModalComponent,
+    ModalComponent
   ],
   imports: [
     LinkyModule,

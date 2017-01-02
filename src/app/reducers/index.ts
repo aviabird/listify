@@ -68,3 +68,9 @@ export const getFeedsEntities = createSelector(getFeedsState, fromFeeds.getEntit
 export const getAllFeeds = createSelector(getFeedsEntities, getFeedsIds, (feeds, ids) => {
   return ids.map(id => feeds[id]);
 });
+
+export const getSelectedFeedId = createSelector(getFeedsState, fromFeeds.getSelectedFeedId);
+
+export const getSelectedFeed = createSelector(getFeedsEntities, getSelectedFeedId, (feeds, id) => {
+  return feeds[id];
+});

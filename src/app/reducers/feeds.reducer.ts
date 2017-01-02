@@ -6,12 +6,14 @@ export type State = {
   ids: string[];
   entities: { [id: string]: Tweet };
   selectedUserListId: string;
+  selectedFeedId: string;
 }
 
 const initialState: State = {
   ids: [],
   entities: {},
-  selectedUserListId: null
+  selectedUserListId: null,
+  selectedFeedId: null
 }
 
 export default function(state = initialState, action: Action): State {
@@ -50,7 +52,13 @@ export default function(state = initialState, action: Action): State {
           entities: Object.assign({}, state.entities, newEntities)
         })
     }
-    
+
+    case ActionTypes.SELECT_FEED: {
+      return Object.assign({}, state, {
+        selectedFeedId: action.payload
+      });
+    }
+
     default: {
       return state;
     }
@@ -60,3 +68,4 @@ export default function(state = initialState, action: Action): State {
 export const getIds = (state: State) => state.ids;
 export const getEntities = (state: State) => state.entities;
 export const getSelectedUserListId = (state: State) => state.selectedUserListId;
+export const getSelectedFeedId = (state: State) => state.selectedFeedId;

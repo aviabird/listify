@@ -68,6 +68,8 @@ export class ResponseParseService {
       var attr = {
                   id: element.id,
                   text: element.text,
+                  retweet_count: element.retweet_count,
+                  favorite_count: element.favorite_count,
                   user: new User(user_attr),
                   entities: new Entities(entity_attr)
                 }
