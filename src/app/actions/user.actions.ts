@@ -4,7 +4,7 @@ import { User } from '../models/';
 
 /**
  * A Hash Constant which has all types of Login Action
- * { key: type } 
+ * { key: type }
  */
 export const ActionTypes = {
   LOAD_PROFILE:         type("Load Profile"),
@@ -35,11 +35,10 @@ export class UserActions {
    * @return {Action} an Action with type 'Load Profile Success' 
    * and payload as User
    */
-  loadProfileSuccess(user: User): Action {
+  loadProfileSuccess(user): Action {
     return {
       type: ActionTypes.LOAD_PROFILE_SUCCESS,
       payload: user
     }
   }
 }
-

@@ -1,11 +1,46 @@
 <!--Dashboard-->
-<h2>Dashboard works</h2>
+<!--<h2>Dashboard works</h2>
 <h2><a [routerLink]="['']" (click) ="signOutUser()">Logout</a></h2>
-<p>
-  Trending Lists
-</p>
-Follow Ruby on Rails top coders in one go.
-<button (click)="follow()">Button</button>
-<ul>
-  {{ lists | json }}
-</ul>
+<br>
+<ist-sidepanel></ist-sidepanel>
+<router-outlet></router-outlet>-->
+
+
+<div class="ui bottom attached segment pushable">
+  <div class="ui visible inverted left vertical sidebar menu">
+    <a class="item">
+      <i class="home icon"></i>
+      Home
+    </a>
+    <div class="item">
+      <div class="left floated">
+        <img class="ui tiny circular image" [src]="(user$| async).profile_image_url?.replace('_normal', '')">
+      </div>
+      <div>
+        <h1>{{(user$| async).name}}</h1>
+        <a>Rails Developer</a>
+      </div>
+    </div>
+    <!--User List -->
+    <div *ngIf="userList$ | async" class="item">
+      <i class="calendar icon"></i>
+      List you Follow
+      <ul>
+        <li *ngFor="let list of userList$ | async" [routerLink]= "['./feeds/' + list?.id]">
+          {{ list.name }}
+        </li>
+      </ul>
+    </div>
+    <!--UserList ENd-->
+  </div>
+  <div class="pusher">
+    <div class="ui basic segment">
+      <h3 class="ui header">Application Content</h3>
+      <router-outlet></router-outlet>
+      <p></p>
+      <p></p>
+      <p></p>
+      <p></p>
+    </div>
+  </div>
+</div>

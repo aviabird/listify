@@ -1,0 +1,8 @@
+<ul>
+  <li *ngFor="let tweet of tweets| async">
+    <div class="card">
+      <p>id: {{ tweet.id }}</p>
+      <p>tweet: {{ tweet.text }}</p>
+    </div>
+  </li>
+</ul>

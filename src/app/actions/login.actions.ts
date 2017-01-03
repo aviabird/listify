@@ -135,8 +135,4 @@ export class LoginActions {
         payload: userAuth
       }
     }
-
-
-
-
 }

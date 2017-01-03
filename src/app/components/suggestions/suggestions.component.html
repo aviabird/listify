@@ -1,0 +1,7 @@
+<div class="ui link cards">
+  <div *ngFor="let list of suggestedList$ | async" class="card">
+    <ist-suggested-list (followClicked)="follow($event)" [list]="list"></ist-suggested-list>
+  </div>
+</div>
+
+<button (click)="goToFeedsDashboard()">Go To Dashboard</button>

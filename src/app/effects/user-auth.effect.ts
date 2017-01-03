@@ -16,7 +16,7 @@ export class UserAuthEffects {
     @Effect() login$ = this.actions$
         .ofType(ActionTypes.LOGIN)
         .map<string>((action: Action) => action.payload)
-        .switchMap((payload) => this.userAuthService.login())
+        .switchMap((payload: any) => this.userAuthService.login())
         .map((userAuth: UserAuth) => {
           this.userAuthService.storeUserAuthInLocalstorage(userAuth);
           return this.loginActions.loginSuccess(userAuth);
@@ -57,7 +57,7 @@ export class UserAuthEffects {
 
     @Effect() storeUserSuccess$ = this.actions$
       .ofType(ActionTypes.STORE_USER_SUCCESS)
-      .map(() => go(['/dashboard']));
+      .map(() => go(['/dashboard/suggestions']));
 
     @Effect() logout$ = this.actions$
         .ofType(ActionTypes.LOGOUT)

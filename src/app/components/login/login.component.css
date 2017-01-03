@@ -1,23 +1,23 @@
-.view {
+/*.view {
     height: 100vh;
     background-size: cover;
     background: url("http://mdbootstrap.com/img/Photos/Horizontal/City/full%20page/img%20(1).jpg");
     background-position: 15%;
-}
+}*/
 
 /* Navigation*/
 
-.navbar {
+/*.navbar {
     background-color: transparent;
-}
+}*/
 
-.scrolling-navbar {
+/*.scrolling-navbar {
     -webkit-transition: background .5s ease-in-out, padding .5s ease-in-out;
     -moz-transition: background .5s ease-in-out, padding .5s ease-in-out;
     transition: background .5s ease-in-out, padding .5s ease-in-out;
-}
+}*/
 
-.top-nav-collapse {
+/*.top-nav-collapse {
     background-color: #1C2331;
 }
 
@@ -42,7 +42,7 @@
 
 #login-title h1 {
   font-family: Verdana;
-}
+}*/
 
 /*.login-container {
 padding: 100px 0;

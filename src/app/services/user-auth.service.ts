@@ -50,7 +50,7 @@ export class UserAuthService {
    return this.restAngular.all('/auth/sign_in')
             .post(userAuth)
             .map(response =>{
-              var token = response.json().token
+              var token = response.token;
               var newUserAuth = new UserAuth(userAuth.user_id, 
                                   userAuth.access_token,
                                   userAuth.secret_token,
@@ -73,13 +73,15 @@ export class UserAuthService {
   }
 
   logout(): Observable<any> {
-    return Observable.of(localStorage.removeItem('access_token'));
+    return Observable.of(
+      localStorage.removeItem('access_token'),
+      localStorage.removeItem('server_token'));
   }
 
   storeUsertoBackend(payload): Observable<any> {
     return this.restAngular.all('/auth/sign_up').post(payload)
-      .map(response =>{
-              var token = response.json().token
+          .map(response => {
+              var token = response.token
               var userAuth = payload.userAuth
               var newUserAuth = new UserAuth(userAuth.user_id, userAuth.access_token, userAuth.secret_token, token)
               return newUserAuth;
@@ -95,13 +97,4 @@ export class UserAuthService {
     localStorage.setItem('access_token', userAuth.access_token);
     localStorage.setItem('secret_token', userAuth.secret_token);
   }
-
-  retriveSuggestion(){
-    return this.restAngular.all('lists/suggest').post();
-  }
-
-  followList(list_id, token) {
-    return this.restAngular.all('users/create_list').post(list_id)
-  }
-
 }
