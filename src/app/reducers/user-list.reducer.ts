@@ -43,6 +43,20 @@ export default function(state = initialState, action: Action): State {
           entities: Object.assign({}, state.entities, newEntities)
         })
       }
+      case ListActionTypes.UNFOLLOW_LIST_SUCCESS: {
+        const userListId: string = action.payload;
+        const newIds = state.ids.filter(val => val != userListId);
+        const newEntities = newIds.reduce((entities: { [id: string]: UserList }, id: string) => {
+          return Object.assign(entities, {
+              [id]: state.entities[id]
+            });
+        }, {});
+
+        return Object.assign({}, state,  {
+          entities: newEntities,
+          ids: newIds
+        })
+      } 
 
       default: {
         return state;

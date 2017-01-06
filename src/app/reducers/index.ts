@@ -77,3 +77,17 @@ export const getSelectedFeedId = createSelector(getFeedsState, fromFeeds.getSele
 export const getSelectedFeed = createSelector(getFeedsEntities, getSelectedFeedId, (feeds, id) => {
   return feeds[id];
 });
+
+export function isFollowing(listId){
+  return createSelector(getUserListEntities, (userList) => {
+    for (var key in userList) {
+        var value = userList[key];
+        if(value.list_id.$oid === listId){
+          return true
+        } else{
+          console.log("list id is", this.list.id);
+          return false
+        }
+    }
+  })
+}

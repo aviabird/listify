@@ -31,6 +31,10 @@ export class SuggestionsComponent implements OnInit {
     this.store.dispatch(this.listActions.follow(listId));
   }
 
+  unfollow(listId){
+    this.store.dispatch(this.listActions.unFollowList(listId));
+  }
+
   goToFeedsDashboard(){
     this.router.navigate(['/dashboard']);
   }

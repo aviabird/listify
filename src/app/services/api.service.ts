@@ -16,9 +16,9 @@ export class ApiService {
     return this.restAngular.all('lists/suggest').post()
   }
 
-  followList(list_id): Observable<any> {
+  followList(listId: string): Observable<any> {
     var token = this.getServerToken()
-    var ListId = { id: list_id }
+    var ListId = { id: listId }
     return this.restAngular.all('users/create_list')
       .post(ListId, {}, { 'Authorization': token })
   }
@@ -52,5 +52,13 @@ export class ApiService {
     var token = this.getServerToken()
     return this.restAngular.all('users/all_feeds')
       .post(null, {}, {'Authorization': token});
+  }
+
+
+  unFollowList(listId: string): Observable<any>{
+    var token = this.getServerToken()
+    var ListId = { id: listId }
+    return this.restAngular.all('users/unfollow_list')
+      .post(ListId, {}, {'Authorization': token});
   }
 }

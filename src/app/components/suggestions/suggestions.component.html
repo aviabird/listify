@@ -1,6 +1,6 @@
 <div class="ui link cards">
     <div *ngFor="let list of suggestedList$ | async" class="card">
-      <ist-suggested-list (followClicked)="follow($event)" [list]="list"></ist-suggested-list>
+      <ist-suggested-list (followClicked)="follow($event)" (unFollowClicked)="unfollow($event)" [list]="list"></ist-suggested-list>
     </div>
 </div>
 
