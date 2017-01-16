@@ -7,11 +7,11 @@ import { AppState,getLoginState } from '../../reducers/index';
 import { LoginActions } from '../../actions/login.actions';
 
 @Component({
-  selector: 'ist-request-email',
-  templateUrl: './request-email.component.html',
-  styleUrls: ['./request-email.component.css']
+  selector: 'ist-signup-page',
+  templateUrl: './signup-page.component.html',
+  styleUrls: ['./signup-page.component.css']
 })
-export class RequestEmailComponent implements OnInit {
+export class SignUpPageComponent implements OnInit {
   emailForm: FormGroup;
   email;
   userAuth: any;

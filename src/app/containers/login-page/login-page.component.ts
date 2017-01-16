@@ -6,13 +6,13 @@ import { AppState, getLoginState } from '../../reducers/index';
 import { LoginActions } from '../../actions/login.actions';
 
 @Component({
-  selector: 'ist-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  selector: 'ist-login-page',
+  templateUrl: './login-page.component.html',
+  styleUrls: ['./login-page.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [LoginActions]
 })
-export class LoginComponent implements OnInit {
+export class LoginPageComponent implements OnInit {
   photo;
   constructor(private loginActions: LoginActions,
               private store: Store<AppState>) {

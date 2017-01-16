@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { AppState, getLoginState } from './reducers/index';
-import { LoginActions } from './actions/login.actions';
-import { UserAuthService } from './services/user-auth.service';
+import { AppState, getLoginState } from '../reducers/index';
+import { LoginActions } from '../actions/login.actions';
+import { UserAuthService } from '../services/user-auth.service';
 
 
 @Component({

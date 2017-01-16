@@ -29,7 +29,6 @@
     "@ngrx/store-devtools": "^3.2.2",
     "@ngrx/store-log-monitor": "^3.0.2",
     "@types/node": "^6.0.54",
-    "angular2-linky": "^1.2.2",
     "core-js": "^2.4.1",
     "firebase": "^3.6.4",
     "karma-remap-istanbul": "^0.2.2",

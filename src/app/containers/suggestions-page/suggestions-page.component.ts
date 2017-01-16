@@ -8,12 +8,12 @@ import { ListActions } from '../../actions/list.actions';
 import { List } from '../../models/list';
 
 @Component({
-  selector: 'ist-suggestions',
-  templateUrl: './suggestions.component.html',
-  styleUrls: ['./suggestions.component.css'],
+  selector: 'ist-suggestions-page',
+  templateUrl: './suggestions-page.component.html',
+  styleUrls: ['./suggestions-page.component.css'],
   providers: [ApiService]
 })
-export class SuggestionsComponent implements OnInit {
+export class SuggestionsPageComponent implements OnInit {
   suggestedList$: Observable<any>;
 
   constructor(private api: ApiService,

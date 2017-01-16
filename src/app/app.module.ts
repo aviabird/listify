@@ -9,15 +9,12 @@ import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
 import { RestangularModule } from 'ng2-restangular';
 import { environment } from '../environments/environment';
-import { LinkyModule } from 'angular2-linky';
-import { LinkifyPipe } from './pipes/linkify';
+import { PipesModule } from './pipes';
 
 /**Semantic UI */
 import { NgSemanticModule } from 'ng-semantic';
 
-/**
- * ALL Services used in App.
- */
+/** ALL Services used in APP */
 import { AuthGuardService } from './services/auth-guard.service';
 import { UserAuthService } from './services/user-auth.service';
 import { ApiService } from './services/api.service';
@@ -34,71 +31,55 @@ import { StoreLogMonitorModule, useLogMonitor } from '@ngrx/store-log-monitor';
 import { EffectsModule } from '@ngrx/effects';
 import { RouterStoreModule } from '@ngrx/router-store';
 
-/**
- * Effects Modules
- */
+/** All SideEffects in APP */
 import { UserAuthEffects } from './effects/user-auth.effect';
 import { UserEffects } from './effects/user.effects';
 import { ListEffects } from './effects/list.effects';
 import { FeedsEffects } from './effects/feeds.effects';
 import { UserListsEffects } from './effects/user-lists.effects';
-/**
- * ALL Ngrx Actions that can be fired in app loaded as one.
- */
+
+/**ALL Ngrx Actions that can be fired in app loaded as one.*/
 import actions from './actions';
 
-/**
- * OverAll Reducer for all reducers in an app.
- */
+/**Global Reducer of APP */
 import reducer from './reducers';
 
 //======================================================================
 
-
-/**
- * All Components in App.
- */
-import { AppComponent } from './app.component';
+/**All Components in APP */
 import { ComponentsModule } from './components';
-import { LoginComponent } from './components/login/login.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 
-/**
- * All Routes
- */
+/**All Routes in APP */
 import { routing } from './app.routes';
-import { RequestEmailComponent } from './components/request-email/request-email.component';
-import { SuggestionsComponent } from './components/suggestions/suggestions.component';
-import { FeedsComponent } from './components/feeds/feeds.component';
-import { SuggestedListComponent } from './components/suggested-list/suggested-list.component';
-import { ListFeedComponent } from './components/list-feed/list-feed.component';
-import { FeedDetailComponent } from './components/feed-detail/feed-detail.component';
-import { FeedDetailModalComponent } from './components/feed-detail-modal/feed-detail-modal.component';
-import { ModalComponent } from './components/shared/modal/modal.component';
+
+/**All Containers in APP */
+import { SignUpPageComponent } from './containers/signup-page/signu-page.component';
+import { ListFeedPageComponent } from './containers/list-feed-page/list-feed-page.component';
+import { SuggestionsPageComponent } from './containers/suggestions-page/suggestions-page.component';
+import { DashboardPageComponent } from './containers/dashboard-page/dashboard-page.component';
+import { LoginPageComponent } from './containers/login-page/login-page.component';
+import { AppComponent } from './containers/app.component';
+
+
 
 @NgModule({
   declarations: [
-    LinkifyPipe,
     AppComponent,
-    LoginComponent,
-    DashboardComponent,
-    RequestEmailComponent,
-    SuggestionsComponent,
-    FeedsComponent,
-    SuggestedListComponent,
-    ListFeedComponent,
-    FeedDetailComponent,
-    FeedDetailModalComponent,
-    ModalComponent
+    LoginPageComponent,
+    SignUpPageComponent,
+    DashboardPageComponent,
+    SuggestionsPageComponent,
+    ListFeedPageComponent
   ],
   imports: [
-    LinkyModule,
+    ComponentsModule,
     NgSemanticModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
     ComponentsModule,
+    PipesModule,
     CommonModule,
     routing,
     // Importing RestangularModule and making default configs for restanglar

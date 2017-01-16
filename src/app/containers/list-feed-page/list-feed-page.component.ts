@@ -7,11 +7,11 @@ import { Subscription } from 'rxjs';
 import { FeedsActions } from '../../actions/feeds.actions';
 
 @Component({
-  selector: 'ist-feed',
-  templateUrl: './list-feed.component.html',
-  styleUrls: ['./list-feed.component.css']
+  selector: 'ist-list-feed-page',
+  templateUrl: './list-feed-page.component.html',
+  styleUrls: ['./list-feed-page.component.css']
 })
-export class ListFeedComponent implements OnInit {
+export class ListFeedPageComponent implements OnInit {
   private subscription: Subscription;
   private userListId: string;
   feeds: Observable<any>;

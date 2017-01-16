@@ -5,12 +5,12 @@ import { AppState, isFollowing } from '../../reducers/index';
 import { UserList } from '../../models';
 
 @Component({
-  selector: 'ist-suggested-list',
-  templateUrl: './suggested-list.component.html',
-  styleUrls: ['./suggested-list.component.css']
+  selector: 'ist-suggested-lists',
+  templateUrl: './suggested-lists.component.html',
+  styleUrls: ['./suggested-lists.component.css']
   // changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SuggestedListComponent implements OnInit {
+export class SuggestedListsComponent implements OnInit {
   @Input() list;
   @Output() followClicked = new EventEmitter();
   @Output() unFollowClicked = new EventEmitter(); 

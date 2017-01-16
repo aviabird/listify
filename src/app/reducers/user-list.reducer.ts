@@ -31,7 +31,9 @@ export default function(state = initialState, action: Action): State {
         const newUserLists: UserList[] = UserLists
           .filter(list => !state.entities[list.id])
 
-        const newUserListIds = UserLists.map(list => list.id);
+        const newUserListIds = UserLists
+                                .filter(userList => !state.entities[userList.id])
+                                .map(list => list.id);
 
         const newEntities = newUserLists
           .reduce((entities: { [id: string]: UserList }, userList: UserList) => {

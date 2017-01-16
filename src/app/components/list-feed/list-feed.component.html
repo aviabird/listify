@@ -1,9 +1,0 @@
-<div *ngIf="(feeds | async)">
-  <div class="ui grid">
-    <div class="">
-      <div class="ui cards">
-        <ist-feed-detail [feed]="feed" class="card" *ngFor="let feed of feeds| async" [routerLink]="['/dashboard/feeds/tweet/', feed?.id]"></ist-feed-detail>
-      </div>
-    </div>
-  </div>
-</div>

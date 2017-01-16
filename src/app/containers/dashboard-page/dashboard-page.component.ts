@@ -10,11 +10,11 @@ import { UserListActions } from '../../actions/user-list.actions';
 import { go } from '@ngrx/router-store';
 
 @Component({
-  selector: 'ist-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  selector: 'ist-dashboard-page',
+  templateUrl: './dashboard-page.component.html',
+  styleUrls: ['./dashboard-page.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardPageComponent implements OnInit {
   lists;
   userList$: Observable<any>;
   user$: Observable<any>;

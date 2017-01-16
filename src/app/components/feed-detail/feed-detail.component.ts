@@ -11,11 +11,11 @@ import { back } from '@ngrx/router-store';
 declare var $: any;
 
 @Component({
-  selector: 'ist-feed-detail-modal',
-  templateUrl: './feed-detail-modal.component.html',
-  styleUrls: ['./feed-detail-modal.component.css']
+  selector: 'ist-feed-detail',
+  templateUrl: './feed-detail.component.html',
+  styleUrls: ['./feed-detail.component.css']
 })
-export class FeedDetailModalComponent implements OnInit, OnDestroy {
+export class FeedDetailComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   feed;
   feedId;
