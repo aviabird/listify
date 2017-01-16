@@ -4,4 +4,5 @@ export class List extends Base {
   name:        string;
   description: string;
   image_url:   string;
+  isFollowing: boolean;
 }

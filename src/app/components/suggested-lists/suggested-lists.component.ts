@@ -1,43 +1,15 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Store } from '@ngrx/store';
-import { AppState, isFollowing } from '../../reducers/index';
-import { UserList } from '../../models';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'ist-suggested-lists',
   templateUrl: './suggested-lists.component.html',
   styleUrls: ['./suggested-lists.component.css']
-  // changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SuggestedListsComponent implements OnInit {
+export class SuggestedListsComponent {
   @Input() list;
   @Output() followClicked = new EventEmitter();
-  @Output() unFollowClicked = new EventEmitter(); 
-  isFollowing$ = Observable.of(false);
-
-  constructor(private store: Store<AppState>) {
+  @Output() unFollowClicked = new EventEmitter();
   
-}
-
-  ngOnInit() {
-    this.isFollowing$ = this.store.select(isFollowing(this.list.id))
-    // this.store.select(getUserListEntities).subscribe(
-    //   userList => {
-    //     for (var key in userList) {
-    //         var value = userList[key];
-    //         if(value.list_id.$oid === this.list.id){
-    //           this.isFollowing$ = Observable.of(true);
-    //         } else{
-    //           console.log("list id is", this.list.id);
-              
-    //           this.isFollowing$ = Observable.of(false);
-    //         }
-    //     }
-    //   }
-    // )
-  }
-
   followList(){
     this.followClicked.emit(this.list.id);
   }
@@ -45,9 +17,4 @@ export class SuggestedListsComponent implements OnInit {
   unFollowList(){
     this.unFollowClicked.emit(this.list.id);
   }
-
-  isFollowingTheList(){
-
-  }
-
 }

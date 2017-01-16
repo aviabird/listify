@@ -34,6 +34,5 @@ export class ListEffects {
     .ofType(ActionTypes.UNFOLLOW_LIST)
     .map((action: Action) => action.payload)
     .switchMap((listId: string) => this.apiService.unFollowList(listId))
-    .map((response) => response.user_list_id)
-    .map((userList: string) => this.listActions.unFollowListSuccess(userList));
+    .map((response: any) => this.listActions.unFollowListSuccess(response));
 }

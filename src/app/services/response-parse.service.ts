@@ -35,7 +35,11 @@ export class ResponseParseService {
   createSuggestedListsObj(response: any): List[] {
     var suggLists = []
     response.forEach(element => {
-      var attr = {id: element.id, name: element.name, description: element.description, image_url: element.image_url}
+      var attr = {id: element.id, name: element.name,
+                  description: element.description,
+                  image_url: element.image_url,
+                  isFollowing: element.isFollowing
+              }
       var suggestedList = new List(attr)
       suggLists.push(suggestedList);
     });

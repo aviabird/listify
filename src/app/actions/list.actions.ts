@@ -48,10 +48,10 @@ export class ListActions {
     }
   }
   
-  unFollowListSuccess(userListId: string): Action{
+  unFollowListSuccess(response: any): Action {
     return {
       type: ActionTypes.UNFOLLOW_LIST_SUCCESS,
-      payload: userListId
+      payload: response
     }
   }
 }

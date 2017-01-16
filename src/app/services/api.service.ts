@@ -13,7 +13,9 @@ export class ApiService {
   constructor(private http: Http, public restAngular: Restangular) { }
 
   retriveSuggestion(): Observable<any> {
-    return this.restAngular.all('lists/suggest').post()
+    var token = this.getServerToken()
+    return this.restAngular.all('lists/suggest')
+            .post(null, {}, { 'Authorization': token })
   }
 
   followList(listId: string): Observable<any> {

@@ -13,11 +13,11 @@
         </div>
       </div>
   </div>
-  <div *ngIf="!isFollowing$" (click)="followList()" class="ui bottom attached button">
+  <div *ngIf="!(list.isFollowing)" (click)="followList()" class="ui bottom attached button">
     <i class="add icon"></i>
     Follow
   </div>
-  <div *ngIf="isFollowing$" (click)="unFollowList()" class="ui bottom attached button">
+  <div *ngIf="list.isFollowing" (click)="unFollowList()" class="ui bottom attached button">
     <i class="add icon"></i>
     UnFollow
   </div>

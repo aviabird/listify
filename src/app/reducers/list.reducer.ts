@@ -36,7 +36,15 @@ export default function(state = initialState, action: Action): State {
             entities: Object.assign({}, state.entities, newEntities)
           })
         }
-        
+        case ActionTypes.UNFOLLOW_LIST_SUCCESS: {
+          const unfollowed_list: List = action.payload.unfollowed_list;
+
+          return Object.assign({}, state, {
+            entities: Object.assign({}, state.entities,
+                                    {[unfollowed_list.id]: unfollowed_list}
+                                  )
+          })
+        }
         default: {
             return state;
         }
