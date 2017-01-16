@@ -1,0 +1,16 @@
+<div class="lightbox">
+  <div class="tc-content">
+    <h1>Please Enter your Email Address</h1>
+    <div class="ui form">
+      <form (ngSubmit)="login()" [formGroup]="emailForm">
+        
+        <div class="ui large left icon input">
+          <input type="text" id="email" placeholder="Enter Your Email..." [formControl]="emailForm.controls['email']" [(ngModel)]="email"/>
+          <i class="users icon"></i>
+        </div>
+        
+        <button type="submit" class="ui large primary button" [disabled]="!emailForm.valid">Login</button>
+      </form>
+    </div>
+  </div>
+</div>

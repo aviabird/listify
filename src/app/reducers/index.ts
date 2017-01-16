@@ -9,16 +9,16 @@ import { createSelector } from 'reselect';
 import userAuth, * as fromUserAuth from './user-auth.reducer';
 import user, * as  fromUser from './user.reducer';
 import userList, * as fromUserList from './user-list.reducer';
-import suggestedList, * as fromSuggestedList from './suggested-list.reducer';
-import tweets, * as fromTweets from './tweets.reducer';
+import lists, * as fromLists from './list.reducer';
+import feeds, * as fromFeeds from './feeds.reducer';
 
 // Entire State of a App
 export interface AppState {
     userAuth:      fromUserAuth.AuthState;
     user:          fromUser.UserState;
     userList:      fromUserList.State;
-    suggestedList: fromSuggestedList.State;
-    tweets:        fromTweets.State;
+    lists:         fromLists.State;
+    feeds:         fromFeeds.State;
     router:        RouterState;
 }
 
@@ -27,8 +27,8 @@ export default compose(combineReducers)({
     userAuth:      userAuth,
     user:          user,
     userList:      userList,
-    suggestedList: suggestedList,
-    tweets:        tweets,
+    lists:          lists,
+    feeds:         feeds,
     router:        routerReducer
 });
 
@@ -44,12 +44,12 @@ export function getLoginState(){
 
 export const getUserState = (appState: AppState) => appState.user;
 
-export const getSuggListsState = (appState: AppState) => appState.suggestedList;
-export const getSuggestedEntities = createSelector(getSuggListsState, fromSuggestedList.getEntities);
-export const getListIds = createSelector(getSuggListsState, fromSuggestedList.getIds);
-export const getSuggestedList = createSelector(getSuggestedEntities, getListIds, (lists, ids) => {
+export const getListsState = (appState: AppState) => appState.lists;
+export const getListsEntities = createSelector(getListsState, fromLists.getEntities);
+export const getListsIds = createSelector(getListsState, fromLists.getIds);
+export const getLists = createSelector(getListsEntities, getListsIds, (lists, ids) => {
   return ids.map(id => lists[id]);
-}); 
+});
 
 export const getUserListsState = (appState: AppState) => appState.userList;
 export const getUserListEntities = createSelector(getUserListsState, fromUserList.getEntities);
@@ -58,9 +58,36 @@ export const getUserList = createSelector(getUserListEntities, getUserListIds, (
   return ids.map(id => userLists[id]);
 });
 
-export const getTweetsState = (appState: AppState) => appState.tweets; 
-export const getTweetIds = createSelector(getTweetsState, fromTweets.getIds); 
-export const getTweetsEntities = createSelector(getTweetsState, fromTweets.getEntities);
-export const getTweets = createSelector(getTweetsEntities, getTweetIds, (tweets, ids) => {
-  return ids.map(id => tweets[id]);
+
+export const getFeedsState = (appState: AppState) => appState.feeds;
+export const getFeedsIds = createSelector(getFeedsState, fromFeeds.getIds); 
+export const getFeedsEntities = createSelector(getFeedsState, fromFeeds.getEntities);
+export const getAllFeeds = createSelector(getFeedsEntities, getFeedsIds, (feeds, ids) => {
+  return ids.map(id => feeds[id]);
 });
+export const getSelectedUserListID = createSelector(getFeedsState, fromFeeds.getSelectedUserListId);
+
+export const getSelectedUserListIdFeeds = createSelector(getAllFeeds, getSelectedUserListID, (feeds, userListId) => {
+  return feeds.filter(feed => feed.user_list_id === userListId);  
+})
+
+
+export const getSelectedFeedId = createSelector(getFeedsState, fromFeeds.getSelectedFeedId);
+
+export const getSelectedFeed = createSelector(getFeedsEntities, getSelectedFeedId, (feeds, id) => {
+  return feeds[id];
+});
+
+export function isFollowing(listId){
+  return createSelector(getUserListEntities, (userList) => {
+    for (var key in userList) {
+        var value = userList[key];
+        if(value.list_id.$oid === listId){
+          return true
+        } else{
+          console.log("list id is", this.list.id);
+          return false
+        }
+    }
+  })
+}

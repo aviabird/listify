@@ -1,0 +1,24 @@
+<div class="ui card">
+  <div class="content">
+      <a class="header">{{list.name}}</a>
+      <div class="meta">
+        <span class="date">Joined in 2013</span>
+      </div>
+      <div class="description">
+        <div *ngIf="list.description">
+        {{ list.description}}
+        </div>
+        <div *ngIf="!list.description">
+          Amazing collection of {{ list.name }} coders
+        </div>
+      </div>
+  </div>
+  <div *ngIf="!(list.isFollowing)" (click)="followList()" class="ui bottom attached button">
+    <i class="add icon"></i>
+    Follow
+  </div>
+  <div *ngIf="list.isFollowing" (click)="unFollowList()" class="ui bottom attached button">
+    <i class="add icon"></i>
+    UnFollow
+  </div>
+</div>

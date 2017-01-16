@@ -1,4 +1,9 @@
-<p>
-  feeds works!
-</p>
+<div class="ui grid">
+  <div class="">
+    <div class="ui cards">
+      <ist-feed [feed]="feed" class="raised link card" *ngFor="let feed of feeds| async" [routerLink]="['tweet/', feed?.id]"></ist-feed>
+    </div>
+  </div>
+</div>
+
 <router-outlet></router-outlet>
