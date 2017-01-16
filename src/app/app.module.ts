@@ -71,11 +71,10 @@ import { RequestEmailComponent } from './components/request-email/request-email.
 import { SuggestionsComponent } from './components/suggestions/suggestions.component';
 import { FeedsComponent } from './components/feeds/feeds.component';
 import { SuggestedListComponent } from './components/suggested-list/suggested-list.component';
-import { FeedComponent } from './components/feed/feed.component';
+import { ListFeedComponent } from './components/list-feed/list-feed.component';
 import { FeedDetailComponent } from './components/feed-detail/feed-detail.component';
 import { FeedDetailModalComponent } from './components/feed-detail-modal/feed-detail-modal.component';
 import { ModalComponent } from './components/shared/modal/modal.component';
-
 
 @NgModule({
   declarations: [
@@ -87,7 +86,7 @@ import { ModalComponent } from './components/shared/modal/modal.component';
     SuggestionsComponent,
     FeedsComponent,
     SuggestedListComponent,
-    FeedComponent,
+    ListFeedComponent,
     FeedDetailComponent,
     FeedDetailModalComponent,
     ModalComponent
