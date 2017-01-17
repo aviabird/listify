@@ -28,7 +28,7 @@ export class DashboardPageComponent implements OnInit {
     }
 
   signOutUser(){
-    this.store.dispatch(this.loginActions.logout())
+    this.store.dispatch(this.loginActions.logout());
   }
 
   ngOnInit() {

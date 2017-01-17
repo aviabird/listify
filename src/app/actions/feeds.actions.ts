@@ -1,6 +1,6 @@
+import { Tweet } from './../models/tweet';
 import { type } from '../util';
 import { Action } from '@ngrx/store';
-import { Tweet } from '../models';
 
 export const ActionTypes = {
   GET_FEEDS_FOR_ID:         type('Get Tweets for Id'),
@@ -18,7 +18,10 @@ export class FeedsActions {
     }
   }
 
-  getAllFeedsSuccess(feeds): Action {
+  /**Changed Feeds type to any from Tweet
+   * TODO: make a complete model of tweet
+   */
+  getAllFeedsSuccess(feeds: any): Action {
     return {
       type: ActionTypes.GET_ALL_FEEDS_SUCCESS,
       payload: feeds
@@ -32,7 +35,10 @@ export class FeedsActions {
     }
   }
 
-  getFeedsForIdSuccess(feeds: Tweet[]): Action {
+  /**Change Feeds type to any from Tweet
+   * TODO: make a complete model of tweet
+   */
+  getFeedsForIdSuccess(feeds: any): Action {
     return {
       type: ActionTypes.GET_FEEDS_FOR_ID_SUCCESS,
       payload: feeds

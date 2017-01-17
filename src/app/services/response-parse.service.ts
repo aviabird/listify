@@ -47,42 +47,48 @@ export class ResponseParseService {
   }
 
 
-  createTweetsObj(dbTweetsObj: any): Tweet[] {
-    var tweets = []; 
-    dbTweetsObj.forEach(element => {
-      // User
-      var dbuser = element.user;
-      var user_attr = {
-        id: dbuser.id,
-        name: dbuser.name,
-        screen_name: dbuser.screen_name,
-        profile_image_url: dbuser.profile_image_url
-      }
-      
-      // Entities
-      var entity = element.entities
-      
-      var entity_attr = {
-        hashtags: <Array<string>>entity.hashtags,
-        symbols: <Array<string>>entity.symbols,
-        urls: this.retriveUrlObj(entity.urls)
-      }
+  createTweetsObj(dbTweetsObj: any): any {
+    return dbTweetsObj;
+    /**
+     * Below Code will be used in future to parse the response
+     * Currently returning entire response object as it is.
+     */
 
-      // Main Tweet
-      var attr = {
-                  id: element.id,
-                  text: element.text,
-                  retweet_count: element.retweet_count,
-                  favorite_count: element.favorite_count,
-                  user: new User(user_attr),
-                  user_list_id: element.user_list_id,
-                  entities: new Entities(entity_attr)
-                }
+    // var tweets = []; 
+    // dbTweetsObj.forEach(element => {
+    //   // User
+    //   var dbuser = element.user;
+    //   var user_attr = {
+    //     id: dbuser.id,
+    //     name: dbuser.name,
+    //     screen_name: dbuser.screen_name,
+    //     profile_image_url: dbuser.profile_image_url
+    //   }
+      
+    //   // Entities
+    //   var entity = element.entities
+      
+    //   var entity_attr = {
+    //     hashtags: <Array<string>>entity.hashtags,
+    //     symbols: <Array<string>>entity.symbols,
+    //     urls: this.retriveUrlObj(entity.urls)
+    //   }
 
-      var tweet = new Tweet(attr)
-      tweets.push(tweet);
-    });
-    return tweets;
+    //   // Main Tweet
+    //   var attr = {
+    //               id: element.id,
+    //               text: element.text,
+    //               retweet_count: element.retweet_count,
+    //               favorite_count: element.favorite_count,
+    //               user: new User(user_attr),
+    //               user_list_id: element.user_list_id,
+    //               entities: new Entities(entity_attr)
+    //             }
+
+    //   var tweet = new Tweet(attr)
+    //   tweets.push(tweet);
+    // });
+    // return tweets;
   }
 
   retriveUrlObj(urls: Array<any>): Urls[] {

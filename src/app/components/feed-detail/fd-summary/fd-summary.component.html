@@ -1,0 +1,60 @@
+<div *ngIf="feed">
+  <div class="ui grid center-pad">
+    <div class="row">
+      <div class="two wide column">
+        <img class="ui tiny image rounded-border" src="{{feed.user.profile_image_url?.replace('_normal', '')}}" alt="">
+      </div>
+      <div class="two wide column" style="transform: translateY(30%);">
+        <div>
+          <a href="">
+            <strong>{{feed.user.name}}</strong>
+          </a>
+        </div>
+        <div>
+          @{{feed.user.screen_name}}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="sixteen wide column">
+        <h2>
+          <span [innerHTML]="feed.text | linkify: feed.entities.urls"></span>
+        </h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="sixteen wide column">
+        <h4>Created at: {{feed.created_at | date:'short'}}</h4>
+      </div>
+    </div>
+    <hr class="full-width-hr"/> 
+    <div class="row">
+      <div class="sixteen wide column">
+        <span class="retweet" style="margin-right: 10px">
+          <i class="retweet icon"></i> 
+          {{ feed.retweet_count }}  
+        </span>
+        <span class="heart" style="margin-right: 10px">
+          <i class="heart icon"></i>
+          {{ feed.favorite_count }}
+        </span>
+      </div>
+    </div>
+    <hr class="full-width-hr"/>
+    <!--Reply-->
+    <div class="row" style="background-color: rgba(0,0,0,0.05)">
+      <div class="sixteen wide column">
+        <div class="ui fluid action input">
+          <input type="text" placeholder="Reply...">
+          <div class="ui button">Submit Reply</div>
+        </div>
+      </div>
+    </div>
+    <hr class="full-width-hr"/>
+    <div class="row">
+      <div class="column" style="text-align: center;">
+        Show this project some ❤ on <a href="https://github.com/aviabird/i-stalk-frontend" target="_blank">Github</a>
+      </div>
+    </div>
+  </div>
+</div>

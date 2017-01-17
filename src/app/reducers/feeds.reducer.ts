@@ -4,7 +4,7 @@ import { ActionTypes } from '../actions/feeds.actions';
 
 export type State = {
   ids: string[];
-  entities: { [id: string]: Tweet };
+  entities: { [id: string]: any };
   selectedUserListId: string;
   selectedFeedId: string;
 }
@@ -28,7 +28,7 @@ export default function(state = initialState, action: Action): State {
       const tweets: Tweet[] = action.payload
 
       // filter all new tweets and ids
-      const newTweets: Tweet[] = tweets.filter(tweet => !state.entities[tweet.id]);
+      const newTweets: any = tweets.filter(tweet => !state.entities[tweet.id]);
 
       const newTweetIds = tweets
                             .filter(tweet => !state.entities[tweet.id])

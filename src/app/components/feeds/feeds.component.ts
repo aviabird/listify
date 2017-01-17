@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { Store } from '@ngrx/store';
 import { AppState, getAllFeeds } from '../../reducers';
@@ -16,8 +16,8 @@ declare var $: any;
 export class FeedsComponent implements OnInit {
   feeds: Observable<any>;
   constructor(private store: Store<AppState>,
-              private feedActions: FeedsActions,
-              private router: Router) { 
+    private feedActions: FeedsActions,
+    private router: Router) {
     this.feeds = this.store.select(getAllFeeds);
   }
 

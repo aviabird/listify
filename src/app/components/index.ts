@@ -10,13 +10,15 @@ import { SuggestedListsComponent } from './suggested-lists/suggested-lists.compo
 import { FeedDetailComponent } from './feed-detail/feed-detail.component';
 import { ModalComponent } from './shared/modal/modal.component';
 import { FeedsComponent } from './feeds/feeds.component';
+import { FdSummaryComponent } from './feed-detail/fd-summary/fd-summary.component';
 
 export const COMPONENTS = [
   FeedComponent,
   FeedsComponent,
   ModalComponent,
   FeedDetailComponent,
-  SuggestedListsComponent
+  SuggestedListsComponent,
+  FdSummaryComponent
 ];
 
 @NgModule({

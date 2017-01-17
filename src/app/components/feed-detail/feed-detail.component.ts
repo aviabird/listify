@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
@@ -13,17 +13,18 @@ declare var $: any;
 @Component({
   selector: 'ist-feed-detail',
   templateUrl: './feed-detail.component.html',
-  styleUrls: ['./feed-detail.component.css']
+  styleUrls: ['./feed-detail.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FeedDetailComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
-  feed;
-  feedId;
+  feed: Observable<any>;
+  feedId: any;
   constructor(public store: Store<AppState>,
               private router: Router,
               private route: ActivatedRoute,
               private feedActions: FeedsActions) {
-    this.feed = this.store.select(getSelectedFeed)
+    this.feed = this.store.select(getSelectedFeed);
   }
 
   ngOnInit() {
@@ -40,6 +41,7 @@ export class FeedDetailComponent implements OnInit, OnDestroy {
     let that = this;
     try{
       $('.ui.modal').modal({
+        onApprove : function() { return false; },
         onHide: function(){
           that.store.dispatch(back());
           $('.ui.modal').remove();
