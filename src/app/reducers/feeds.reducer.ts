@@ -70,6 +70,14 @@ export default function(state = initialState, action: Action): State {
       });
     }
 
+    case ActionTypes.ADD_FEED_TO_FAV_SUCCESS: {
+      const favFeed = action.payload;
+      return Object.assign({}, state, {
+        entities: Object.assign({}, state.entities,
+                                {[favFeed.id]: favFeed})
+      })
+    }
+
     default: {
       return state;
     }

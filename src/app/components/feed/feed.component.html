@@ -3,17 +3,21 @@
   <div class="meta">
     <span class="category">@{{feed.user.screen_name}}</span>
   </div>
-  <div class="description">
+  <div class="description" [routerLink]="['tweet/', feed?.id]">
     <p><span [innerHTML]="feed.text | linkify: feed.entities.urls"></span></p>
   </div>
 </div>
 <div class="extra content">
   <div class="left floated">
-    <span class="retweet">
-      <i class="retweet icon"></i> {{ feed.retweet_count }}&nbsp;&nbsp;  
+    <span class="retweet ">
+      <i class="retweet icon clickable"></i> {{ feed.retweet_count }}&nbsp;&nbsp;  
     </span>
     <span class="heart">
-      <i class="heart icon"></i> {{ feed.favorite_count }}
+      <i class="empty heart icon clickable" 
+        (click)="favIconClicked()" *ngIf="!(feed.favorited)"></i> 
+      <i class="red heart icon clickable" 
+        (click)="favIconClicked()" *ngIf="(feed.favorited)"></i>
+        {{ feed.favorite_count }}
     </span>
   </div>
   <div class="right floated author">

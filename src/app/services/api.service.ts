@@ -63,4 +63,11 @@ export class ApiService {
     return this.restAngular.all('users/unfollow_list')
       .post(ListId, {}, {'Authorization': token});
   }
+
+  addToFav(feed: any): any {
+    var token = this.getServerToken()
+    var favoritedFeed = { feed: feed }
+    return this.restAngular.all('tweets/add_tweet_to_fav')
+      .post(favoritedFeed, {}, {'Authorization': token});
+  }
 }

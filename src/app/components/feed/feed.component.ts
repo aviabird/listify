@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Tweet } from '../../models'
 
 @Component({
@@ -8,4 +8,10 @@ import { Tweet } from '../../models'
 })
 export class FeedComponent {
   @Input() feed: Tweet;
+  @Output() favClicked = new EventEmitter();
+  
+  /**Add to fav */
+  favIconClicked(){
+    this.favClicked.emit(this.feed);
+  }
 }

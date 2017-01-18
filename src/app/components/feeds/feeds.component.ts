@@ -24,4 +24,14 @@ export class FeedsComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(this.feedActions.getAllFeeds());
   }
+
+  /**
+   * Dispatch a store action to add a particular 
+   * feed to fav
+   *
+   *  @param feed  
+   */
+  addToFav(feed){
+    this.store.dispatch(this.feedActions.addFeedToFav(feed));
+  }
 }
