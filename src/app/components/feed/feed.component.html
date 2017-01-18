@@ -14,9 +14,9 @@
     </span>
     <span class="heart">
       <i class="empty heart icon clickable" 
-        (click)="favIconClicked()" *ngIf="!(feed.favorited)"></i> 
+        (click)="addtoFavClicked()" *ngIf="!(feed.favorited)"></i> 
       <i class="red heart icon clickable" 
-        (click)="favIconClicked()" *ngIf="(feed.favorited)"></i>
+        (click)="removeFromFavClicked()" *ngIf="(feed.favorited)"></i>
         {{ feed.favorite_count }}
     </span>
   </div>

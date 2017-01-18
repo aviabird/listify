@@ -31,7 +31,17 @@ export class FeedsComponent implements OnInit {
    *
    *  @param feed  
    */
-  addToFav(feed){
-    this.store.dispatch(this.feedActions.addFeedToFav(feed));
+  addToFav(feedId){
+    this.store.dispatch(this.feedActions.addFeedToFav(feedId));
+  }
+  
+  /**
+   * Dispatch a store action to remove a particular 
+   * feed from fav
+   *
+   *  @param feed  
+   */
+  removeFromFav(feedId){
+    this.store.dispatch(this.feedActions.removeFeedFromFav(feedId));
   }
 }

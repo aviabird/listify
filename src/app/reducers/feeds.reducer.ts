@@ -77,6 +77,14 @@ export default function(state = initialState, action: Action): State {
                                 {[favFeed.id]: favFeed})
       })
     }
+    
+    case ActionTypes.REMOVE_FEED_FROM_FAV_SUCESS: {
+      const feed = action.payload;
+      return Object.assign({}, state, {
+        entities: Object.assign({}, state.entities,
+                                {[feed.id]: feed})
+      })
+    }
 
     default: {
       return state;

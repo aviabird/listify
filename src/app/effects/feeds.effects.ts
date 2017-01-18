@@ -31,7 +31,12 @@ export class FeedsEffects {
   @Effect() addFeedToFav$ = this.actions$
     .ofType(ActionTypes.ADD_FEED_TO_FAV)
     .map((action: Action) => action.payload)
-    .switchMap((feed: any) => this.apiService.addToFav(feed))
+    .switchMap((feedId: any) => this.apiService.addToFav(feedId))
     .map((response: any) => this.feedsActions.addFeedToFavSuccess(response.feed));
 
+  @Effect() removeFeedFromFav$ = this.actions$
+    .ofType(ActionTypes.REMOVE_FEED_FROM_FAV)
+    .map((action: Action) => action.payload)
+    .switchMap((feedId: any) => this.apiService.removeFromFav(feedId))
+    .map((response: any) => this.feedsActions.removeFeedFromFavSuccess(response.feed));
 }

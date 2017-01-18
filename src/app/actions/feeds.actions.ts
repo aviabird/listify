@@ -3,13 +3,15 @@ import { type } from '../util';
 import { Action } from '@ngrx/store';
 
 export const ActionTypes = {
-  GET_FEEDS_FOR_ID:         type('Get Tweets for Id'),
-  GET_FEEDS_FOR_ID_SUCCESS: type('Get Tweets for Id Success'),
-  GET_ALL_FEEDS:            type('Get All Feeds'),
-  GET_ALL_FEEDS_SUCCESS:    type('Get All Feeds Success'),
-  SELECT_FEED:              type('Select Feed'),
-  ADD_FEED_TO_FAV:          type('Add Feed To Fav'),
-  ADD_FEED_TO_FAV_SUCCESS:  type('Add Feed To Fav Success')                                  
+  GET_FEEDS_FOR_ID:            type('Get Tweets for Id'),
+  GET_FEEDS_FOR_ID_SUCCESS:    type('Get Tweets for Id Success'),
+  GET_ALL_FEEDS:               type('Get All Feeds'),
+  GET_ALL_FEEDS_SUCCESS:       type('Get All Feeds Success'),
+  SELECT_FEED:                 type('Select Feed'),
+  ADD_FEED_TO_FAV:             type('Add Feed To Fav'),
+  ADD_FEED_TO_FAV_SUCCESS:     type('Add Feed To Fav Success'),
+  REMOVE_FEED_FROM_FAV:        type('Remove Feed From Fav'),
+  REMOVE_FEED_FROM_FAV_SUCESS: type('Remove Feed From Fav Success')                                  
 }
 
 export class FeedsActions {
@@ -77,10 +79,10 @@ export class FeedsActions {
    * 
    * @return : Action with payload Feed
    */
-  addFeedToFav(feed: any):Action{
+  addFeedToFav(feedId: any):Action{
     return {
       type: ActionTypes.ADD_FEED_TO_FAV,
-      payload: feed
+      payload: feedId
     }
   }
   /**
@@ -93,6 +95,34 @@ export class FeedsActions {
   addFeedToFavSuccess(feed: any): Action {
     return {
       type: ActionTypes.ADD_FEED_TO_FAV_SUCCESS,
+      payload: feed
+    }
+  }
+
+  /**
+   * Action that triggers when user removes
+   * a particular feed to Fav
+   * 
+   * @param : feedId
+   * 
+   * @return : Action with payload Feed
+   */
+  removeFeedFromFav(feedId: any):Action{
+    return {
+      type: ActionTypes.REMOVE_FEED_FROM_FAV,
+      payload: feedId
+    }
+  }
+  /**
+   * Action that triggers when remove fav action completes
+   * 
+   * @param : feed
+   * 
+   * @return : Action with payload Feed
+   */
+  removeFeedFromFavSuccess(feed: any): Action {
+    return {
+      type: ActionTypes.REMOVE_FEED_FROM_FAV_SUCESS,
       payload: feed
     }
   }
