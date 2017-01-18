@@ -78,4 +78,10 @@ export class ApiService {
       .post(favoritedFeedId, {}, {'Authorization': token});
   }
 
+  retweet(feedId: any): any {
+    var token = this.getServerToken()
+    var favoritedFeedId = { feedId: feedId }
+    return this.restAngular.all('tweets/retweet')
+      .post(favoritedFeedId, {}, {'Authorization': token});
+  }
 }

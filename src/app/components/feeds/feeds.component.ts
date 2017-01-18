@@ -29,7 +29,7 @@ export class FeedsComponent implements OnInit {
    * Dispatch a store action to add a particular 
    * feed to fav
    *
-   *  @param feed  
+   *  @param feedId
    */
   addToFav(feedId){
     this.store.dispatch(this.feedActions.addFeedToFav(feedId));
@@ -39,9 +39,20 @@ export class FeedsComponent implements OnInit {
    * Dispatch a store action to remove a particular 
    * feed from fav
    *
-   *  @param feed  
+   *  @param feedId
    */
   removeFromFav(feedId){
     this.store.dispatch(this.feedActions.removeFeedFromFav(feedId));
   }
+
+  /**
+   * Dispatch a store action to retweet a particular 
+   * feed
+   *
+   *  @param feedId  
+   */
+  retweet(feedId){
+    this.store.dispatch(this.feedActions.retweet(feedId));
+  }
+
 }

@@ -86,6 +86,14 @@ export default function(state = initialState, action: Action): State {
       })
     }
 
+    case ActionTypes.RETWEET_SUCCESS: {
+      const feed = action.payload;
+      return Object.assign({}, state, {
+        entities: Object.assign({}, state.entities,
+                                {[feed.id]: feed})
+      })
+    }
+
     default: {
       return state;
     }

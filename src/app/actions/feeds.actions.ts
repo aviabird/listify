@@ -11,7 +11,9 @@ export const ActionTypes = {
   ADD_FEED_TO_FAV:             type('Add Feed To Fav'),
   ADD_FEED_TO_FAV_SUCCESS:     type('Add Feed To Fav Success'),
   REMOVE_FEED_FROM_FAV:        type('Remove Feed From Fav'),
-  REMOVE_FEED_FROM_FAV_SUCESS: type('Remove Feed From Fav Success')                                  
+  REMOVE_FEED_FROM_FAV_SUCESS: type('Remove Feed From Fav Success'),
+  RETWEET:                     type('Retweet'),
+  RETWEET_SUCCESS:             type('Retweet Success')                                  
 }
 
 export class FeedsActions {
@@ -113,6 +115,7 @@ export class FeedsActions {
       payload: feedId
     }
   }
+ 
   /**
    * Action that triggers when remove fav action completes
    * 
@@ -123,6 +126,34 @@ export class FeedsActions {
   removeFeedFromFavSuccess(feed: any): Action {
     return {
       type: ActionTypes.REMOVE_FEED_FROM_FAV_SUCESS,
+      payload: feed
+    }
+  }
+
+  /**
+   * Action that triggers when retweet is clicked
+   * 
+   * @param : feedId
+   * 
+   * @return : Action with payload FeedId
+   */
+  retweet(feedId): Action {
+    return {
+      type: ActionTypes.RETWEET,
+      payload: feedId
+    }
+  }
+
+  /**
+   * Action that triggers when retweet is Success
+   * 
+   * @param : feed
+   * 
+   * @return : Action with payload feed
+   */
+  retweetSuccess(feed): Action {
+    return {
+      type: ActionTypes.RETWEET_SUCCESS,
       payload: feed
     }
   }

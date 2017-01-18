@@ -39,4 +39,10 @@ export class FeedsEffects {
     .map((action: Action) => action.payload)
     .switchMap((feedId: any) => this.apiService.removeFromFav(feedId))
     .map((response: any) => this.feedsActions.removeFeedFromFavSuccess(response.feed));
+
+  @Effect() retweet$ = this.actions$
+    .ofType(ActionTypes.RETWEET)
+    .map((action: Action) => action.payload)
+    .switchMap((feedId: any) => this.apiService.retweet(feedId))
+    .map((response: any) => this.feedsActions.retweetSuccess(response.feed));
 }

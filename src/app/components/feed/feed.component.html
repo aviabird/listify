@@ -9,8 +9,12 @@
 </div>
 <div class="extra content">
   <div class="left floated">
-    <span class="retweet ">
-      <i class="retweet icon clickable"></i> {{ feed.retweet_count }}&nbsp;&nbsp;  
+    <span class="retweet">
+      <i class="retweet icon clickable" 
+        (click)="retweetBtnClicked()" *ngIf="!(feed.retweeted)"></i>
+      <i class="blue retweet icon clickable"
+       *ngIf="(feed.retweeted)"></i>        
+        {{ feed.retweet_count }}&nbsp;&nbsp;  
     </span>
     <span class="heart">
       <i class="empty heart icon clickable" 
