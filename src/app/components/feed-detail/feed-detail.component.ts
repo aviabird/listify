@@ -37,6 +37,10 @@ export class FeedDetailComponent implements OnInit, OnDestroy {
     this.loadModal();
   }
 
+  reply(messageWithFeedId: any){
+    this.store.dispatch(this.feedActions.reply(messageWithFeedId));
+  }
+
   loadModal(){
     let that = this;
     try{
@@ -57,24 +61,3 @@ export class FeedDetailComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 }
-
-// loadModal(id){
-//          console.log("Id is", id);
-//        console.log("Klass is ", `.ui.modal.feedModal-${id}`);
-//        let el = $(`.ui.modal.feedModal-${id}`); 
-//        console.log("element is ", el);
-//        if(el.length) {
-//          el.modal({
-//            onHide: function(){
-//              that.store.dispatch(back());
-//            }
-//          }).modal('show');
-//        } else {
-//          console.log("Inside else condition");
-//          $('.ui.modal').modal({
-//            onHide: function(){
-//              that.store.dispatch(back());
-//            }
-//          }).modal('show');
-//        }
-// }

@@ -1,3 +1,3 @@
 <ist-modal>
-  <ist-fd-summary [feed]="(feed | async)"></ist-fd-summary>
+  <ist-fd-summary [feed]="(feed | async)" (replyClicked)="reply($event)"></ist-fd-summary>
 </ist-modal>

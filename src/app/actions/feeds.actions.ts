@@ -14,7 +14,9 @@ export const ActionTypes = {
   REMOVE_FEED_FROM_FAV:        type('Remove Feed From Fav'),
   REMOVE_FEED_FROM_FAV_SUCESS: type('Remove Feed From Fav Success'),
   RETWEET:                     type('Retweet'),
-  RETWEET_SUCCESS:             type('Retweet Success')                                  
+  RETWEET_SUCCESS:             type('Retweet Success'),
+  REPLY:                       type('Reply'),
+  REPLY_SUCCESS:               type('Reply Success')                                 
 }
 
 export class FeedsActions {
@@ -158,5 +160,34 @@ export class FeedsActions {
       payload: feed
     }
   }
+
+  /**
+   * Action that triggers when a user replies to
+   * a particular tweet
+   * 
+   * @param : {feedId: feedId, message: message}
+   * 
+   * @return : Action with payload messageWithFeedId
+   */
+  reply(messageWithFeedId: {}): Action {
+    return {
+      type: ActionTypes.REPLY,
+      payload: messageWithFeedId
+    }
+  }
+
+ /**
+   * Action that triggers when a reply to 
+   * a tweet is success
+   * 
+   * @param : {boolean} status 
+   * 
+   * @return : Action with payload status
+   */
+  replySuccess(status: boolean): Action {
+    return {
+      type: ActionTypes.REPLY_SUCCESS,
+      payload: status
+    }
+  }
 }
-// End

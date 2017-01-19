@@ -11,10 +11,8 @@ export class FdSummaryComponent {
   returnReply;
   constructor(private api: ApiService){
   }
-  reply(value: any){
-    this.api.reply(this.feed.id, value).subscribe(response => {
-      console.log(response);
-      this.returnReply = response.feed.text;
-    })  
+  reply(message: any){
+    var payload = { feedId: this.feed.id, message: message}
+    this.replyClicked.emit(payload);
   }
 }
