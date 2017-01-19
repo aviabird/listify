@@ -28,11 +28,16 @@ export default function(state = initialState, action: Action): State {
       const tweets: Tweet[] = action.payload
 
       // filter all new tweets and ids
-      const newTweets: any = tweets.filter(tweet => !state.entities[tweet.id]);
+      /**
+       * TODO: Rethink over this approach
+       */
+      // const newTweets: any = tweets.filter(tweet => !state.entities[tweet.id]);
+
+      const newTweets: any = tweets;
 
       const newTweetIds = tweets
                             .filter(tweet => !state.entities[tweet.id])
-                            .map(tweet => tweet.id); 
+                            .map(tweet => tweet.id);
 
       const newEntities = newTweets
         .reduce((entities: { [id: string]: Tweet }, tweet: Tweet) => {
@@ -46,10 +51,15 @@ export default function(state = initialState, action: Action): State {
     }
 
     case ActionTypes.GET_ALL_FEEDS_SUCCESS: {
-      const tweets: Tweet[] = action.payload
-        const newTweets: Tweet[] = tweets.filter(tweet => !state.entities[tweet.id]);
+      const tweets: any = action.payload
+      /**
+       * TODO: Rethink over this approach
+       */
+      // const newTweets: any = tweets.filter(tweet => !state.entities[tweet.id]);
 
-       const newTweetIds = tweets
+      const newTweets: any = tweets;
+
+      const newTweetIds = tweets
                             .filter(tweet => !state.entities[tweet.id])
                             .map(tweet => tweet.id);
 
@@ -71,27 +81,75 @@ export default function(state = initialState, action: Action): State {
     }
 
     case ActionTypes.ADD_FEED_TO_FAV_SUCCESS: {
-      const favFeed = action.payload;
-      return Object.assign({}, state, {
-        entities: Object.assign({}, state.entities,
-                                {[favFeed.id]: favFeed})
-      })
+      const tweets: any = action.payload
+      /**
+       * TODO: Rethink over this approach
+       */
+      // const newTweets: any = tweets.filter(tweet => !state.entities[tweet.id]);
+
+      const newTweets: any = tweets;
+
+      const newTweetIds = tweets
+                            .filter(tweet => !state.entities[tweet.id])
+                            .map(tweet => tweet.id);
+
+        const newEntities = newTweets
+        .reduce((entities: { [id: string]: Tweet }, tweet: Tweet) => {
+          return Object.assign(entities, { [tweet.id]: tweet }) 
+        }, {});
+
+        return Object.assign({}, state, {
+          ids: [...state.ids, ...newTweetIds],
+          entities: Object.assign({}, state.entities, newEntities)
+        })
     }
     
     case ActionTypes.REMOVE_FEED_FROM_FAV_SUCESS: {
-      const feed = action.payload;
-      return Object.assign({}, state, {
-        entities: Object.assign({}, state.entities,
-                                {[feed.id]: feed})
-      })
+      const tweets: any = action.payload
+      /**
+       * TODO: Rethink over this approach
+       */
+      // const newTweets: any = tweets.filter(tweet => !state.entities[tweet.id]);
+
+      const newTweets: any = tweets;
+
+      const newTweetIds = tweets
+                            .filter(tweet => !state.entities[tweet.id])
+                            .map(tweet => tweet.id);
+
+        const newEntities = newTweets
+        .reduce((entities: { [id: string]: Tweet }, tweet: Tweet) => {
+          return Object.assign(entities, { [tweet.id]: tweet }) 
+        }, {});
+
+        return Object.assign({}, state, {
+          ids: [...state.ids, ...newTweetIds],
+          entities: Object.assign({}, state.entities, newEntities)
+        })
     }
 
     case ActionTypes.RETWEET_SUCCESS: {
-      const feed = action.payload;
-      return Object.assign({}, state, {
-        entities: Object.assign({}, state.entities,
-                                {[feed.id]: feed})
-      })
+       const tweets: any = action.payload
+      /**
+       * TODO: Rethink over this approach
+       */
+      // const newTweets: any = tweets.filter(tweet => !state.entities[tweet.id]);
+
+      const newTweets: any = tweets;
+
+      const newTweetIds = tweets
+                            .filter(tweet => !state.entities[tweet.id])
+                            .map(tweet => tweet.id);
+
+        const newEntities = newTweets
+        .reduce((entities: { [id: string]: Tweet }, tweet: Tweet) => {
+          return Object.assign(entities, { [tweet.id]: tweet }) 
+        }, {});
+
+        return Object.assign({}, state, {
+          ids: [...state.ids, ...newTweetIds],
+          entities: Object.assign({}, state.entities, newEntities)
+        })
     }
 
     default: {

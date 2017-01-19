@@ -30,4 +30,36 @@ export class ListFeedPageComponent implements OnInit {
         this.store.dispatch(this.feedsActions.getFeedsForId(this.userListId));
       })
   }
+
+  /**
+   * Dispatch a store action to add a particular 
+   * feed to fav
+   *
+   *  @param feedId
+   */
+  addToFav(feedId){
+    this.store.dispatch(this.feedsActions.addFeedToFav(feedId));
+  }
+  
+  /**
+   * Dispatch a store action to remove a particular 
+   * feed from fav
+   *
+   *  @param feedId
+   */
+  removeFromFav(feedId){
+    this.store.dispatch(this.feedsActions.removeFeedFromFav(feedId));
+  }
+
+  /**
+   * Dispatch a store action to retweet a particular 
+   * feed
+   *
+   *  @param feedId  
+   */
+  retweet(feedId){
+    this.store.dispatch(this.feedsActions.retweet(feedId));
+  }
+
+
 }
