@@ -1,6 +1,6 @@
 import { IStalkFrontendPage } from './app.po';
 
-describe('i-stalk-frontend App', function() {
+describe('listify App', function() {
   let page: IStalkFrontendPage;
 
   beforeEach(() => {
