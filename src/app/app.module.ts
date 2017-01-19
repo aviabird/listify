@@ -60,6 +60,8 @@ import { DashboardPageComponent } from './containers/dashboard-page/dashboard-pa
 import { LoginPageComponent } from './containers/login-page/login-page.component';
 import { AppComponent } from './containers/app.component';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -90,7 +92,7 @@ import { AppComponent } from './containers/app.component';
     RouterStoreModule.connectRouter(),
     StoreDevtoolsModule.instrumentStore({
       monitor: useLogMonitor({
-        visible: false,
+        visible: true,
         position: 'right'
       })
     }),

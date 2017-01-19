@@ -30,7 +30,7 @@
       <i class="calendar icon"></i>
       <a (click)="backToHome()">List you Follow</a>
       <ul>
-        <li *ngFor="let list of userList$ | async" [routerLink]= "['./feeds/' + list?.id]" class="list-link">
+        <li *ngFor="let list of userList$ | async" [routerLink]= "['./feeds/' + list?.id]">
           {{ list.name }}
         </li>
       </ul>
@@ -42,7 +42,7 @@
       Suggestions
     </a>
 
-    <a [routerLink]="['/login']" (click) ="signOutUser()" class="item">
+    <a [routerLink]="['']" (click) ="signOutUser()" class="item">
       <i class="sign out icon"></i>
       Logout
     </a>

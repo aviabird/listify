@@ -1,3 +1,11 @@
 <ist-modal>
-  <ist-fd-summary [feed]="(feed | async)"></ist-fd-summary>
+<div class="header">
+    <img class="ui centered small circular image" [src]="(feed | async)?.user.profile_image_url?.replace('_normal', '')" alt="">
+  <div class="row center-align">
+      <h2>{{ (feed | async)?.user.name }}</h2>
+  </div>
+  <div class="content">
+    <h2>{{ (feed | async)?.text }}</h2>
+  </div>
+</div>
 </ist-modal>
