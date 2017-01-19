@@ -45,12 +45,15 @@
     <div class="row" style="background-color: rgba(0,0,0,0.05)">
       <div class="sixteen wide column">
         <div class="ui fluid action input">
-          <input type="text" placeholder="Reply...">
-          <div class="ui button">Submit Reply</div>
+          <input type="text" placeholder="Reply..." #replyStatus>
+          <div class="ui button"(click)="reply(replyStatus.value)">Submit Reply</div>
         </div>
       </div>
     </div>
     <hr class="full-width-hr"/>
+    <div>
+      {{returnReply}}
+    </div>
     <div class="row">
       <div class="column" style="text-align: center;">
         Show this project some ❤ on <a href="https://github.com/aviabird/i-stalk-frontend" target="_blank">Github</a>
