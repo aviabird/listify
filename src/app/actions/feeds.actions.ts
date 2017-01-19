@@ -2,6 +2,7 @@ import { Tweet } from './../models/tweet';
 import { type } from '../util';
 import { Action } from '@ngrx/store';
 
+// const of all ActionTypes....
 export const ActionTypes = {
   GET_FEEDS_FOR_ID:            type('Get Tweets for Id'),
   GET_FEEDS_FOR_ID_SUCCESS:    type('Get Tweets for Id Success'),
@@ -158,3 +159,4 @@ export class FeedsActions {
     }
   }
 }
+// End
