@@ -63,4 +63,33 @@ export class ApiService {
     return this.restAngular.all('users/unfollow_list')
       .post(ListId, {}, {'Authorization': token});
   }
+
+  addToFav(feedId: any): any {
+    var token = this.getServerToken()
+    var favoritedFeedId = { feedId: feedId }
+    return this.restAngular.all('tweets/add_tweet_to_fav')
+      .post(favoritedFeedId, {}, {'Authorization': token});
+  }
+
+  removeFromFav(feedId: any): any {
+    var token = this.getServerToken()
+    var favoritedFeedId = { feedId: feedId }
+    return this.restAngular.all('tweets/remove_tweet_from_fav')
+      .post(favoritedFeedId, {}, {'Authorization': token});
+  }
+
+  retweet(feedId: any): any {
+    var token = this.getServerToken()
+    var favoritedFeedId = { feedId: feedId }
+    return this.restAngular.all('tweets/retweet')
+      .post(favoritedFeedId, {}, {'Authorization': token});
+  }
+
+  reply(feedId, message): any {
+    var token = this.getServerToken()
+    var params = { feedId: feedId, message: message }
+    return this.restAngular.all('tweets/reply')
+      .post(params, {}, {'Authorization': token});
+  }
 }
+

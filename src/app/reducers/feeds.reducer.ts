@@ -4,7 +4,7 @@ import { ActionTypes } from '../actions/feeds.actions';
 
 export type State = {
   ids: string[];
-  entities: { [id: string]: Tweet };
+  entities: { [id: string]: any };
   selectedUserListId: string;
   selectedFeedId: string;
 }
@@ -28,7 +28,7 @@ export default function(state = initialState, action: Action): State {
       const tweets: Tweet[] = action.payload
 
       // filter all new tweets and ids
-      const newTweets: Tweet[] = tweets.filter(tweet => !state.entities[tweet.id]);
+      const newTweets: any = tweets.filter(tweet => !state.entities[tweet.id]);
 
       const newTweetIds = tweets
                             .filter(tweet => !state.entities[tweet.id])
@@ -68,6 +68,30 @@ export default function(state = initialState, action: Action): State {
       return Object.assign({}, state, {
         selectedFeedId: action.payload
       });
+    }
+
+    case ActionTypes.ADD_FEED_TO_FAV_SUCCESS: {
+      const favFeed = action.payload;
+      return Object.assign({}, state, {
+        entities: Object.assign({}, state.entities,
+                                {[favFeed.id]: favFeed})
+      })
+    }
+    
+    case ActionTypes.REMOVE_FEED_FROM_FAV_SUCESS: {
+      const feed = action.payload;
+      return Object.assign({}, state, {
+        entities: Object.assign({}, state.entities,
+                                {[feed.id]: feed})
+      })
+    }
+
+    case ActionTypes.RETWEET_SUCCESS: {
+      const feed = action.payload;
+      return Object.assign({}, state, {
+        entities: Object.assign({}, state.entities,
+                                {[feed.id]: feed})
+      })
     }
 
     default: {

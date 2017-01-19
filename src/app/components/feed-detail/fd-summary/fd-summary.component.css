@@ -1,0 +1,11 @@
+.center-pad {
+  padding: 25px;
+}
+
+.rounded-border{
+  border-radius: 5px;
+}
+
+.full-width-hr{
+  width: 100%;
+}

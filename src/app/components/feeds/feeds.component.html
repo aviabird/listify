@@ -1,7 +1,11 @@
 <div class="ui grid">
   <div class="">
     <div class="ui cards">
-      <ist-feed [feed]="feed" class="raised link card" *ngFor="let feed of feeds| async" [routerLink]="['tweet/', feed?.id]"></ist-feed>
+      <ist-feed [feed]="feed" (favClicked)="addToFav($event)" 
+        (removeFavClicked)="removeFromFav($event)"
+        (retweetClicked)="retweet($event)"
+        class="raised link card" *ngFor="let feed of feeds| async">
+      </ist-feed>
     </div>
   </div>
 </div>
