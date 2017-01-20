@@ -35,30 +35,30 @@ export class ListFeedPageComponent implements OnInit {
    * Dispatch a store action to add a particular 
    * feed to fav
    *
-   *  @param feedId
+   *  @param feed
    */
-  addToFav(feedId){
-    this.store.dispatch(this.feedsActions.addFeedToFav(feedId));
+  addToFav(feed){
+    this.store.dispatch(this.feedsActions.addFeedToFav(feed));
   }
   
   /**
    * Dispatch a store action to remove a particular 
    * feed from fav
    *
-   *  @param feedId
+   *  @param feed
    */
-  removeFromFav(feedId){
-    this.store.dispatch(this.feedsActions.removeFeedFromFav(feedId));
+  removeFromFav(feed){
+    this.store.dispatch(this.feedsActions.removeFeedFromFav(feed));
   }
 
   /**
    * Dispatch a store action to retweet a particular 
    * feed
    *
-   *  @param feedId  
+   *  @param feed  
    */
-  retweet(feedId){
-    this.store.dispatch(this.feedsActions.retweet(feedId));
+  retweet(feed){
+    this.store.dispatch(this.feedsActions.retweet(feed));
   }
 
 

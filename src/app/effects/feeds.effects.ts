@@ -31,19 +31,19 @@ export class FeedsEffects {
   @Effect() addFeedToFav$ = this.actions$
     .ofType(ActionTypes.ADD_FEED_TO_FAV)
     .map((action: Action) => action.payload)
-    .switchMap((feedId: any) => this.apiService.addToFav(feedId))
+    .switchMap((feed: any) => this.apiService.addToFav(feed))
     .map((response: any) => this.feedsActions.addFeedToFavSuccess(response.feed));
 
   @Effect() removeFeedFromFav$ = this.actions$
     .ofType(ActionTypes.REMOVE_FEED_FROM_FAV)
     .map((action: Action) => action.payload)
-    .switchMap((feedId: any) => this.apiService.removeFromFav(feedId))
+    .switchMap((feed: any) => this.apiService.removeFromFav(feed))
     .map((response: any) => this.feedsActions.removeFeedFromFavSuccess(response.feed));
 
   @Effect() retweet$ = this.actions$
     .ofType(ActionTypes.RETWEET)
     .map((action: Action) => action.payload)
-    .switchMap((feedId: any) => this.apiService.retweet(feedId))
+    .switchMap((feed: any) => this.apiService.retweet(feed))
     .map((response: any) => this.feedsActions.retweetSuccess(response.feed));
 
   @Effect() reply$ = this.actions$

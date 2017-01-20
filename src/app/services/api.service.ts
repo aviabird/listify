@@ -64,25 +64,25 @@ export class ApiService {
       .post(ListId, {}, {'Authorization': token});
   }
 
-  addToFav(feedId: any): any {
+  addToFav(feed: any): any {
     var token = this.getServerToken()
-    var favoritedFeedId = { feedId: feedId }
+    var favoritedFeed = { feed: feed }
     return this.restAngular.all('tweets/add_tweet_to_fav')
-      .post(favoritedFeedId, {}, {'Authorization': token});
+      .post(favoritedFeed, {}, {'Authorization': token});
   }
 
-  removeFromFav(feedId: any): any {
+  removeFromFav(feed: any): any {
     var token = this.getServerToken()
-    var favoritedFeedId = { feedId: feedId }
+    var favoritedFeed = { feed: feed }
     return this.restAngular.all('tweets/remove_tweet_from_fav')
-      .post(favoritedFeedId, {}, {'Authorization': token});
+      .post(favoritedFeed, {}, {'Authorization': token});
   }
 
-  retweet(feedId: any): any {
+  retweet(feed: any): any {
     var token = this.getServerToken()
-    var favoritedFeedId = { feedId: feedId }
+    var favoritedFeed = { feed: feed }
     return this.restAngular.all('tweets/retweet')
-      .post(favoritedFeedId, {}, {'Authorization': token});
+      .post(favoritedFeed, {}, {'Authorization': token});
   }
 
   reply(messageWithFeedId: any): any {

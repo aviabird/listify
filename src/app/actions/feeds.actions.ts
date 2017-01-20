@@ -84,10 +84,10 @@ export class FeedsActions {
    * 
    * @return : Action with payload Feed
    */
-  addFeedToFav(feedId: any):Action{
+  addFeedToFav(feed: any):Action{
     return {
       type: ActionTypes.ADD_FEED_TO_FAV,
-      payload: feedId
+      payload: feed
     }
   }
   /**
@@ -108,14 +108,14 @@ export class FeedsActions {
    * Action that triggers when user removes
    * a particular feed to Fav
    * 
-   * @param : feedId
+   * @param : feed
    * 
    * @return : Action with payload Feed
    */
-  removeFeedFromFav(feedId: any):Action{
+  removeFeedFromFav(feed: any):Action{
     return {
       type: ActionTypes.REMOVE_FEED_FROM_FAV,
-      payload: feedId
+      payload: feed
     }
   }
  
@@ -136,14 +136,14 @@ export class FeedsActions {
   /**
    * Action that triggers when retweet is clicked
    * 
-   * @param : feedId
+   * @param : feed
    * 
-   * @return : Action with payload FeedId
+   * @return : Action with payload Feed
    */
-  retweet(feedId): Action {
+  retweet(feed): Action {
     return {
       type: ActionTypes.RETWEET,
-      payload: feedId
+      payload: feed
     }
   }
 

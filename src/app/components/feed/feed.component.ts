@@ -18,15 +18,15 @@ export class FeedComponent {
    * Note: to Fav a tweet it needs a `id_str` not `id` of a tweet 
   */
   addtoFavClicked(){
-    this.favClicked.emit(this.feed.id_str);
+    this.favClicked.emit(this.feed);
   }
 
   removeFromFavClicked(){
-    this.removeFavClicked.emit(this.feed.id_str);
+    this.removeFavClicked.emit(this.feed);
   }
 
   retweetBtnClicked(){
-    this.retweetClicked.emit(this.feed.id_str);
+    this.retweetClicked.emit(this.feed);
   }
 
 }
