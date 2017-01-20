@@ -152,6 +152,30 @@ export default function(state = initialState, action: Action): State {
         })
     }
 
+    case ActionTypes.REPLY_SUCCESS : {
+       const tweets: any = action.payload
+      /**
+       * TODO: Rethink over this approach
+       */
+      // const newTweets: any = tweets.filter(tweet => !state.entities[tweet.id]);
+
+      const newTweets: any = tweets;
+
+      const newTweetIds = tweets
+                            .filter(tweet => !state.entities[tweet.id])
+                            .map(tweet => tweet.id);
+
+        const newEntities = newTweets
+        .reduce((entities: { [id: string]: Tweet }, tweet: Tweet) => {
+          return Object.assign(entities, { [tweet.id]: tweet }) 
+        }, {});
+
+        return Object.assign({}, state, {
+          ids: [...state.ids, ...newTweetIds],
+          entities: Object.assign({}, state.entities, newEntities)
+        })
+    }
+
     default: {
       return state;
     }

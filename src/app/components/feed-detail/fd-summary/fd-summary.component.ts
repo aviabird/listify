@@ -1,3 +1,4 @@
+import { FeedsActions } from './../../../actions/feeds.actions';
 import { ApiService } from './../../../services/api.service';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 @Component({
@@ -8,11 +9,12 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class FdSummaryComponent {
   @Input() feed: any;
   @Output() replyClicked = new EventEmitter();
-  returnReply;
+  mentions;
   constructor(private api: ApiService){
   }
+  
   reply(message: any){
-    var payload = { feedId: this.feed.id, message: message}
+    var payload = { feed: this.feed, message: message}
     this.replyClicked.emit(payload);
   }
 }

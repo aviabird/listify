@@ -45,15 +45,19 @@
     <div class="row" style="background-color: rgba(0,0,0,0.05)">
       <div class="sixteen wide column">
         <div class="ui fluid action input">
-          <input type="text" placeholder="Reply..." #replyStatus>
+          <input type="text" placeholder="Reply..." #replyStatus 
+            [value]="feed.entities.user_mentions | mentions: feed.user.screen_name">
           <div class="ui button"(click)="reply(replyStatus.value)">Submit Reply</div>
         </div>
       </div>
     </div>
     <hr class="full-width-hr"/>
-    <div>
-      {{returnReply}}
+    <div class="row" *ngIf="feed.replies != null">
+      <div class="sixteen wide column" style="text-align: center;" *ngFor="let reply of feed.replies">
+        {{ reply.text }}
+      </div>
     </div>
+    <hr class="full-width-hr"/>
     <div class="row">
       <div class="column" style="text-align: center;">
         Show this project some ❤ on <a href="https://github.com/aviabird/listify" target="_blank">Github</a>
@@ -61,3 +65,5 @@
     </div>
   </div>
 </div>
+
+

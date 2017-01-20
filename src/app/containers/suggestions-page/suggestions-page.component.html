@@ -1,7 +1,16 @@
-<div class="ui link cards">
-    <div *ngFor="let list of suggestedList$ | async" class="card">
-      <ist-suggested-lists (followClicked)="follow($event)" (unFollowClicked)="unfollow($event)" [list]="list"></ist-suggested-lists>
+<div class="ui grid">
+  <div class="twelve wide column">
+    <div class="ui basic segment">
+      <div class="ui cards">
+        <ist-suggested-lists (followClicked)="follow($event)" (unFollowClicked)="unfollow($event)" [list]="list" class="raised link card"
+          *ngFor="let list of suggestedList$ | async">
+        </ist-suggested-lists>
+      </div>
     </div>
+  </div>
+  <div class="row">
+    <button class="ui secondary basic button" (click)="goToFeedsDashboard()">
+      Go to Dashboard
+    </button>
+  </div>
 </div>
-
-<button (click)="goToFeedsDashboard()">Go To Dashboard</button>

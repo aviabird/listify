@@ -37,8 +37,8 @@ export class FeedDetailComponent implements OnInit, OnDestroy {
     this.loadModal();
   }
 
-  reply(messageWithFeedId: any){
-    this.store.dispatch(this.feedActions.reply(messageWithFeedId));
+  reply(messageWithFeed: any){
+    this.store.dispatch(this.feedActions.reply(messageWithFeed));
   }
 
   loadModal(){

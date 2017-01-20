@@ -85,10 +85,10 @@ export class ApiService {
       .post(favoritedFeed, {}, {'Authorization': token});
   }
 
-  reply(messageWithFeedId: any): any {
+  reply(messageWithFeed: any): any {
     var token = this.getServerToken()
     return this.restAngular.all('tweets/reply')
-      .post(messageWithFeedId, {}, {'Authorization': token});
+      .post(messageWithFeed, {}, {'Authorization': token});
   }
 }
 

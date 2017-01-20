@@ -1,9 +1,15 @@
+import { MentionsPipe } from './mentions';
 import { NgModule } from '@angular/core';
 
 import { LinkifyPipe } from './linkify';
+import { CapitalizePipe } from './capitalize';
+import { StringifyPipe } from './stringify';
 
 export const PIPES = [
-  LinkifyPipe
+  LinkifyPipe,
+  CapitalizePipe,
+  StringifyPipe,
+  MentionsPipe
 ];
 
 @NgModule({

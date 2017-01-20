@@ -49,7 +49,6 @@ export class FeedsEffects {
   @Effect() reply$ = this.actions$
     .ofType(ActionTypes.REPLY)
     .map((action: Action) => action.payload)
-    .switchMap((messageWithFeedId: any) => this.apiService.reply(messageWithFeedId))
-    .map((response: any) => this.feedsActions.replySuccess(response.status));
-
+    .switchMap((messageWithFeed: any) => this.apiService.reply(messageWithFeed))
+    .map((response: any) => this.feedsActions.replySuccess(response.feed));
 }

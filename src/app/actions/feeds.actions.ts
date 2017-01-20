@@ -167,12 +167,12 @@ export class FeedsActions {
    * 
    * @param : {feedId: feedId, message: message}
    * 
-   * @return : Action with payload messageWithFeedId
+   * @return : Action with payload messageWithFeed
    */
-  reply(messageWithFeedId: {}): Action {
+  reply(messageWithFeed: {}): Action {
     return {
       type: ActionTypes.REPLY,
-      payload: messageWithFeedId
+      payload: messageWithFeed
     }
   }
 
@@ -184,10 +184,10 @@ export class FeedsActions {
    * 
    * @return : Action with payload status
    */
-  replySuccess(status: boolean): Action {
+  replySuccess(feed): Action {
     return {
       type: ActionTypes.REPLY_SUCCESS,
-      payload: status
+      payload: feed
     }
   }
 }
