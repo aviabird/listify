@@ -14,11 +14,11 @@ const initialState: State = {
 
 export default function(state = initialState, action: Action): State {
     switch(action.type){
+        case ActionTypes.UPDATE_LISTS:
         case ActionTypes.RETRIVE_LISTS_SUCCESS: {
           const Lists: List[] = action.payload;
           
-          const newLists: List[] = Lists
-            .filter(list => !state.entities[list.id]);
+          const newLists: List[] = Lists;
           
           const newListIds = Lists
                               .filter(list => !state.entities[list.id])

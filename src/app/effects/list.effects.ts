@@ -26,9 +26,14 @@ export class ListEffects {
     .ofType(ActionTypes.FOLLOW_LIST)
     .map((action: Action) => action.payload)
     .switchMap((listId: string) => this.apiService.followList(listId))
-    .map((response) => this.responseParser.createUserListobj(response.new_user_list))
-    .map((userList) => this.listActions.followSuccess(userList))
+    .map((response) => this.listActions.followSuccess(response))
 
+
+  @Effect() followListSuccess$ = this.actions$
+    .ofType(ActionTypes.FOLLOW_LIST_SUCCESS)
+    .map((action: Action) => action.payload.new_list)
+    .map((new_list: any) => this.responseParser.createSuggestedListsObj(new_list))
+    .map((updatedLists: List[]) => this.listActions.updateLists(updatedLists));
 
   @Effect() unFollowList$ = this.actions$
     .ofType(ActionTypes.UNFOLLOW_LIST)

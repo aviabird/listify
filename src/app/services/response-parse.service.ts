@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Rx';
 import { Injectable } from '@angular/core';
 import { List, UserList, Tweet, User, Entities, Urls } from '../models';
 

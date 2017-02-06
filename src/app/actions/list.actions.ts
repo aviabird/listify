@@ -9,7 +9,8 @@ export const ActionTypes = {
   FOLLOW_LIST:           type('Follow List'),
   FOLLOW_LIST_SUCCESS:   type('Follow List Success'),
   UNFOLLOW_LIST:         type('UnFollow List'),
-  UNFOLLOW_LIST_SUCCESS: type('UnFollow List Success')
+  UNFOLLOW_LIST_SUCCESS: type('UnFollow List Success'),
+  UPDATE_LISTS:           type('Update Lists')
 }
 
 export class ListActions {
@@ -34,10 +35,10 @@ export class ListActions {
     }
   }
 
-  followSuccess(userList: UserList): Action {
+  followSuccess(response: any): Action {
     return {
       type: ActionTypes.FOLLOW_LIST_SUCCESS,
-      payload: userList
+      payload: response
     }
   }
 
@@ -51,6 +52,13 @@ export class ListActions {
   unFollowListSuccess(response: any): Action {
     return {
       type: ActionTypes.UNFOLLOW_LIST_SUCCESS,
+      payload: response
+    }
+  }
+
+  updateLists(response: any): Action {
+    return {
+      type: ActionTypes.UPDATE_LISTS,
       payload: response
     }
   }

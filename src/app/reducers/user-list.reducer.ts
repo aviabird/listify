@@ -2,6 +2,7 @@ import { Action } from '@ngrx/store';
 import { UserList } from '../models/';
 import { ActionTypes  as ListActionTypes }from '../actions/list.actions';
 import { ActionTypes as UserListActions } from '../actions/user-list.actions';
+import { ResponseParseService } from '../services/response-parse.service';
 
 export type State = {
   ids: string[];
@@ -16,14 +17,18 @@ const initialState: State = {
 export default function(state = initialState, action: Action): State {
     switch(action.type){
       case ListActionTypes.FOLLOW_LIST_SUCCESS: {
-        let userList = action.payload;
+        let response = action.payload;
 
-          return Object.assign({}, state, {
-            entities: Object.assign({}, state.entities,
-                                    {[userList.id]: userList}
-                                  ),
-            ids: [ ...state.ids, userList.id ]
-          })
+        //Parse the response here using responseParserService
+        let responseParserService = new ResponseParseService;
+        let userList = responseParserService.createUserListobj(response.new_user_list);
+
+        return Object.assign({}, state, {
+          entities: Object.assign({}, state.entities,
+                                  {[userList.id]: userList}
+                                ),
+          ids: [ ...state.ids, userList.id ]
+        })
       }
       case UserListActions.GET_USER_LISTS_SUCCESS: {
         
