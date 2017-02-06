@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class StringifyPipe implements PipeTransform {
   transform(value: any) {
     if (value) {
-      return value.replace(/\d+|-/g, '');
+      return value.replace(/\d+|[-_]/g, '');
     }
     return value;
   }

@@ -34,7 +34,7 @@
       <a (click)="backToHome()">List you Follow</a>
       <ul>
         <li *ngFor="let list of userList$ | async" [routerLink]= "['./feeds/' + list?.id]" class="list-link">
-          {{ list.name }}
+          {{ list.name | capitalize | stringify }}
         </li>
       </ul>
     </div>
