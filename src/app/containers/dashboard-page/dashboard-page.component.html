@@ -5,8 +5,11 @@
       Home
     </a>
     <div class="item">
-      <div class="left floated">
-        <img class="ui tiny circular image" [src]="(user$| async).profile_image_url?.replace('_normal', '')">
+      <div class="left floated" *ngIf="(user$ | async).profile_image_url">
+        <img class="ui tiny circular image" [src]="(user$ | async).profile_image_url?.replace('_normal', '')">
+      </div>
+      <div class="left floated" *ngIf="!(user$ | async).profile_image_url">
+        <img src="" alt="" class="ui active inline loader">
       </div>
       <div>
         <h1>{{(user$| async)?.name}}</h1>
